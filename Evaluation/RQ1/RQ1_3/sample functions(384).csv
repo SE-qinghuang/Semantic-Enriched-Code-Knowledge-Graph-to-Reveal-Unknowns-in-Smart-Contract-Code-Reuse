@@ -1,0 +1,2823 @@
+FEN:ID,Function Code,composition count before accumulation,composition count after accumulation
+0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:owned:constructor(),"    constructor() public {
+        owner = msg.sender;
+    }
+",0,6
+0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:owned:onlyOwner(),"    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
+",3,8910
+0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:owned:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner public {
+        owner = newOwner;
+    }
+",0,5
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    if (a == 0) {
+      return 0;
+    }
+    uint256 c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+",0,1101
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",0,624
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",3,5487
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",3,5961
+0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:BasicToken:totalSupply(),"  function totalSupply() public view returns (uint256) {
+    return totalSupply_;
+  }
+",0,13
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:BasicToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[msg.sender]);
+
+    // SafeMath.sub will throw if there is not enough balance.
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    emit Transfer(msg.sender, _to, _value);
+    return true;
+  }
+",0,329
+0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:BasicToken:balanceOf(address),"  function balanceOf(address _owner) public view returns (uint256 balance) {
+    return balances[_owner];
+  }
+",0,226
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:StandardToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[_from]);
+    require(_value <= allowed[_from][msg.sender]);
+
+    balances[_from] = balances[_from].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+    emit Transfer(_from, _to, _value);
+    return true;
+  }
+",0,253
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:StandardToken:approve(address,uint256)","  function approve(address _spender, uint256 _value) public returns (bool) {
+    require((_value == 0) || allowed[msg.sender][_spender]== 0);
+    allowed[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
+    return true;
+  }
+",0,22
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:StandardToken:allowance(address,address)","  function allowance(address _owner, address _spender) public view returns (uint256) {
+    return allowed[_owner][_spender];
+  }
+",0,6
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:StandardToken:increaseApproval(address,uint256)","  function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",0,172
+"0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:StandardToken:decreaseApproval(address,uint256)","  function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+      allowed[msg.sender][_spender] = 0;
+    } else {
+      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",0,172
+"0x2fc53e1a21da0a3047fc7244f04f10c796543c75/HumanStandardToken.sol:StandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        //Default assumes totalSupply can't be over max (2^256 - 1).
+        //If your token leaves out totalSupply and can issue more tokens as time goes on, you need to check if it doesn't wrap.
+        //Replace the if with this one instead.
+        //if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,13
+"0x2fc53e1a21da0a3047fc7244f04f10c796543c75/HumanStandardToken.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        //same as above. Replace this line with the following if you want to protect against wrapping uints.
+        //if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,7
+0x2fc53e1a21da0a3047fc7244f04f10c796543c75/HumanStandardToken.sol:StandardToken:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x2fc53e1a21da0a3047fc7244f04f10c796543c75/HumanStandardToken.sol:StandardToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,316
+"0x2fc53e1a21da0a3047fc7244f04f10c796543c75/HumanStandardToken.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+    }
+",0,14
+"0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:SafeMath:add(uint256,uint256)","    function add(uint a, uint b) internal pure returns (uint c) {
+        c = a + b;
+        require(c >= a);
+    }
+",3,732
+"0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:SafeMath:sub(uint256,uint256)","    function sub(uint a, uint b) internal pure returns (uint c) {
+        require(b <= a);
+        c = a - b;
+    }
+",4,477
+"0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:SafeMath:mul(uint256,uint256)","    function mul(uint a, uint b) internal pure returns (uint c) {
+        c = a * b;
+        require(a == 0 || c / a == b);
+    }
+",0,110
+"0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:SafeMath:div(uint256,uint256)","    function div(uint a, uint b) internal pure returns (uint c) {
+        require(b > 0);
+        c = a / b;
+    }
+",0,18
+0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:Owned:constructor(),"    constructor() public {
+        owner = msg.sender;
+    }
+",0,6
+0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:Owned:onlyOwner(),"    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
+",2,8910
+0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:Owned:transferOwnership(address),"    function transferOwnership(address _newOwner) public onlyOwner {
+        newOwner = _newOwner;
+    }
+",0,5
+"0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:AOT:transfer(address,uint256)","    function transfer(address to, uint tokens) public returns (bool success) {
+
+        // active first
+        initialize(msg.sender);
+
+        require(tokens <= balances[msg.sender]);
+        require(to != address(0));
+
+        // initialize(to);
+
+        balances[msg.sender] = balances[msg.sender].sub(tokens);
+        balances[to] = balances[to].add(tokens);
+        emit Transfer(msg.sender, to, tokens);
+        return true;
+
+    }
+",0,1
+"0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:AOT:approve(address,uint256)","    function approve(address spender, uint tokens) public returns (bool success) {
+        allowed[msg.sender][spender] = tokens;
+        emit Approval(msg.sender, spender, tokens);
+        return true;
+    }
+",0,1
+"0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:AOT:transferFrom(address,address,uint256)","    function transferFrom(address from, address to, uint tokens) public returns (bool success) {
+        // active
+        initialize(from);
+
+        require(tokens <= balances[from]);
+        require(tokens <= allowed[from][msg.sender]);
+        require(to != address(0));
+
+        // initialize(to);
+
+        balances[from] = balances[from].sub(tokens);
+        balances[to] = balances[to].add(tokens);
+        allowed[from][msg.sender] = allowed[from][msg.sender].sub(tokens);
+        emit Transfer(from, to, tokens);
+        return true;
+    }
+",0,227
+0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:AOT:getBalance(address),"    function getBalance(address _address) internal returns (uint256) {
+        if (_airdropTotal < _airdropSupply && !initialized[_address]) {
+            return balances[_address] + _airdropAmount;
+        } else {
+            return balances[_address];
+        }
+    }
+",1,8
+0x5da1ae58900514cbae8b03a05bd2e8e71de7e6a1/AOT.sol:AOT:initialize(address),"    function initialize(address _address) internal returns (bool success) {
+        if (_airdropTotal <= _airdropSupply && !initialized[_address]) {
+            initialized[_address] = true;
+            balances[_address] = _airdropAmount;
+            _airdropTotal = _airdropTotal.add(_airdropAmount);
+        }
+        return true;
+    }
+",2,4
+"0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",0,924
+"0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",0,624
+"0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",0,5487
+"0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",1,5961
+0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:Ownable:constructor(),"  constructor() public{
+    owner = msg.sender;
+  }
+",0,6
+0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+",3,8910
+0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:Ownable:transferOwnership(address),"  function transferOwnership(address newOwner) onlyOwner public {
+    require(newOwner != address(0));
+    emit OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+",0,65
+0x3fcb0335a909da48398a9d2e7608805658cf6eae/lockEtherPay.sol:lockEtherPay:lockOver(),"  function lockOver() constant public returns (bool){
+  	uint256 current_time = now;
+	return current_time > end_time;
+  }
+",1,4
+0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:owned:owned(),"    function owned() public {
+        owner = msg.sender;
+    }
+",0,10
+0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:owned:onlyOwner(),"    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
+",4,8910
+0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:owned:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner public {
+        owner = newOwner;
+    }
+",0,5
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:TokenERC20:TokenERC20(uint256,string,string)","    function TokenERC20( uint256 initialSupply, string tokenName, string tokenSymbol ) public {
+        totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
+        balanceOf[msg.sender] = totalSupply;                // Give the creator all initial tokens
+        name = tokenName;                                   // Set the name for display purposes
+        symbol = tokenSymbol;                               // Set the symbol for display purposes
+    }
+",1,99
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:TokenERC20:_transfer(address,address,uint256)","    function _transfer(address _from, address _to, uint _value) internal {
+        // Prevent transfer to 0x0 address. Use burn() instead
+        require(_to != 0x0);
+        // Check if the sender has enough
+        require(balanceOf[_from] >= _value);
+        // Check for overflows
+        require(balanceOf[_to] + _value > balanceOf[_to]);
+        // Save this for an assertion in the future
+        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+        // Subtract from the sender
+        balanceOf[_from] -= _value;
+        // Add the same to the recipient
+        balanceOf[_to] += _value;
+        emit Transfer(_from, _to, _value);
+        // Asserts are used to use static analysis to find bugs in your code. They should never fail
+        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    }
+",2,787
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:TokenERC20:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public {
+        _transfer(msg.sender, _to, _value);
+    }
+",0,8
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:TokenERC20:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        return true;
+    }
+",1,428
+0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:TokenERC20:burn(uint256),"    function burn(uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);   // Check if the sender has enough
+        balanceOf[msg.sender] -= _value;            // Subtract from the sender
+        totalSupply -= _value;                      // Updates totalSupply
+        emit Burn(msg.sender, _value);
+        return true;
+    }
+",0,2
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:TokenERC20:burnFrom(address,uint256)","    function burnFrom(address _from, uint256 _value) public returns (bool success) {
+        require(balanceOf[_from] >= _value);                // Check if the targeted balance is enough
+        require(_value <= allowance[_from][msg.sender]);    // Check allowance
+        balanceOf[_from] -= _value;                         // Subtract from the targeted balance
+        allowance[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
+        totalSupply -= _value;                              // Update totalSupply
+        emit Burn(_from, _value);
+        return true;
+    }
+",0,1
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:AGC:_transfer(address,address,uint256)","    function _transfer(address _from, address _to, uint _value) internal {
+        require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
+        require (balanceOf[_from] > _value);                // Check if the sender has enough
+        require (balanceOf[_to] + _value > balanceOf[_to]); // Check for overflows
+        require(!frozenAccount[_from]);                     // Check if sender is frozen
+        require(!frozenAccount[_to]);                       // Check if recipient is frozen
+        balanceOf[_from] -= _value;                         // Subtract from the sender
+        balanceOf[_to] += _value;                           // Add the same to the recipient
+        emit Transfer(_from, _to, _value);
+    }
+",1,205
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:AGC:mintToken(address,uint256)","    function mintToken(address target, uint256 mintedAmount) onlyOwner public {
+        balanceOf[target] += mintedAmount;
+        totalSupply += mintedAmount;
+        emit Transfer(0, this, mintedAmount);
+        emit Transfer(this, target, mintedAmount);
+    }
+",0,4
+"0x5d034d0d0d98fb76192ef2ef27e197fcfd9386ec/AGC.sol:AGC:freezeAccount(address,bool)","    function freezeAccount(address target, bool freeze) onlyOwner public {
+        frozenAccount[target] = freeze;
+        emit FrozenFunds(target, freeze);
+    }
+",0,1
+"0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        if (a == 0) {
+            return 0;
+        }
+        uint256 c = a * b;
+        assert(c / a == b);
+        return c;
+    }
+",0,1101
+"0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        return c;
+    }
+",0,624
+"0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:SafeMath:add(uint256,uint256)","    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+",5,5961
+0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:Ownable:onlyOwner(),"    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",3,8910
+0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:Ownable:onlyNewOwner(),"    modifier onlyNewOwner() {
+        require(msg.sender != address(0));
+        require(msg.sender == newOwner);
+        _;
+    }
+",2,3
+0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:Ownable:transferOwnership(address),"    function transferOwnership(address _newOwner) public onlyOwner {
+        require(_newOwner != address(0));
+        newOwner = _newOwner;
+    }
+",0,23
+0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:BTHPoint:totalSupply(),"    function totalSupply() public view returns (uint256) {
+        return _totalSupply;
+    }
+",0,13
+"0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:BTHPoint:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool) {
+        require(_to != address(0));
+        require(_to != address(this));
+        require(msg.sender != address(0));
+        require(_value <= _balances[msg.sender]);
+
+        // SafeMath.sub will throw if there is not enough balance.
+        _balances[msg.sender] = _balances[msg.sender].sub(_value);
+        _balances[_to] = _balances[_to].add(_value);
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+    }
+",0,1
+"0x1bb0aff98d8d455b0cd651306aebedb31913b94e/BTHPoint.sol:BTHPoint:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+        require(_from != address(0));
+        require(_to != address(0));
+        require(_to != address(this));
+        require(_value <= _balances[_from]);
+        require(_value <= _allowed[_from][msg.sender]);
+
+        _balances[_from] = _balances[_from].sub(_value);
+        _balances[_to] = _balances[_to].add(_value);
+        _allowed[_from][msg.sender] = _allowed[_from][msg.sender].sub(_value);
+        emit Transfer(_from, _to, _value);
+        return true;
+    }
+",0,19
+0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:Ownable:Ownable(),"    function Ownable() {
+        owner = msg.sender;
+    }
+",0,34
+0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:Ownable:onlyOwner(),"    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",6,8910
+0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:Ownable:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner {
+        if (newOwner != address(0)) {
+            owner = newOwner;
+        }
+    }
+",0,23
+"0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal returns (uint256) {
+        uint256 c = a * b;
+        assert(a == 0 || c / a == b);
+        return c;
+    }
+",0,924
+"0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal returns (uint256) {
+        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        return c;
+    }
+",0,624
+"0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:SafeMath:sub(uint256,uint256)","    function sub(uint256 a, uint256 b) internal returns (uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+",0,5487
+"0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:SafeMath:add(uint256,uint256)","    function add(uint256 a, uint256 b) internal returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+",3,5961
+0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:FaradTokenSwap:setWallet(address),"    function setWallet(address _wallet) onlyOwner public {
+        wallet = _wallet;
+    }
+",0,1
+0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:FaradTokenSwap:hasEnded(),"    function hasEnded() public constant returns (bool) {
+        return block.number >= endBlock;
+    }
+",0,1
+"0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:FaradTokenSwap:processContributions(address,uint256)","    function processContributions(address _contributor, uint256 _weiAmount) payable {
+        require(validPurchase());
+
+        uint256 updatedWeiRaised = weiRaised.add(_weiAmount);
+
+        // update state
+        weiRaised = updatedWeiRaised;
+
+        // notify event for this contribution
+        contributions[_contributor] = contributions[_contributor].add(_weiAmount);
+        contribCount += 1;
+        Contribution(_contributor, _weiAmount);
+
+        // forware the funds
+        forwardFunds();
+    }
+",1,4
+0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:FaradTokenSwap:validPurchase(),"    function validPurchase() internal constant returns (bool) {
+        uint256 current = block.number;
+
+        bool withinPeriod = current >= startBlock && current <= endBlock;
+        bool minPurchase = msg.value >= minContrib;
+
+        // add total wei raised
+        uint256 totalWeiRaised = weiRaised.add(msg.value);
+        bool withinCap = totalWeiRaised <= totalEtherCap;
+
+        // check all 3 conditions met
+        return withinPeriod && minPurchase && withinCap;
+    }
+",1,4
+0x2ca70f6f8ebd683d5afc20d426839ef40e063f02/FaradTokenSwap.sol:FaradTokenSwap:forwardFunds(),"    function forwardFunds() internal {
+        wallet.transfer(msg.value);
+    }
+",1,129
+"0x1b9dcdcddd2d6ca699cad9505faa363e81145c6b/BrinkToken.sol:BrinkToken:BrinkToken(uint256,string,uint8,string)","    function BrinkToken(
+        uint256 _initialAmount,
+        string _tokenName,
+        uint8 _decimalUnits,
+        string _tokenSymbol
+    ) public {
+        balances[msg.sender] = _initialAmount;               // Give the creator all initial tokens
+        totalSupply = _initialAmount;                        // Update total supply
+        name = _tokenName;                                   // Set the name for display purposes
+        decimals = _decimalUnits;                            // Amount of decimals for display purposes
+        symbol = _tokenSymbol;                               // Set the symbol for display purposes
+    }
+",0,8
+"0x1b9dcdcddd2d6ca699cad9505faa363e81145c6b/BrinkToken.sol:BrinkToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balances[msg.sender] >= _value);
+        balances[msg.sender] -= _value;
+        balances[_to] += _value;
+        Transfer(msg.sender, _to, _value);
+        return true;
+    }
+",0,16
+"0x1b9dcdcddd2d6ca699cad9505faa363e81145c6b/BrinkToken.sol:BrinkToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        uint256 allowance = allowed[_from][msg.sender];
+        require(balances[_from] >= _value && allowance >= _value);
+        balances[_to] += _value;
+        balances[_from] -= _value;
+        if (allowance < MAX_UINT256) {
+            allowed[_from][msg.sender] -= _value;
+        }
+        Transfer(_from, _to, _value);
+        return true;
+    }
+",0,9
+0x1b9dcdcddd2d6ca699cad9505faa363e81145c6b/BrinkToken.sol:BrinkToken:balanceOf(address),"    function balanceOf(address _owner) public view returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x1b9dcdcddd2d6ca699cad9505faa363e81145c6b/BrinkToken.sol:BrinkToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,316
+"0x1b9dcdcddd2d6ca699cad9505faa363e81145c6b/BrinkToken.sol:BrinkToken:allowance(address,address)","    function allowance(address _owner, address _spender) public view returns (uint256 remaining) {
+        return allowed[_owner][_spender];
+    }
+",0,14
+"0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal constant returns (uint256) {
+        uint256 c = a * b;
+        assert(a == 0 || c / a == b);
+        return c;
+    }
+",0,924
+"0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal constant returns (uint256) {
+        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        return c;
+    }
+",3,624
+"0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:SafeMath:add(uint256,uint256)","    function add(uint256 a, uint256 b) internal constant returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+",5,5961
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:Ownable:Ownable(),"    function Ownable() {
+        owner = msg.sender;
+    }
+",0,34
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:Ownable:onlyOwner(),"    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",4,8910
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:Ownable:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner {
+        require(newOwner != address(0));
+        owner = newOwner;
+    }
+",0,23
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:onlyPayloadSize(uint256),"    modifier onlyPayloadSize(uint size) {
+        require(msg.data.length >= size + 4);
+        _;
+    }
+",2,258
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:canPoSMint(),"    modifier canPoSMint() {
+        require(totalSupply < maxTotalSupply);
+        _;
+    }
+",1,20
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) returns (bool) {
+        require((_value == 0) || (allowed[msg.sender][_spender] == 0));
+
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,22
+"0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+        return allowed[_owner][_spender];
+    }
+",0,14
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:mint(),"    function mint() canPoSMint returns (bool) {
+        if(balances[msg.sender] <= 0) return false;
+        if(transferIns[msg.sender].length <= 0) return false;
+
+        uint reward = getProofOfStakeReward(msg.sender);
+        if(reward <= 0) return false;
+
+        totalSupply = totalSupply.add(reward);
+        balances[msg.sender] = balances[msg.sender].add(reward);
+        delete transferIns[msg.sender];
+        transferIns[msg.sender].push(transferInStruct(uint128(balances[msg.sender]),uint64(now)));
+
+        Mint(msg.sender, reward);
+        return true;
+    }
+",1,19
+0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:getProofOfStakeReward(address),"    function getProofOfStakeReward(address _address) internal returns (uint) {
+        require( (now >= stakeStartTime) && (stakeStartTime > 0) );
+
+        uint _now = now;
+        uint _coinAge = getCoinAge(_address, _now);
+        if(_coinAge <= 0) return 0;
+
+        uint interest = maxMintProofOfStake;
+        // Due to the high interest rate for the first two years, compounding should be taken into account.
+        // Effective annual interest rate = (1 + (nominal rate / number of compounding periods)) ^ (number of compounding periods) - 1
+        if((_now.sub(stakeStartTime)).div(1 years) == 0) {
+            // 1st year effective annual interest rate is 100% when we select the stakeMaxAge (90 days) as the compounding period.
+            interest = (770 * maxMintProofOfStake).div(100);
+        } else if((_now.sub(stakeStartTime)).div(1 years) == 1){
+            // 2nd year effective annual interest rate is 50%
+            interest = (435 * maxMintProofOfStake).div(100);
+        }
+
+        return (_coinAge * interest).div(365 * (10**decimals));
+    }
+",1,14
+"0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:BunzolaToken:getCoinAge(address,uint256)","    function getCoinAge(address _address, uint _now) internal returns (uint _coinAge) {
+        if(transferIns[_address].length <= 0) return 0;
+
+        for (uint i = 0; i < transferIns[_address].length; i++){
+            if( _now < uint(transferIns[_address][i].time).add(stakeMinAge) ) continue;
+
+            uint nCoinSeconds = _now.sub(uint(transferIns[_address][i].time));
+            if( nCoinSeconds > stakeMaxAge ) nCoinSeconds = stakeMaxAge;
+
+            _coinAge = _coinAge.add(uint(transferIns[_address][i].amount) * nCoinSeconds.div(1 days));
+        }
+    }
+",2,38
+0x5c227eb319c24249df66d0c5879515aa59787471/BitAlpha.sol:BitAlpha:onlyOwner(),"     modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",1,8910
+0x5c227eb319c24249df66d0c5879515aa59787471/BitAlpha.sol:BitAlpha:balanceOf(address),"     function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+     }
+",0,226
+"0x5c227eb319c24249df66d0c5879515aa59787471/BitAlpha.sol:BitAlpha:transfer(address,uint256)","     function transfer(address _to, uint256 _amount) returns (bool success) {
+         if (balances[msg.sender] >= _amount
+            && _amount > 0
+             && balances[_to] + _amount > balances[_to]) {
+             balances[msg.sender] -= _amount;
+             balances[_to] += _amount;
+             Transfer(msg.sender, _to, _amount);
+            return true;
+         } else {
+             return false;
+         }
+     }
+",0,3
+"0x5c227eb319c24249df66d0c5879515aa59787471/BitAlpha.sol:BitAlpha:transferFrom(address,address,uint256)","     function transferFrom(
+         address _from,
+         address _to,
+         uint256 _amount
+     ) returns (bool success) {
+         if (balances[_from] >= _amount
+             && allowed[_from][msg.sender] >= _amount
+             && _amount > 0
+             && balances[_to] + _amount > balances[_to]) {
+             balances[_from] -= _amount;
+             allowed[_from][msg.sender] -= _amount;
+             balances[_to] += _amount;
+             Transfer(_from, _to, _amount);
+             return true;
+         } else {
+            return false;
+         }
+     }
+",0,1
+"0x5c227eb319c24249df66d0c5879515aa59787471/BitAlpha.sol:BitAlpha:approve(address,uint256)","     function approve(address _spender, uint256 _amount) returns (bool success) {
+         allowed[msg.sender][_spender] = _amount;
+        Approval(msg.sender, _spender, _amount);
+         return true;
+     }
+",0,2
+"0x5c227eb319c24249df66d0c5879515aa59787471/BitAlpha.sol:BitAlpha:allowance(address,address)","     function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+         return allowed[_owner][_spender];
+    }
+",0,14
+"0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:SafeMath:safeMul(uint256,uint256)","  function safeMul(uint a, uint b) internal returns (uint) {
+    uint c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",1,93
+"0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:SafeMath:safeSub(uint256,uint256)","  function safeSub(uint a, uint b) internal returns (uint) {
+    assert(b <= a);
+    return a - b;
+  }
+",1,262
+"0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:SafeMath:safeAdd(uint256,uint256)","  function safeAdd(uint a, uint b) internal returns (uint) {
+    uint c = a + b;
+    assert(c>=a && c>=b);
+    return c;
+  }
+",2,239
+0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:SafeMath:assert(bool),"  function assert(bool assertion) internal {
+    if (!assertion) throw;
+  }
+",3,431
+"0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:StandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        //Default assumes totalSupply can't be over max (2^256 - 1).
+        //If your token leaves out totalSupply and can issue more tokens as time goes on, you need to check if it doesn't wrap.
+        //Replace the if with this one instead.
+        if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        //if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,6
+"0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        //same as above. Replace this line with the following if you want to protect against wrapping uints.
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        //if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,13
+0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:StandardToken:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:StandardToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,316
+"0x2d51eef741d906084ce3bacaa0e66e4d261fdccf/AutomobileCyberchainToken.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+    }
+",0,14
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal constant returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",0,924
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal constant returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",0,624
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal constant returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",0,5487
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal constant returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",0,5961
+0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:owned:owned(),"        function owned() {
+            owner = msg.sender;
+        }
+",0,10
+0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:owned:onlyOwner(),"        modifier onlyOwner {
+            require(msg.sender == owner);
+            _;
+        }
+",3,8910
+0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:owned:transferOwnership(address),"        function transferOwnership(address newOwner) onlyOwner {
+            owner = newOwner;
+        }
+",0,5
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:Antoken:mintToken(address,uint256)","	function mintToken(address target, uint256 mintedAmount) onlyOwner {
+		balanceOf[target] += mintedAmount;
+        totalSupply += mintedAmount;
+        Transfer(0, owner, mintedAmount);
+        Transfer(owner, target, mintedAmount);
+    }
+",0,2
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:Antoken:_transfer(address,address,uint256)","    function _transfer(address _from, address _to, uint _value) internal {
+        // Prevent transfer to 0x0 address. Use burn() instead
+        require(_to != 0x0);
+        // Check if the sender has enough
+        require(balanceOf[_from] >= _value);
+        // Check for overflows
+        require(balanceOf[_to] + _value > balanceOf[_to]);
+        // Save this for an assertion in the future
+        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+        // Subtract from the sender
+        balanceOf[_from] -= _value;
+        // Add the same to the recipient
+        balanceOf[_to] += _value;
+        Transfer(_from, _to, _value);
+        // Asserts are used to use static analysis to find bugs in your code. They should never fail
+        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    }
+",2,787
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:Antoken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public {
+        _transfer(msg.sender, _to, _value);
+    }
+",0,8
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:Antoken:approve(address,uint256)","    function approve(address _spender, uint256 _value) public
+        returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        return true;
+    }
+",1,428
+0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:Antoken:burn(uint256),"    function burn(uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);   // Check if the sender has enough
+        balanceOf[msg.sender] -= _value;            // Subtract from the sender
+        totalSupply -= _value;                      // Updates totalSupply
+        Burn(msg.sender, _value);
+        return true;
+    }
+",0,2
+"0x7e2495d14237d66251442c56b67583e9c7f80047/Antoken.sol:Antoken:burnFrom(address,uint256)","    function burnFrom(address _from, uint256 _value) public returns (bool success) {
+        require(balanceOf[_from] >= _value);                // Check if the targeted balance is enough
+        require(_value <= allowance[_from][msg.sender]);    // Check allowance
+        balanceOf[_from] -= _value;                         // Subtract from the targeted balance
+        allowance[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
+        totalSupply -= _value;                              // Update totalSupply
+        Burn(_from, _value);
+        return true;
+    }
+",0,1
+"0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:SafeMath:safeAdd(uint256,uint256)","                function safeAdd(uint a, uint b) public pure returns (uint c) {
+                    c = a + b;
+                    require(c >= a);
+                }
+",2,560
+"0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:SafeMath:safeSub(uint256,uint256)","                function safeSub(uint a, uint b) public pure returns (uint c) {
+                    require(b <= a);
+                    c = a - b;
+                }
+",2,497
+"0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:SafeMath:safeMul(uint256,uint256)","                function safeMul(uint a, uint b) public pure returns (uint c) {
+                    c = a * b;
+                    require(a == 0 || c / a == b);
+                }
+",0,110
+"0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:SafeMath:safeDiv(uint256,uint256)","                function safeDiv(uint a, uint b) public pure returns (uint c) {
+                    require(b > 0);
+                    c = a / b;
+                }
+",0,222
+0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:Owned:onlyOwner(),"                modifier onlyOwner {
+                    require(msg.sender == owner);
+                    _;
+                }
+",2,8910
+0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:Owned:transferOwnership(address),"                function transferOwnership(address _newOwner) public onlyOwner {
+                    newOwner = _newOwner;
+                }
+",0,5
+0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:ADZbuzzCommunityToken:totalSupply(),"                function totalSupply() public constant returns (uint) {
+                    return _totalSupply  - balances[address(0)];
+                }
+",0,1
+0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:ADZbuzzCommunityToken:balanceOf(address),"                function balanceOf(address tokenOwner) public constant returns (uint balance) {
+                    return balances[tokenOwner];
+                }
+",0,3
+"0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:ADZbuzzCommunityToken:transfer(address,uint256)","                function transfer(address to, uint tokens) public returns (bool success) {
+                    balances[msg.sender] = safeSub(balances[msg.sender], tokens);
+                    balances[to] = safeAdd(balances[to], tokens);
+                    emit Transfer(msg.sender, to, tokens);
+                    return true;
+                }
+",0,6
+"0x5fe8a4b8bf89077606aa8bbcb5ee131ae8dbf900/ADZbuzzCommunityToken.sol:ADZbuzzCommunityToken:approve(address,uint256)","                function approve(address spender, uint tokens) public returns (bool success) {
+                    allowed[msg.sender][spender] = tokens;
+                    emit Approval(msg.sender, spender, tokens);
+                    return true;
+                }
+",0,1
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_getPrice(string),"    function oraclize_getPrice(string datasource) oraclizeAPI internal returns (uint){
+        return oraclize.getPrice(datasource);
+    }
+",0,1
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,string)","    function oraclize_query(string datasource, string arg) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource);
+        if (price > 1 ether + tx.gasprice*200000) return 0; // unexpectedly high price
+        return oraclize.query.value(price)(0, datasource, arg);
+    }
+",0,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,string)","    function oraclize_query(uint timestamp, string datasource, string arg) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource);
+        if (price > 1 ether + tx.gasprice*200000) return 0; // unexpectedly high price
+        return oraclize.query.value(price)(timestamp, datasource, arg);
+    }
+",2,4
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,string,uint256)","    function oraclize_query(uint timestamp, string datasource, string arg, uint gaslimit) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource, gaslimit);
+        if (price > 1 ether + tx.gasprice*gaslimit) return 0; // unexpectedly high price
+        return oraclize.query_withGasLimit.value(price)(timestamp, datasource, arg, gaslimit);
+    }
+",0,30
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,string,uint256)","    function oraclize_query(string datasource, string arg, uint gaslimit) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource, gaslimit);
+        if (price > 1 ether + tx.gasprice*gaslimit) return 0; // unexpectedly high price
+        return oraclize.query_withGasLimit.value(price)(0, datasource, arg, gaslimit);
+    }
+",0,32
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,string,string)","    function oraclize_query(string datasource, string arg1, string arg2) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource);
+        if (price > 1 ether + tx.gasprice*200000) return 0; // unexpectedly high price
+        return oraclize.query2.value(price)(0, datasource, arg1, arg2);
+    }
+",0,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,string,string)","    function oraclize_query(uint timestamp, string datasource, string arg1, string arg2) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource);
+        if (price > 1 ether + tx.gasprice*200000) return 0; // unexpectedly high price
+        return oraclize.query2.value(price)(timestamp, datasource, arg1, arg2);
+    }
+",0,4
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,string,string,uint256)","    function oraclize_query(uint timestamp, string datasource, string arg1, string arg2, uint gaslimit) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource, gaslimit);
+        if (price > 1 ether + tx.gasprice*gaslimit) return 0; // unexpectedly high price
+        return oraclize.query2_withGasLimit.value(price)(timestamp, datasource, arg1, arg2, gaslimit);
+    }
+",0,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,string,string,uint256)","    function oraclize_query(string datasource, string arg1, string arg2, uint gaslimit) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource, gaslimit);
+        if (price > 1 ether + tx.gasprice*gaslimit) return 0; // unexpectedly high price
+        return oraclize.query2_withGasLimit.value(price)(0, datasource, arg1, arg2, gaslimit);
+    }
+",0,30
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,bytes[])","    function oraclize_query(string datasource, bytes[] argN) oraclizeAPI internal returns (bytes32 id){
+        uint price = oraclize.getPrice(datasource);
+        if (price > 1 ether + tx.gasprice*200000) return 0; // unexpectedly high price
+        bytes memory args = ba2cbor(argN);
+        return oraclize.queryN.value(price)(0, datasource, args);
+    }
+",5,75
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,bytes[3])","    function oraclize_query(uint timestamp, string datasource, bytes[3] args) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](3);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        return oraclize_query(timestamp, datasource, dynargs);
+    }
+",0,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,bytes[3],uint256)","    function oraclize_query(uint timestamp, string datasource, bytes[3] args, uint gaslimit) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](3);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        return oraclize_query(timestamp, datasource, dynargs, gaslimit);
+    }
+",1,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,bytes[3],uint256)","    function oraclize_query(string datasource, bytes[3] args, uint gaslimit) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](3);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        return oraclize_query(datasource, dynargs, gaslimit);
+    }
+",0,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,bytes[4])","    function oraclize_query(string datasource, bytes[4] args) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](4);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        dynargs[3] = args[3];
+        return oraclize_query(datasource, dynargs);
+    }
+",0,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,bytes[4])","    function oraclize_query(uint timestamp, string datasource, bytes[4] args) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](4);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        dynargs[3] = args[3];
+        return oraclize_query(timestamp, datasource, dynargs);
+    }
+",0,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(uint256,string,bytes[4],uint256)","    function oraclize_query(uint timestamp, string datasource, bytes[4] args, uint gaslimit) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](4);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        dynargs[3] = args[3];
+        return oraclize_query(timestamp, datasource, dynargs, gaslimit);
+    }
+",0,2
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,bytes[4],uint256)","    function oraclize_query(string datasource, bytes[4] args, uint gaslimit) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](4);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        dynargs[3] = args[3];
+        return oraclize_query(datasource, dynargs, gaslimit);
+    }
+",0,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_query(string,bytes[5])","    function oraclize_query(string datasource, bytes[5] args) oraclizeAPI internal returns (bytes32 id) {
+        bytes[] memory dynargs = new bytes[](5);
+        dynargs[0] = args[0];
+        dynargs[1] = args[1];
+        dynargs[2] = args[2];
+        dynargs[3] = args[3];
+        dynargs[4] = args[4];
+        return oraclize_query(datasource, dynargs);
+    }
+",0,2
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_cbAddress(),"    function oraclize_cbAddress() oraclizeAPI internal returns (address){
+        return oraclize.cbAddress();
+    }
+",1,5
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_setCustomGasPrice(uint256),"    function oraclize_setCustomGasPrice(uint gasPrice) oraclizeAPI internal {
+        return oraclize.setCustomGasPrice(gasPrice);
+    }
+",0,1
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_randomDS_getSessionPubKeyHash(),"    function oraclize_randomDS_getSessionPubKeyHash() oraclizeAPI internal returns (bytes32){
+        return oraclize.randomDS_getSessionPubKeyHash();
+    }
+",1,5
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:getCodeSize(address),"    function getCodeSize(address _addr) constant internal returns(uint _size) {
+        assembly {
+            _size := extcodesize(_addr)
+        }
+    }
+",1,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:strCompare(string,string)","    function strCompare(string _a, string _b) internal pure returns (int) {
+        bytes memory a = bytes(_a);
+        bytes memory b = bytes(_b);
+        uint minLength = a.length;
+        if (b.length < minLength) minLength = b.length;
+        for (uint i = 0; i < minLength; i ++)
+            if (a[i] < b[i])
+                return -1;
+            else if (a[i] > b[i])
+                return 1;
+        if (a.length < b.length)
+            return -1;
+        else if (a.length > b.length)
+            return 1;
+        else
+            return 0;
+    }
+",1,2
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:strConcat(string,string,string,string,string)","    function strConcat(string _a, string _b, string _c, string _d, string _e) internal pure returns (string) {
+        bytes memory _ba = bytes(_a);
+        bytes memory _bb = bytes(_b);
+        bytes memory _bc = bytes(_c);
+        bytes memory _bd = bytes(_d);
+        bytes memory _be = bytes(_e);
+        string memory abcde = new string(_ba.length + _bb.length + _bc.length + _bd.length + _be.length);
+        bytes memory babcde = bytes(abcde);
+        uint k = 0;
+        for (uint i = 0; i < _ba.length; i++) babcde[k++] = _ba[i];
+        for (i = 0; i < _bb.length; i++) babcde[k++] = _bb[i];
+        for (i = 0; i < _bc.length; i++) babcde[k++] = _bc[i];
+        for (i = 0; i < _bd.length; i++) babcde[k++] = _bd[i];
+        for (i = 0; i < _be.length; i++) babcde[k++] = _be[i];
+        return string(babcde);
+    }
+",3,31
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:strConcat(string,string,string,string)","    function strConcat(string _a, string _b, string _c, string _d) internal pure returns (string) {
+        return strConcat(_a, _b, _c, _d, """");
+    }
+",0,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:strConcat(string,string,string)","    function strConcat(string _a, string _b, string _c) internal pure returns (string) {
+        return strConcat(_a, _b, _c, """", """");
+    }
+",0,4
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:strConcat(string,string)","    function strConcat(string _a, string _b) internal pure returns (string) {
+        return strConcat(_a, _b, """", """", """");
+    }
+",0,1
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:parseInt(string),"    function parseInt(string _a) internal pure returns (uint) {
+        return parseInt(_a, 0);
+    }
+",0,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:parseInt(string,uint256)","    function parseInt(string _a, uint _b) internal pure returns (uint) {
+        bytes memory bresult = bytes(_a);
+        uint mint = 0;
+        bool decimals = false;
+        for (uint i=0; i<bresult.length; i++){
+            if ((bresult[i] >= 48)&&(bresult[i] <= 57)){
+                if (decimals){
+                   if (_b == 0) break;
+                    else _b--;
+                }
+                mint *= 10;
+                mint += uint(bresult[i]) - 48;
+            } else if (bresult[i] == 46) decimals = true;
+        }
+        if (_b > 0) mint *= 10**_b;
+        return mint;
+    }
+",1,9
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:uint2str(uint256),"    function uint2str(uint i) internal pure returns (string){
+        if (i == 0) return ""0"";
+        uint j = i;
+        uint len;
+        while (j != 0){
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint k = len - 1;
+        while (i != 0){
+            bstr[k--] = byte(48 + i % 10);
+            i /= 10;
+        }
+        return string(bstr);
+    }
+",0,4
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_setNetworkName(string),"    function oraclize_setNetworkName(string _network_name) internal {
+        oraclize_network_name = _network_name;
+    }
+",1,5
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_getNetworkName(),"    function oraclize_getNetworkName() internal view returns (string) {
+        return oraclize_network_name;
+    }
+",1,4
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_randomDS_setCommitment(bytes32,bytes32)","    function oraclize_randomDS_setCommitment(bytes32 queryId, bytes32 commitment) internal {
+        oraclize_randomDS_args[queryId] = commitment;
+    }
+",1,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_randomDS_proofVerify__sessionKeyValidity(bytes,uint256)","    function oraclize_randomDS_proofVerify__sessionKeyValidity(bytes proof, uint sig2offset) internal returns (bool) {
+        bool sigok;
+
+        // Step 6: verify the attestation signature, APPKEY1 must sign the sessionKey from the correct ledger app (CODEHASH)
+        bytes memory sig2 = new bytes(uint(proof[sig2offset+1])+2);
+        copyBytes(proof, sig2offset, sig2.length, sig2, 0);
+
+        bytes memory appkey1_pubkey = new bytes(64);
+        copyBytes(proof, 3+1, 64, appkey1_pubkey, 0);
+
+        bytes memory tosign2 = new bytes(1+65+32);
+        tosign2[0] = byte(1); //role
+        copyBytes(proof, sig2offset-65, 65, tosign2, 1);
+        bytes memory CODEHASH = hex""fd94fa71bc0ba10d39d464d0d8f465efeef0a2764e3887fcc9df41ded20f505c"";
+        copyBytes(CODEHASH, 0, 32, tosign2, 1+65);
+        sigok = verifySig(sha256(tosign2), sig2, appkey1_pubkey);
+
+        if (sigok == false) return false;
+
+
+        // Step 7: verify the APPKEY1 provenance (must be signed by Ledger)
+        bytes memory LEDGERKEY = hex""7fb956469c5c9b89840d55b43537e66a98dd4811ea0a27224272c2e5622911e8537a2f8e86a46baec82864e98dd01e9ccc2f8bc5dfc9cbe5a91a290498dd96e4"";
+
+        bytes memory tosign3 = new bytes(1+65);
+        tosign3[0] = 0xFE;
+        copyBytes(proof, 3, 65, tosign3, 1);
+
+        bytes memory sig3 = new bytes(uint(proof[3+65+1])+2);
+        copyBytes(proof, 3+65, sig3.length, sig3, 0);
+
+        sigok = verifySig(sha256(tosign3), sig3, LEDGERKEY);
+
+        return sigok;
+    }
+",1,5
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:oraclize_randomDS_proofVerify__main(bytes,bytes32,bytes,string)","    function oraclize_randomDS_proofVerify__main(bytes proof, bytes32 queryId, bytes result, string context_name) internal returns (bool){
+
+        // Step 2: the unique keyhash has to match with the sha256 of (context name + queryId)
+        uint ledgerProofLength = 3+65+(uint(proof[3+65+1])+2)+32;
+        bytes memory keyhash = new bytes(32);
+        copyBytes(proof, ledgerProofLength, 32, keyhash, 0);
+        if (!(keccak256(keyhash) == keccak256(sha256(context_name, queryId)))) return false;
+
+        bytes memory sig1 = new bytes(uint(proof[ledgerProofLength+(32+8+1+32)+1])+2);
+        copyBytes(proof, ledgerProofLength+(32+8+1+32), sig1.length, sig1, 0);
+
+        // Step 3: we assume sig1 is valid (it will be verified during step 5) and we verify if 'result' is the prefix of sha256(sig1)
+        if (!matchBytes32Prefix(sha256(sig1), result, uint(proof[ledgerProofLength+32+8]))) return false;
+
+        // Step 4: commitment match verification, keccak256(delay, nbytes, unonce, sessionKeyHash) == commitment in storage.
+        // This is to verify that the computed args match with the ones specified in the query.
+        bytes memory commitmentSlice1 = new bytes(8+1+32);
+        copyBytes(proof, ledgerProofLength+32, 8+1+32, commitmentSlice1, 0);
+
+        bytes memory sessionPubkey = new bytes(64);
+        uint sig2offset = ledgerProofLength+32+(8+1+32)+sig1.length+65;
+        copyBytes(proof, sig2offset-64, 64, sessionPubkey, 0);
+
+        bytes32 sessionPubkeyHash = sha256(sessionPubkey);
+        if (oraclize_randomDS_args[queryId] == keccak256(commitmentSlice1, sessionPubkeyHash)){ //unonce, nbytes and sessionKeyHash match
+            delete oraclize_randomDS_args[queryId];
+        } else return false;
+
+
+        // Step 5: validity verification for sig1 (keyhash and args signed with the sessionKey)
+        bytes memory tosign1 = new bytes(32+8+1+32);
+        copyBytes(proof, ledgerProofLength, 32+8+1+32, tosign1, 0);
+        if (!verifySig(sha256(tosign1), sig1, sessionPubkey)) return false;
+
+        // verify if sessionPubkeyHash was verified already, if not.. let's do it!
+        if (oraclize_randomDS_sessionKeysHashVerified[sessionPubkeyHash] == false){
+            oraclize_randomDS_sessionKeysHashVerified[sessionPubkeyHash] = oraclize_randomDS_proofVerify__sessionKeyValidity(proof, sig2offset);
+        }
+
+        return oraclize_randomDS_sessionKeysHashVerified[sessionPubkeyHash];
+    }
+",1,4
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:usingOraclize:ecrecovery(bytes32,bytes)","    function ecrecovery(bytes32 hash, bytes sig) internal returns (bool, address) {
+        bytes32 r;
+        bytes32 s;
+        uint8 v;
+
+        if (sig.length != 65)
+          return (false, 0);
+
+        // The signature format is a compact form of:
+        //   {bytes32 r}{bytes32 s}{uint8 v}
+        // Compact means, uint8 is not padded to 32 bytes.
+        assembly {
+            r := mload(add(sig, 32))
+            s := mload(add(sig, 64))
+
+            // Here we are loading the last 32 bytes. We exploit the fact that
+            // 'mload' will pad with zeroes if we overread.
+            // There is no 'mload8' to do this, but that would be nicer.
+            v := byte(0, mload(add(sig, 96)))
+
+            // Alternative solution:
+            // 'byte' is not working due to the Solidity parser, so lets
+            // use the second best option, 'and'
+            // v := and(mload(add(sig, 65)), 255)
+        }
+
+        // albeit non-transactional signatures are not specified by the YP, one would expect it
+        // to match the YP range of [27, 28]
+        //
+        // geth uses [0, 1] and some clients have followed. This might change, see:
+        //  https://github.com/ethereum/go-ethereum/issues/2053
+        if (v < 27)
+          v += 27;
+
+        if (v != 27 && v != 28)
+            return (false, 0);
+
+        return safer_ecrecover(hash, v, r, s);
+    }
+",0,16
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:toSlice(string),"    function toSlice(string self) internal returns (slice) {
+        uint ptr;
+        assembly {
+            ptr := add(self, 0x20)
+        }
+        return slice(bytes(self).length, ptr);
+    }
+",1,3
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:len(bytes32),"    function len(bytes32 self) internal returns (uint) {
+        uint ret;
+        if (self == 0)
+            return 0;
+        if (self & 0xffffffffffffffffffffffffffffffff == 0) {
+            ret += 16;
+            self = bytes32(uint(self) / 0x100000000000000000000000000000000);
+        }
+        if (self & 0xffffffffffffffff == 0) {
+            ret += 8;
+            self = bytes32(uint(self) / 0x10000000000000000);
+        }
+        if (self & 0xffffffff == 0) {
+            ret += 4;
+            self = bytes32(uint(self) / 0x100000000);
+        }
+        if (self & 0xffff == 0) {
+            ret += 2;
+            self = bytes32(uint(self) / 0x10000);
+        }
+        if (self & 0xff == 0) {
+            ret += 1;
+        }
+        return 32 - ret;
+    }
+",1,3
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:copy(strings:slice),"    function copy(slice self) internal returns (slice) {
+        return slice(self._len, self._ptr);
+    }
+",0,1
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:toString(strings:slice),"    function toString(slice self) internal returns (string) {
+        var ret = new string(self._len);
+        uint retptr;
+        assembly { retptr := add(ret, 32) }
+
+        memcpy(retptr, self._ptr, self._len);
+        return ret;
+    }
+",1,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:compare(strings:slice,strings:slice)","    function compare(slice self, slice other) internal returns (int) {
+        uint shortest = self._len;
+        if (other._len < self._len)
+            shortest = other._len;
+
+        var selfptr = self._ptr;
+        var otherptr = other._ptr;
+        for (uint idx = 0; idx < shortest; idx += 32) {
+            uint a;
+            uint b;
+            assembly {
+                a := mload(selfptr)
+                b := mload(otherptr)
+            }
+            if (a != b) {
+                // Mask out irrelevant bytes and check again
+                uint mask = ~(2 ** (8 * (32 - shortest + idx)) - 1);
+                var diff = (a & mask) - (b & mask);
+                if (diff != 0)
+                    return int(diff);
+            }
+            selfptr += 32;
+            otherptr += 32;
+        }
+        return int(self._len) - int(other._len);
+    }
+",1,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:nextRune(strings:slice,strings:slice)","    function nextRune(slice self, slice rune) internal returns (slice) {
+        rune._ptr = self._ptr;
+
+        if (self._len == 0) {
+            rune._len = 0;
+            return rune;
+        }
+
+        uint len;
+        uint b;
+        // Load the first byte of the rune into the LSBs of b
+        assembly { b := and(mload(sub(mload(add(self, 32)), 31)), 0xFF) }
+        if (b < 0x80) {
+            len = 1;
+        } else if(b < 0xE0) {
+            len = 2;
+        } else if(b < 0xF0) {
+            len = 3;
+        } else {
+            len = 4;
+        }
+
+        // Check for truncated codepoints
+        if (len > self._len) {
+            rune._len = self._len;
+            self._ptr += self._len;
+            self._len = 0;
+            return rune;
+        }
+
+        self._ptr += len;
+        self._len -= len;
+        rune._len = len;
+        return rune;
+    }
+",1,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:find(strings:slice,strings:slice)","    function find(slice self, slice needle) internal returns (slice) {
+        uint ptr = findPtr(self._len, self._ptr, needle._len, needle._ptr);
+        self._len -= ptr - self._ptr;
+        self._ptr = ptr;
+        return self;
+    }
+",0,1
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:split(strings:slice,strings:slice,strings:slice)","    function split(slice self, slice needle, slice token) internal returns (slice) {
+        uint ptr = findPtr(self._len, self._ptr, needle._len, needle._ptr);
+        token._ptr = self._ptr;
+        token._len = ptr - self._ptr;
+        if (ptr == self._ptr + self._len) {
+            // Not found
+            self._len = 0;
+        } else {
+            self._len -= token._len + needle._len;
+            self._ptr = ptr + needle._len;
+        }
+        return token;
+    }
+",1,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:split(strings:slice,strings:slice)","    function split(slice self, slice needle) internal returns (slice token) {
+        split(self, needle, token);
+    }
+",1,2
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:rsplit(strings:slice,strings:slice,strings:slice)","    function rsplit(slice self, slice needle, slice token) internal returns (slice) {
+        uint ptr = rfindPtr(self._len, self._ptr, needle._len, needle._ptr);
+        token._ptr = ptr;
+        token._len = self._len - (ptr - self._ptr);
+        if (ptr == self._ptr) {
+            // Not found
+            self._len = 0;
+        } else {
+            self._len -= token._len + needle._len;
+        }
+        return token;
+    }
+",1,3
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:rsplit(strings:slice,strings:slice)","    function rsplit(slice self, slice needle) internal returns (slice token) {
+        rsplit(self, needle, token);
+    }
+",0,2
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:count(strings:slice,strings:slice)","    function count(slice self, slice needle) internal returns (uint cnt) {
+        uint ptr = findPtr(self._len, self._ptr, needle._len, needle._ptr) + needle._len;
+        while (ptr <= self._ptr + self._len) {
+            cnt++;
+            ptr = findPtr(self._len - (ptr - self._ptr), ptr, needle._len, needle._ptr) + needle._len;
+        }
+    }
+",0,1
+"0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:strings:contains(strings:slice,strings:slice)","    function contains(slice self, slice needle) internal returns (bool) {
+        return rfindPtr(self._len, self._ptr, needle._len, needle._ptr) != self._ptr;
+    }
+",0,1
+0x379c4c01484de6cdd3e685f63c702e45e3c574fd/Etherlympics.sol:Etherlympics:onlyBookieLevel(),"  modifier onlyBookieLevel() {
+    require( BOOKIE == msg.sender);
+    _;
+  }
+",1,153
+"0x6d7e836e31233edb3c1d1e00f3b14f4786d6b564/ERC20Token.sol:StandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        //Default assumes totalSupply can't be over max (2^256 - 1).
+        //If your token leaves out totalSupply and can issue more tokens as time goes on, you need to check if it doesn't wrap.
+        //Replace the if with this one instead.
+        //if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,13
+"0x6d7e836e31233edb3c1d1e00f3b14f4786d6b564/ERC20Token.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        //same as above. Replace this line with the following if you want to protect against wrapping uints.
+        //if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,7
+0x6d7e836e31233edb3c1d1e00f3b14f4786d6b564/ERC20Token.sol:StandardToken:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x6d7e836e31233edb3c1d1e00f3b14f4786d6b564/ERC20Token.sol:StandardToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,316
+"0x6d7e836e31233edb3c1d1e00f3b14f4786d6b564/ERC20Token.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+    }
+",0,14
+"0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",0,924
+"0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",0,624
+"0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",0,5487
+"0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",1,5961
+0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:Ownable:constructor(),"  constructor() public{
+    owner = msg.sender;
+  }
+",0,6
+0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+",3,8910
+0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:Ownable:transferOwnership(address),"  function transferOwnership(address newOwner) onlyOwner public {
+    require(newOwner != address(0));
+    emit OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+",0,65
+0x3dcbac8c29e74c192382e62eaabb787e28aad1cf/lockEtherPay.sol:lockEtherPay:lockOver(),"  function lockOver() constant public returns (bool){
+      uint256 current_time = now;
+    return current_time > end_time;
+  }
+",1,4
+"0x6f55a4ad49d5580ed9a03a2c4228d8c833401bca/EtherMoney.sol:StandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        //Default assumes totalSupply can't be over max (2^256 - 1).
+        //If your token leaves out totalSupply and can issue more tokens as time goes on, you need to check if it doesn't wrap.
+        //Replace the if with this one instead.
+        //if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,13
+"0x6f55a4ad49d5580ed9a03a2c4228d8c833401bca/EtherMoney.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        //same as above. Replace this line with the following if you want to protect against wrapping uints.
+        //if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",0,7
+0x6f55a4ad49d5580ed9a03a2c4228d8c833401bca/EtherMoney.sol:StandardToken:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x6f55a4ad49d5580ed9a03a2c4228d8c833401bca/EtherMoney.sol:StandardToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,316
+"0x6f55a4ad49d5580ed9a03a2c4228d8c833401bca/EtherMoney.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+    }
+",0,14
+"0x7dA9D2a9865193a21D082f2021c80026c6dB8849/LKB.sol:LKB:LKB(uint256,string,string)","    function LKB(uint256 initialSupply, string tokenName, string tokenSymbol) public {
+        totalSupply = initialSupply * 10 ** uint256(decimals);
+        balanceOf[msg.sender] = totalSupply;
+        name = tokenName;
+        symbol = tokenSymbol;
+    }
+",0,100
+"0x7dA9D2a9865193a21D082f2021c80026c6dB8849/LKB.sol:LKB:_transfer(address,address,uint256)","    function _transfer(address _from, address _to, uint _value) internal {
+        require(_to != 0x0);
+        require(balanceOf[_from] >= _value);
+        require(balanceOf[_to] + _value > balanceOf[_to]);
+        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        Transfer(_from, _to, _value);
+        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    }
+",2,787
+"0x7dA9D2a9865193a21D082f2021c80026c6dB8849/LKB.sol:LKB:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public {
+        _transfer(msg.sender, _to, _value);
+    }
+",0,8
+"0x7dA9D2a9865193a21D082f2021c80026c6dB8849/LKB.sol:LKB:approve(address,uint256)","    function approve(address _spender, uint256 _value) public
+        returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        return true;
+    }
+",1,428
+0x7dA9D2a9865193a21D082f2021c80026c6dB8849/LKB.sol:LKB:burn(uint256),"    function burn(uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);
+        balanceOf[msg.sender] -= _value;
+        totalSupply -= _value;
+        Burn(msg.sender, _value);
+        return true;
+    }
+",0,2
+"0x7dA9D2a9865193a21D082f2021c80026c6dB8849/LKB.sol:LKB:burnFrom(address,uint256)","    function burnFrom(address _from, uint256 _value) public returns (bool success) {
+        require(balanceOf[_from] >= _value);
+        require(_value <= allowance[_from][msg.sender]);
+        balanceOf[_from] -= _value;
+        allowance[_from][msg.sender] -= _value;
+        totalSupply -= _value;
+        Burn(_from, _value);
+        return true;
+    }
+",0,1
+"0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:SafeMath:safeAdd(uint256,uint256)","    function safeAdd(uint a, uint b) public pure returns (uint c) {
+        c = a + b;
+        require(c >= a);
+    }
+",2,560
+"0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:SafeMath:safeSub(uint256,uint256)","    function safeSub(uint a, uint b) public pure returns (uint c) {
+        require(b <= a);
+        c = a - b;
+    }
+",2,497
+"0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:SafeMath:safeMul(uint256,uint256)","    function safeMul(uint a, uint b) public pure returns (uint c) {
+        c = a * b;
+        require(a == 0 || c / a == b);
+    }
+",0,110
+"0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:SafeMath:safeDiv(uint256,uint256)","    function safeDiv(uint a, uint b) public pure returns (uint c) {
+        require(b > 0);
+        c = a / b;
+    }
+",0,222
+0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:Owned:Owned(),"    function Owned() public {
+        owner = msg.sender;
+    }
+",0,10
+0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:Owned:onlyOwner(),"    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
+",2,8910
+0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:Owned:transferOwnership(address),"    function transferOwnership(address _newOwner) public onlyOwner {
+        newOwner = _newOwner;
+    }
+",0,5
+0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:Prototype:totalSupply(),"    function totalSupply() public constant returns (uint) {
+        return _totalSupply  - balances[address(0)];
+    }
+",0,1
+0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:Prototype:balanceOf(address),"    function balanceOf(address tokenOwner) public constant returns (uint balance) {
+        return balances[tokenOwner];
+    }
+",0,3
+"0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:Prototype:transfer(address,uint256)","    function transfer(address to, uint tokens) public returns (bool success) {
+        balances[msg.sender] = safeSub(balances[msg.sender], tokens);
+        balances[to] = safeAdd(balances[to], tokens);
+        Transfer(msg.sender, to, tokens);
+        return true;
+    }
+",0,9
+"0x5ce7256cc3750ea61dc292d151c95f1a69f49c6c/Prototype.sol:Prototype:approve(address,uint256)","    function approve(address spender, uint tokens) public returns (bool success) {
+        allowed[msg.sender][spender] = tokens;
+        Approval(msg.sender, spender, tokens);
+        return true;
+    }
+",0,1
+0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:Ownable:Ownable(),"  function Ownable() public {
+    owner = msg.sender;
+  }
+",0,34
+0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+",2,8910
+0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:Ownable:transferOwnership(address),"  function transferOwnership(address newOwner) public onlyOwner {
+    require(newOwner != address(0));
+    OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+",0,65
+"0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:SafeERC20:safeTransfer(ERC20Basic,address,uint256)","  function safeTransfer(ERC20Basic token, address to, uint256 value) internal {
+    assert(token.transfer(to, value));
+  }
+",2,79
+"0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:SafeERC20:safeTransferFrom(ERC20,address,address,uint256)","  function safeTransferFrom(ERC20 token, address from, address to, uint256 value) internal {
+    assert(token.transferFrom(from, to, value));
+  }
+",0,5
+"0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    if (a == 0) {
+      return 0;
+    }
+    uint256 c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+",1,1101
+"0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",1,624
+"0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",3,5487
+"0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",3,5961
+0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:TokenVesting:revoke(ERC20Basic),"  function revoke(ERC20Basic token) public onlyOwner {
+    require(revocable);
+    require(!revoked[token]);
+    uint256 balance = token.balanceOf(this);
+    uint256 unreleased = releasableAmount(token);
+    uint256 refund = balance.sub(unreleased);
+    revoked[token] = true;
+    token.safeTransfer(owner, refund);
+    Revoked();
+  }
+",0,1
+0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:TokenVesting:releasableAmount(ERC20Basic),"  function releasableAmount(ERC20Basic token) public view returns (uint256) {
+    return vestedAmount(token).sub(released[token]);
+  }
+",2,22
+0x06d191c4bc47138d5d79eb881deea86c93e6603b/ShortVesting.sol:TokenVesting:vestedAmount(ERC20Basic),"  function vestedAmount(ERC20Basic token) public view returns (uint256) {
+    uint256 currentBalance = token.balanceOf(this);
+    uint256 totalBalance = currentBalance.add(released[token]);
+    if (now < cliff) {
+      return 0;
+    } else if (now >= start.add(duration) || revoked[token]) {
+      return totalBalance;
+    } else {
+      return totalBalance.mul(now.sub(start)).div(duration);
+    }
+  }
+",1,11
+0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:Owned:onlyOwner(),"        modifier onlyOwner {
+            require(msg.sender == owner);
+            _;
+        }
+",4,8910
+"0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:ERC20:ERC20(uint256,string,string)","  function ERC20(uint256 _initialSupply,string _tokenName, string _tokenSymbol) public {
+    totalSupply = _initialSupply * 10 ** uint256(decimals); // Update total supply with the decimal amount
+    balanceOf[msg.sender] = totalSupply;
+    name = _tokenName;
+    symbol = _tokenSymbol;
+  }
+",1,20
+"0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:ERC20:approve(address,uint256)","     function approve(address _spender, uint256 _amount) public returns (bool success) {
+         allowed[msg.sender][_spender] = _amount;
+         Approval(msg.sender, _spender, _amount);
+         return true;
+    }
+",0,2
+"0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:ERC20:allowance(address,address)","    function allowance(address _owner, address _spender) public constant returns (uint256 remaining) {
+         return allowed[_owner][_spender];
+    }
+",0,14
+"0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    if (a == 0) {
+      return 0;
+    }
+    uint256 c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+",0,1101
+"0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",0,624
+"0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",3,5487
+"0x2ef27bf41236bd859a95209e17a43fbd26851f92/MorphToken.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",3,5961
+"0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:SafeMath:safeAdd(uint256,uint256)","    function safeAdd(uint a, uint b) public pure returns (uint c) {
+        c = a + b;
+        require(c >= a);
+    }
+",2,560
+"0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:SafeMath:safeSub(uint256,uint256)","    function safeSub(uint a, uint b) public pure returns (uint c) {
+        require(b <= a);
+        c = a - b;
+    }
+",2,497
+"0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:SafeMath:safeMul(uint256,uint256)","    function safeMul(uint a, uint b) public pure returns (uint c) {
+        c = a * b;
+        require(a == 0 || c / a == b);
+    }
+",0,110
+"0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:SafeMath:safeDiv(uint256,uint256)","    function safeDiv(uint a, uint b) public pure returns (uint c) {
+        require(b > 0);
+        c = a / b;
+    }
+",0,222
+0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:Owned:Owned(),"    function Owned() public {
+        owner = msg.sender;
+    }
+",0,10
+0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:Owned:onlyOwner(),"    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
+",2,8910
+0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:Owned:transferOwnership(address),"    function transferOwnership(address _newOwner) public onlyOwner {
+        newOwner = _newOwner;
+    }
+",0,5
+0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:YANG:totalSupply(),"    function totalSupply() public constant returns (uint) {
+        return _totalSupply  - balances[address(0)];
+    }
+",0,1
+0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:YANG:balanceOf(address),"    function balanceOf(address tokenOwner) public constant returns (uint balance) {
+        return balances[tokenOwner];
+    }
+",0,3
+"0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:YANG:transfer(address,uint256)","    function transfer(address to, uint tokens) public returns (bool success) {
+        balances[msg.sender] = safeSub(balances[msg.sender], tokens);
+        balances[to] = safeAdd(balances[to], tokens);
+        Transfer(msg.sender, to, tokens);
+        return true;
+    }
+",0,9
+"0x1bc7c1de0ac6ef4fdec35c053030d90cf54c7e9a/YANG.sol:YANG:approve(address,uint256)","    function approve(address spender, uint tokens) public returns (bool success) {
+        allowed[msg.sender][spender] = tokens;
+        Approval(msg.sender, spender, tokens);
+        return true;
+    }
+",0,1
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:BasicToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) returns (bool) {
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    Transfer(msg.sender, _to, _value);
+    return true;
+  }
+",0,70
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:BasicToken:balanceOf(address),"  function balanceOf(address _owner) constant returns (uint256 balance) {
+    return balances[_owner];
+  }
+",2,226
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Ownable:Ownable(),"  function Ownable() {
+    owner = msg.sender;
+  }
+",1,34
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+    if (msg.sender != owner) {
+      throw;
+    }
+    _;
+  }
+",5,677
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Ownable:transferOwnership(address),"  function transferOwnership(address newOwner) onlyOwner {
+    if (newOwner != address(0)) {
+      owner = newOwner;
+    }
+  }
+",0,23
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal constant returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",2,924
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal constant returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",0,624
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal constant returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",3,5487
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:StandardToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) returns (bool) {
+    var _allowance = allowed[_from][msg.sender];
+
+    // Check is not needed because sub(_allowance, _value) will already throw if this condition is not met
+    // require (_value <= _allowance);
+
+    balances[_to] = balances[_to].add(_value);
+    balances[_from] = balances[_from].sub(_value);
+    allowed[_from][msg.sender] = _allowance.sub(_value);
+    Transfer(_from, _to, _value);
+    return true;
+  }
+",0,92
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:StandardToken:approve(address,uint256)","  function approve(address _spender, uint256 _value) returns (bool) {
+
+    // To change the approve amount you first have to reduce the addresses`
+    //  allowance to zero by calling `approve(_spender, 0)` if it is not
+    //  already 0 to mitigate the race condition described here:
+    //  https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+    require((_value == 0) || (allowed[msg.sender][_spender] == 0));
+
+    allowed[msg.sender][_spender] = _value;
+    Approval(msg.sender, _spender, _value);
+    return true;
+  }
+",0,22
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:StandardToken:allowance(address,address)","  function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+    return allowed[_owner][_spender];
+  }
+",0,14
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:MintableToken:canMint(),"  modifier canMint() {
+    require(!mintingFinished);
+    _;
+  }
+",1,619
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:MintableToken:mint(address,uint256)","  function mint(address _to, uint256 _amount) onlyOwner canMint returns (bool) {
+    totalSupply = totalSupply.add(_amount);
+    balances[_to] = balances[_to].add(_amount);
+    Mint(_to, _amount);
+    return true;
+  }
+",2,33
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:MintableToken:finishMinting(),"  function finishMinting() onlyOwner returns (bool) {
+    mintingFinished = true;
+    MintFinished();
+    return true;
+  }
+",1,23
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:LimitedTransferToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) canTransfer(msg.sender, _value) returns (bool) {
+    return super.transfer(_to, _value);
+  }
+",0,3
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:LimitedTransferToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) canTransfer(_from, _value) returns (bool) {
+    return super.transferFrom(_from, _to, _value);
+  }
+",0,1
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:LimitedTransferToken:transferableTokens(address,uint64)","  function transferableTokens(address holder, uint64 time) constant public returns (uint256) {
+    return balanceOf(holder);
+  }
+",0,1
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Crowdsale:Crowdsale(uint256,uint256,uint256,address)","  function Crowdsale(uint256 _startBlock, uint256 _endBlock, uint256 _rate, address _wallet) {
+    require(_startBlock >= block.number);
+    require(_endBlock >= _startBlock);
+    require(_rate > 0);
+    require(_wallet != 0x0);
+
+    token = createTokenContract();
+    startBlock = _startBlock;
+    endBlock = _endBlock;
+    rate = _rate;
+    wallet = _wallet;
+  }
+",2,8
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Crowdsale:createTokenContract(),"  function createTokenContract() internal returns (MintableToken) {
+    return new MintableToken();
+  }
+",1,33
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Crowdsale:buyTokens(address),"  function buyTokens(address beneficiary) payable {
+    require(beneficiary != 0x0);
+    require(validPurchase());
+
+    uint256 weiAmount = msg.value;
+
+    // calculate token amount to be created
+    uint256 tokens = weiAmount.mul(rate);
+
+    // update state
+    weiRaised = weiRaised.add(weiAmount);
+
+    token.mint(beneficiary, tokens);
+    TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
+
+    forwardFunds();
+  }
+",1,45
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Crowdsale:validPurchase(),"  function validPurchase() internal constant returns (bool) {
+    uint256 current = block.number;
+    bool withinPeriod = current >= startBlock && current <= endBlock;
+    bool nonZeroPurchase = msg.value != 0;
+    return withinPeriod && nonZeroPurchase;
+  }
+",2,9
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:Crowdsale:hasEnded(),"  function hasEnded() public constant returns (bool) {
+    return block.number > endBlock;
+  }
+",2,6
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:FinalizableCrowdsale:finalize(),"  function finalize() onlyOwner {
+    require(!isFinalized);
+    require(hasEnded());
+
+    finalization();
+    Finalized();
+
+    isFinalized = true;
+  }
+",0,2
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:CappedCrowdsale:CappedCrowdsale(uint256),"  function CappedCrowdsale(uint256 _cap) {
+    require(_cap > 0);
+    cap = _cap;
+  }
+",2,33
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:CappedCrowdsale:validPurchase(),"  function validPurchase() internal constant returns (bool) {
+    bool withinCap = weiRaised.add(msg.value) <= cap;
+    return super.validPurchase() && withinCap;
+  }
+",1,15
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:CappedCrowdsale:hasEnded(),"  function hasEnded() public constant returns (bool) {
+    bool capReached = weiRaised >= cap;
+    return super.hasEnded() || capReached;
+  }
+",1,7
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoPresale:balanceOf(address),"  function balanceOf(address _owner) constant returns (uint256 balance) {
+    return balances[_owner];
+  }
+",1,226
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoCrowdsale:createTokenContract(),"  function createTokenContract() internal returns (MintableToken) {
+    return new RakugoToken();
+  }
+",0,36
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoCrowdsale:initializeCompanyTokens(uint256),"  function initializeCompanyTokens(uint256 _companyTokens) internal {
+    contribute(wallet, wallet, 0, _companyTokens);//no paid eth for company liquidity
+  }
+",1,2
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoCrowdsale:presalePurchase(address[],address)","  function presalePurchase(address[] presales, address _presaleAddress) internal {
+    RakugoPresale rakugoPresale = RakugoPresale(_presaleAddress);
+    for (uint i = 0; i < presales.length; i++) {
+        address presalePurchaseAddress = presales[i];
+        uint256 contributionAmmount = 0;//presale contributions tracked differently than main sale
+        uint256 presalePurchaseTokens = rakugoPresale.balanceOf(presalePurchaseAddress);
+        contribute(presalePurchaseAddress, presalePurchaseAddress, contributionAmmount, presalePurchaseTokens);
+    }
+  }
+",1,2
+"0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoCrowdsale:contribute(address,address,uint256,uint256)","  function contribute(address purchaser, address beneficiary, uint256 weiAmount, uint256 tokens){
+    token.mint(beneficiary, tokens);
+    TokenPurchase(purchaser, beneficiary, weiAmount, tokens);
+  }
+",2,4
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoCrowdsale:finalize()," function finalize() onlyOwner {
+    require(!isFinalized);
+    require(hasEnded());
+
+    finalization();
+    Finalized();
+
+    isFinalized = true;
+  }
+",0,2
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoCrowdsale:finalization(),"  function finalization() internal {
+    token.finishMinting();
+  }
+",1,2
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal pure returns (uint256 c) {
+        if (a == 0) {
+            return 0;
+        }
+        c = a * b;
+        assert(c / a == b);
+        return c;
+    }
+",1,775
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        // uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        return a / b;
+    }
+",0,128
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:SafeMath:sub(uint256,uint256)","    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+",3,5487
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:SafeMath:add(uint256,uint256)","    function add(uint256 a, uint256 b) internal pure returns (uint256 c) {
+        c = a + b;
+        assert(c >= a);
+        return c;
+    }
+",4,5950
+0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:onlyOwner(),"    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",8,8910
+0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner public {
+        if (newOwner != address(0)) {
+            owner = newOwner;
+        }
+    }
+",0,23
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:distr(address,uint256)","    function distr(address _to, uint256 _amount) canDistr private returns (bool) {
+        totalDistributed = totalDistributed.add(_amount);
+        balances[_to] = balances[_to].add(_amount);
+        emit Distr(_to, _amount);
+        emit Transfer(address(0), _to, _amount);
+
+        return true;
+    }
+",2,46
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:doAirdrop(address,uint256)","    function doAirdrop(address _participant, uint _amount) internal {
+
+        require( _amount > 0 );
+
+        require( totalDistributed < totalSupply );
+
+        balances[_participant] = balances[_participant].add(_amount);
+        totalDistributed = totalDistributed.add(_amount);
+
+        if (totalDistributed >= totalSupply) {
+            distributionFinished = true;
+        }
+
+        // log
+        emit Airdrop(_participant, _amount, balances[_participant]);
+        emit Transfer(address(0), _participant, _amount);
+    }
+",2,46
+0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:getTokens(),"    function getTokens() payable canDistr  public {
+        uint256 tokens = 0;
+
+        require( msg.value >= minContribution );
+
+        require( msg.value > 0 );
+
+        tokens = tokensPerEth.mul(msg.value) / 1 ether;
+        address investor = msg.sender;
+
+        if (tokens > 0) {
+            distr(investor, tokens);
+        }
+
+        if (totalDistributed >= totalSupply) {
+            distributionFinished = true;
+        }
+    }
+",1,22
+0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:balanceOf(address),"    function balanceOf(address _owner) constant public returns (uint256) {
+        return balances[_owner];
+    }
+",0,34
+0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:onlyPayloadSize(uint256),"    modifier onlyPayloadSize(uint size) {
+        assert(msg.data.length >= size + 4);
+        _;
+    }
+",2,258
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:transfer(address,uint256)","    function transfer(address _to, uint256 _amount) onlyPayloadSize(2 * 32) public returns (bool success) {
+
+        require(_to != address(0));
+        require(_amount <= balances[msg.sender]);
+
+        balances[msg.sender] = balances[msg.sender].sub(_amount);
+        balances[_to] = balances[_to].add(_amount);
+        emit Transfer(msg.sender, _to, _amount);
+        return true;
+    }
+",0,2
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _amount) onlyPayloadSize(3 * 32) public returns (bool success) {
+
+        require(_to != address(0));
+        require(_amount <= balances[_from]);
+        require(_amount <= allowed[_from][msg.sender]);
+
+        balances[_from] = balances[_from].sub(_amount);
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_amount);
+        balances[_to] = balances[_to].add(_amount);
+        emit Transfer(_from, _to, _amount);
+        return true;
+    }
+",0,2
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success) {
+        // mitigates the ERC20 spend/approval race condition
+        if (_value != 0 && allowed[msg.sender][_spender] != 0) { return false; }
+        allowed[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,2
+"0x7f664f61dc14db9aec51c56426a8875553691c19/TIMEDEX.sol:TIMEDEX:allowance(address,address)","    function allowance(address _owner, address _spender) constant public returns (uint256) {
+        return allowed[_owner][_spender];
+    }
+",0,6
+0x3351e6ca9e9370923840489464cf0a7b12701808/KittyBirther.sol:Ownable:Ownable(),"    function Ownable() public {
+        owner = msg.sender;
+    }
+",0,34
+0x3351e6ca9e9370923840489464cf0a7b12701808/KittyBirther.sol:Ownable:onlyOwner(),"    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",2,8910
+0x3351e6ca9e9370923840489464cf0a7b12701808/KittyBirther.sol:Ownable:transferOwnership(address),"    function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner != address(0));
+        OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+    }
+",0,65
+"0x3D454AcEA6EbBaA4A344F7E0EA0e28B47417Ee62/Ribble.sol:Ribble:transfer(address,uint256)","    function transfer(address _to, uint256 _value) {
+        if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
+        if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
+        balanceOf[msg.sender] -= _value;                     // Subtract from the sender
+        balanceOf[_to] += _value;                            // Add the same to the recipient
+
+    }
+",0,1
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:Math:max256(uint256,uint256)","  function max256(uint256 a, uint256 b) internal pure returns (uint256) {
+    return a >= b ? a : b;
+  }
+",0,33
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:Math:min256(uint256,uint256)","  function min256(uint256 a, uint256 b) internal pure returns (uint256) {
+    return a < b ? a : b;
+  }
+",1,33
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256 c) {
+    // Gas optimization: this is cheaper than asserting 'a' not being zero, but the
+    // benefit is lost if 'b' is also tested.
+    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522
+    if (a == 0) {
+      return 0;
+    }
+
+    c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+",0,775
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    // uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return a / b;
+  }
+",1,128
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",1,5487
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256 c) {
+    c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",5,5950
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:SafeERC20:safeTransfer(ERC20Basic,address,uint256)","  function safeTransfer(ERC20Basic token, address to, uint256 value) internal {
+    require(token.transfer(to, value));
+  }
+",2,77
+"0x01c91a1b352a2903bc8378e5f645c9bc8685029e/ARPMidTermHolding.sol:SafeERC20:safeTransferFrom(ERC20,address,address,uint256)","  function safeTransferFrom(
+    ERC20 token,
+    address from,
+    address to,
+    uint256 value
+  )
+    internal
+  {
+    require(token.transferFrom(from, to, value));
+  }
+",1,5
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal constant returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",1,924
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal constant returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",1,624
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal constant returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",4,5487
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal constant returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",4,5961
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:ERC23BasicToken:transfer(address,uint256,bytes)","    function transfer(address _to, uint256 _value, bytes _data) returns (bool success) {
+
+        //Standard ERC23 transfer function
+
+        if(isContract(_to)) {
+            transferToContract(_to, _value, _data);
+        }
+        else {
+            transferToAddress(_to, _value, _data);
+        }
+        return true;
+    }
+",1,2
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:ERC23BasicToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) {
+
+        //standard function transfer similar to ERC20 transfer with no _data
+        //added due to backwards compatibility reasons
+
+        bytes memory empty;
+        if(isContract(_to)) {
+            transferToContract(_to, _value, empty);
+        }
+        else {
+            transferToAddress(_to, _value, empty);
+        }
+    }
+",1,2
+0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:ERC23BasicToken:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:ERC23StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) {
+        var _allowance = allowed[_from][msg.sender];
+
+        // Check is not needed because sub(_allowance, _value) will already throw if this condition is not met
+        // if (_value > _allowance) throw;
+
+        balances[_to] = balances[_to].add(_value);
+        balances[_from] = balances[_from].sub(_value);
+        allowed[_from][msg.sender] = _allowance.sub(_value);
+        Transfer(_from, _to, _value);
+    }
+",1,63
+"0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:ERC23StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+        return allowed[_owner][_spender];
+    }
+",0,14
+0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:STRIMToken:onlyTeam(),"    modifier onlyTeam() {
+        //only do if call is from owner modifier
+        require(msg.sender == StrimTeam);
+        _;
+    }
+",3,56
+0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:STRIMToken:crowdsaleTransferLock(),"    modifier crowdsaleTransferLock() {
+        require(isFinalized);
+        _;
+    }
+",3,6
+0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:STRIMToken:whenNotHalted(),"    modifier whenNotHalted() {
+        // only do when not halted modifier
+        require(!halted);
+        _;
+    }
+",1,7
+0x8bc7468bfd4c09d334071e954e1b06eb0e6c67e3/STRIMToken.sol:STRIMToken:buy(),"    function buy() payable {
+        createTokens(msg.sender);
+    }
+",1,2
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256 c) {
+    if (a == 0) {
+      return 0;
+    }
+    c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+",0,775
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    // uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return a / b;
+  }
+",0,128
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",4,5487
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256 c) {
+    c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",5,5950
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:BasicToken:totalSupply(),"  function totalSupply() public view returns (uint256) {
+    return totalSupply_;
+  }
+",1,13
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:BasicToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[msg.sender]);
+
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    emit Transfer(msg.sender, _to, _value);
+    return true;
+  }
+",1,329
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:BasicToken:balanceOf(address),"  function balanceOf(address _owner) public view returns (uint256) {
+    return balances[_owner];
+  }
+",0,34
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:BurnableToken:burn(uint256),"  function burn(uint256 _value) public {
+    _burn(msg.sender, _value);
+  }
+",0,7
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:BurnableToken:_burn(address,uint256)","  function _burn(address _who, uint256 _value) internal {
+    require(_value <= balances[_who]);
+    // no need to require value <= totalSupply, since that would imply the
+    // sender's balance is greater than the totalSupply, which *should* be an assertion failure
+
+    balances[_who] = balances[_who].sub(_value);
+    totalSupply_ = totalSupply_.sub(_value);
+    emit Burn(_who, _value);
+    emit Transfer(_who, address(0), _value);
+  }
+",1,107
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:Ownable:Ownable(),"  function Ownable() public {
+    owner = msg.sender;
+  }
+",0,34
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+",6,8910
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:Ownable:transferOwnership(address),"  function transferOwnership(address newOwner) public onlyOwner {
+    require(newOwner != address(0));
+    emit OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+",1,65
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:StandardToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[_from]);
+    require(_value <= allowed[_from][msg.sender]);
+
+    balances[_from] = balances[_from].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+    emit Transfer(_from, _to, _value);
+    return true;
+  }
+",1,253
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:StandardToken:approve(address,uint256)","  function approve(address _spender, uint256 _value) public returns (bool) {
+    allowed[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
+    return true;
+  }
+",1,316
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:StandardToken:allowance(address,address)","  function allowance(address _owner, address _spender) public view returns (uint256) {
+    return allowed[_owner][_spender];
+  }
+",0,6
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:StandardToken:increaseApproval(address,uint256)","  function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",1,172
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:StandardToken:decreaseApproval(address,uint256)","  function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+      allowed[msg.sender][_spender] = 0;
+    } else {
+      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",1,172
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:MintableToken:canMint(),"  modifier canMint() {
+    require(!mintingFinished);
+    _;
+  }
+",3,619
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:MintableToken:mint(address,uint256)","  function mint(address _to, uint256 _amount) onlyOwner canMint public returns (bool) {
+    totalSupply_ = totalSupply_.add(_amount);
+    balances[_to] = balances[_to].add(_amount);
+    emit Mint(_to, _amount);
+    emit Transfer(address(0), _to, _amount);
+    return true;
+  }
+",1,147
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:MintableToken:finishMinting(),"  function finishMinting() onlyOwner canMint public returns (bool) {
+    mintingFinished = true;
+    emit MintFinished();
+    return true;
+  }
+",0,21
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:CappedToken:CappedToken(uint256),"  function CappedToken(uint256 _cap) public {
+    require(_cap > 0);
+    cap = _cap;
+  }
+",1,31
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:CappedToken:mint(address,uint256)","  function mint(address _to, uint256 _amount) onlyOwner canMint public returns (bool) {
+    require(totalSupply().add(_amount) <= cap);
+
+    return super.mint(_to, _amount);
+  }
+",1,17
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:DetailedERC20:DetailedERC20(string,string,uint8)","  function DetailedERC20(string _name, string _symbol, uint8 _decimals) public {
+    name = _name;
+    symbol = _symbol;
+    decimals = _decimals;
+  }
+",1,18
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:Pausable:whenPaused(),"  modifier whenPaused() {
+    require(paused);
+    _;
+  }
+",1,319
+0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:Pausable:unpause(),"  function unpause() onlyOwner whenPaused public {
+    paused = false;
+    emit Unpause();
+  }
+",0,1
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:PausableToken:transfer(address,uint256)","  function transfer(
+    address _to,
+    uint256 _value
+  )
+    public
+    whenNotPaused
+    returns (bool)
+  {
+    return super.transfer(_to, _value);
+  }
+",0,34
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:PausableToken:transferFrom(address,address,uint256)","  function transferFrom(
+    address _from,
+    address _to,
+    uint256 _value
+  )
+    public
+    whenNotPaused
+    returns (bool)
+  {
+    return super.transferFrom(_from, _to, _value);
+  }
+",0,21
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:PausableToken:approve(address,uint256)","  function approve(
+    address _spender,
+    uint256 _value
+  )
+    public
+    whenNotPaused
+    returns (bool)
+  {
+    return super.approve(_spender, _value);
+  }
+",0,3
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:PausableToken:increaseApproval(address,uint256)","  function increaseApproval(
+    address _spender,
+    uint _addedValue
+  )
+    public
+    whenNotPaused
+    returns (bool success)
+  {
+    return super.increaseApproval(_spender, _addedValue);
+  }
+",0,3
+"0x07cfd708477ad18e4b54ece3b2473bf4f570fd8a/ERC20Template.sol:PausableToken:decreaseApproval(address,uint256)","  function decreaseApproval(
+    address _spender,
+    uint _subtractedValue
+  )
+    public
+    whenNotPaused
+    returns (bool success)
+  {
+    return super.decreaseApproval(_spender, _subtractedValue);
+  }
+",0,3
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a / b;
+        return c;
+    }
+",1,624
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:SafeMath:sub(uint256,uint256)","    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+",10,5487
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:Ownable:Ownable(),"    function Ownable() public {
+        owner = msg.sender;
+    }
+",0,34
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:Ownable:onlyOwner(),"    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",18,8910
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:Ownable:isOwner(),"    function isOwner() internal view returns(bool success) {
+        if (msg.sender == owner) return true;
+        return false;
+    }
+",2,4
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:Ownable:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner public {
+        require(newOwner != address(0));
+        OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+    }
+",0,65
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:BasicToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool) {
+        require(_to != address(0));
+        require(_value <= balances[msg.sender]);
+        balances[msg.sender] = balances[msg.sender].sub(_value);
+        balances[_to] = balances[_to].add(_value);
+        Transfer(msg.sender, _to, _value);
+        return true;
+    }
+",1,324
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:BasicToken:balanceOf(address),"    function balanceOf(address _owner) public view returns (uint256 balance) {
+        return balances[_owner];
+    }
+",0,226
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+        require(_to != address(0));
+        require(_value <= balances[_from]);
+        require(_value <= allowed[_from][msg.sender]);
+
+        balances[_from] = balances[_from].sub(_value);
+        balances[_to] = balances[_to].add(_value);
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+        Transfer(_from, _to, _value);
+        return true;
+    }
+",1,252
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:StandardToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",0,316
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) public view returns (uint256) {
+        return allowed[_owner][_spender];
+    }
+",0,6
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:StandardToken:increaseApproval(address,uint256)","    function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+        allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+        Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+        return true;
+    }
+",0,172
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:StandardToken:decreaseApproval(address,uint256)","    function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+        uint oldValue = allowed[msg.sender][_spender];
+        if (_subtractedValue > oldValue) {
+            allowed[msg.sender][_spender] = 0;
+        } else {
+            allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+        }
+        Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+        return true;
+    }
+",0,172
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:msc:_isUserInternalLock(),"    function _isUserInternalLock() internal view returns (bool) {
+
+        return getAccountLockState(msg.sender);
+
+    }
+",3,6
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:msc:freezeAccount(address,bool)","    function freezeAccount(address target, bool freeze) onlyOwner public {
+        frozenAccount[target] = freeze;
+        FrozenFunds(target, freeze);
+    }
+",0,1
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:msc:transferFromAdmin(address,address,uint256)","    function transferFromAdmin(address _from, address _to, uint256 _value) onlyOwner public returns (bool) {
+        require(_to != address(0));
+        require(_value <= balances[_from]);
+
+        balances[_from] = balances[_from].sub(_value);
+        balances[_to] = balances[_to].add(_value);
+        Transfer(_from, _to, _value);
+        return true;
+    }
+",0,11
+"0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:msc:lockInternalAccount(address,bool,uint256)","    function lockInternalAccount(address _target, bool _lock, uint256 _releaseTime) onlyOwner public {
+        require(_target != address(0));
+
+        internalLockAccount[_target] = _lock;
+        releaseLockAccount[_target] = _releaseTime;
+
+    }
+",1,2
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:msc:getAccountLockState(address),"    function getAccountLockState(address _target) public view returns(bool) {
+        if(enableInternalLock && internalLockAccount[_target]){
+            if((releaseLockAccount[_target] > 0)&&(releaseLockAccount[_target]<block.timestamp)){
+                return false;
+            }
+            return true;
+        }
+        return false;
+
+    }
+",1,2
+0x6bc8b04d3904967989b0f2bc91b32494f36f82c2/msc.sol:msc:buy(),"    function buy() payable public returns (bool){
+
+
+        uint256 amount = msg.value.mul(buyExchangeRate);
+
+        require(!stopBuy);
+        require(amount <= balances[owner]);
+
+        balances[owner] = balances[owner].sub(amount);
+        balances[msg.sender] = balances[msg.sender].add(amount);
+
+        soldSupply = soldSupply.add(amount);
+        buySupply = buySupply.add(amount);
+
+        Transfer(owner, msg.sender, amount);
+        return true;
+    }
+",1,2
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    if (a == 0) {
+      return 0;
+    }
+    uint256 c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+",0,1101
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",0,624
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",3,5487
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",3,5961
+0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+",1,8910
+0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:Ownable:transferOwnership(address),"  function transferOwnership(address newOwner) public onlyOwner {
+    require(newOwner != address(0));
+    emit OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+",0,65
+0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:BasicToken:totalSupply(),"  function totalSupply() public view returns (uint256) {
+    return totalSupply_;
+  }
+",0,13
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:BasicToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[msg.sender]);
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    emit Transfer(msg.sender, _to, _value);
+    return true;
+  }
+",0,329
+0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:BasicToken:balanceOf(address),"  function balanceOf(address _owner) public view returns (uint256 balance) {
+    return balances[_owner];
+  }
+",0,226
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:StandardToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[_from]);
+    require(_value <= allowed[_from][msg.sender]);
+
+    balances[_from] = balances[_from].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+    emit Transfer(_from, _to, _value);
+    return true;
+  }
+",0,253
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:StandardToken:approve(address,uint256)","  function approve(address _spender, uint256 _value) public returns (bool) {
+    allowed[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
+    return true;
+  }
+",0,316
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:StandardToken:allowance(address,address)","  function allowance(address _owner, address _spender) public view returns (uint256) {
+    return allowed[_owner][_spender];
+  }
+",0,6
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:StandardToken:increaseApproval(address,uint256)","  function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",0,172
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:StandardToken:decreaseApproval(address,uint256)","  function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+      allowed[msg.sender][_spender] = 0;
+    } else {
+      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",0,172
+"0x1e83b1dce0193d8323ce3160fe4b1653dce49253/ADZbuzzCommunityToken.sol:SafeMath:safeAdd(uint256,uint256)","        function safeAdd(uint a, uint b) public pure returns (uint c) {
+            c = a + b;
+            require(c >= a);
+        }
+",2,560
