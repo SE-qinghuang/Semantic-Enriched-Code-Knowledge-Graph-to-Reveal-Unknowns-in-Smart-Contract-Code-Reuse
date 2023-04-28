@@ -1,0 +1,5 @@
+Augmented type,Abstract Function,Modifier,Fallback,Constructor,Function,Sum,Total Functions,Percentage
+not augmented,4464,2691,1037,3482,28474,40148,101061,0.3972650181573505
+augmented by override,12172,2691,1037,3482,32294,51676,101061,0.5113347384253075
+augmented by function clone,4464,4754,1037,4661,48866,63782,101061,0.6311237767289063
+augmented by override and function clone,12172,4756,1037,4662,49107,71734,101061,0.7098089272815429

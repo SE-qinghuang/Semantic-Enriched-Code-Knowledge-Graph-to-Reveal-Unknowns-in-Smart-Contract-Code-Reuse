@@ -1,0 +1,4150 @@
+FEN:ID,Function Code,Comment before Propatation,Comment after Propagation,label1,label2,label
+"0x2af6139c39c05e0597c0ac12c60b303c38aa69e7/HIT.sol:HIT:allowance(address,address)","    function allowance(address _owner, address _spender) constant public returns (uint256) {
+        return allowed[_owner][_spender];
+    }
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",5,5,1.0
+"0x0a40E12618c3bd5295F39416506b86A70b52e08f/DASToken.sol:SafeMath:safeSub(uint256,uint256)","    function safeSub(uint256 x, uint256 y) constant internal returns (uint256 z) {
+        if (x < y) throw;
+        return x - y;
+    }
+",no comment,"
+  /**
+   * Subtract one uint256 value from another, throw in case of underflow.
+   *
+   * @param x value to subtract from
+   * @param y value to subtract
+   * @return x - y
+   */
+",5,5,1.0
+"0x2dda95e0b2e63c8bf6f99fd396e1c85941c04e69/Rhodium.sol:SafeMath:sub(uint256,uint256)","		function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+			assert(b <= a);
+			return a - b;
+		}
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+0x07eefa3789a3298bf62f0427f07bcd1127322424/KellerWilliams.sol:KellerWilliams:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner public {
+        if (newOwner != address(0)) {
+            owner = newOwner;
+        }
+    }
+",no comment,"
+    /**
+     * @dev Allows the current owner to transfer control of the contract to a newOwner.
+     * @param newOwner The address to transfer ownership to. 
+     */
+",5,5,1.0
+"0x0d44b2757f1b6c742ff8707f6eb298a7da1981af/KRWT.sol:ERC827Token:decreaseApproval(address,uint256,bytes)","  function decreaseApproval(address _spender, uint _subtractedValue, bytes _data) public returns (bool) {
+    require(_spender != address(this));
+
+    super.decreaseApproval(_spender, _subtractedValue);
+
+    require(_spender.call(_data));
+
+    return true;
+  }
+",no comment,"
+    /**
+     * @dev Addition to StandardToken methods. Decrease the amount of tokens that
+     * an owner allowed to a spender and execute a call with the sent data.
+     *
+     * approve should be called when allowed[_spender] == 0. To decrement
+     * allowed value is better to use this function to avoid 2 calls (and wait until
+     * the first transaction is mined)
+     * From MonolithDAO Token.sol
+     * @param _spender The address which will spend the funds.
+     * @param _subtractedValue The amount of tokens to decrease the allowance by.
+     * @param _data ABI-encoded contract call to call `_spender` address.
+     */
+",4,4,1.0
+"0x4b9f8c439419fb30092a57cdb7e18373b6a65b9c/CSCToken.sol:ERC20Basic:transfer(address,uint256)","  function transfer(address to, uint256 value) public returns (bool);
+",no comment,"
+  /**
+  * @dev Current token is not transferred.
+  * After start official token sale CSCT, you can exchange your tokens
+  */
+",5,5,1.0
+0x8a46126dc294a8f1bf94ca2ce9019e4642083c64/MBEToken.sol:Token:balanceOf(address),"  function balanceOf(address who) public constant returns (uint256);
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",4,4,1.0
+"0x4E546b4A29E2De365aE16BC7B69812Ce3fd943A7/VKTToken.sol:ERC20:transferFrom(address,address,uint256)","  function transferFrom(address from, address to, uint256 value) public returns (bool);
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",5,5,1.0
+"0x2fa9441B5ee69C024d54845fBbd756241485F492/AL.sol:TokenERC20:approveAndCall(address,uint256,bytes)","    function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+        public
+        returns (bool success) {
+        tokenRecipient spender = tokenRecipient(_spender);
+        if (approve(_spender, _value)) {
+            spender.receiveApproval(msg.sender, _value, this, _extraData);
+            return true;
+        }
+    }
+",no comment,"
+    /**
+     * Set allowance for other address and notify
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     * @param _extraData some extra information to send to the approved contract
+     */
+",5,5,1.0
+0x6AfEDB250FDffdFa82C08DD119f53DEe63d04577/ICOTH.sol:ERC20:totalSupply(),"  function totalSupply()
+    public view returns (uint256);
+",no comment,"
+  /**
+  * @dev total number of tokens in existence
+  */
+",4,4,1.0
+0x5c921ea0305206b8fe09d94f01e70a6ab4177710/SimpleAudit.sol:SimpleAudit:constructor(),"    constructor() public {
+        creator = msg.sender;
+    }
+",no comment,"    // @notice Constructor
+",5,5,1.0
+"0x0dfc4ed0f9fd3e59a43df2b4457cc8c3a6d43319/WBE.sol:ERC20Token:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success) {
+        require((_value == 0) || (allowed[msg.sender][_spender] == 0));
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+  /**
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   *
+   * Beware that changing an allowance with this method brings the risk that someone may use both the old
+   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */
+",5,5,1.0
+0x8c5a05b691288f85e6e27bf6b5a454d2814f5a6f/WubCoin.sol:SafeMath:assert(bool),"  function assert(bool assertion) internal {
+    if (!assertion) {
+      throw;
+    }
+  }
+",no comment,"
+  /**
+    * assert used in different Math functions
+    */
+",5,5,1.0
+0x6c1a692ea7c92ae76cbfdda122830698c950f0ff/CursedToken.sol:CursedToken:balanceOf(address),"    function balanceOf(address tokenowner) public constant returns (uint) {
+        return balances[tokenowner];
+    }
+",no comment,"
+    /**
+        @dev returns the balance of NTS for an address
+        @return balance NTS balance
+     */
+",4,4,1.0
+0x6a47cdde561a27dffc6ebc70d368e2e10e9c468c/JPPreICO.sol:JPPreICO:setStartBlock(uint256),"    function setStartBlock(uint256 _startBlock) public onlyOwner{
+        startBlock=_startBlock;
+    }
+",no comment,"
+    // function to start the Token Sale
+    /// start the token sale at `_starBlock`
+",5,5,1.0
+"0x8aefbc7df185694f19fe1da7f499e95069761766/WOLFEXToken.sol:WOLFEXToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) canTransfer public returns (bool) {
+        return super.transferFrom(_from, _to, _value);
+    }
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",4,4,1.0
+0x0a255f700b16c0acf5673565c757b94fb38b27f2/NeoWorldCash.sol:NeoWorldCash:balanceOf(address),"	function balanceOf(address _owner) public constant returns (uint) {
+		return balances[_owner];
+	}  
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",4,4,1.0
+"0x0dD1C99aC9BC48A1d482878ECC8B9760Aa1e8De2/InToken.sol:Math:max64(uint64,uint64)","  function max64(uint64 a, uint64 b) internal pure returns (uint64) {
+    return a >= b ? a : b;
+  }
+",no comment,"    
+    // return the largest of two 64 bit integers
+",4,5,1.0
+0x2fd1395473fd0437110985aa55dd4d6afa1cb295/AIAToken.sol:Ownable:onlyOwner(),"	modifier onlyOwner() {
+		require(msg.sender == owner);
+		_;
+	}
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",5,5,1.0
+0x3c7916a935faedd57bd8e3a91daf5c081f723855/PowerToken.sol:Ownable:Ownable(),"  function Ownable() public {
+    owner = msg.sender;
+  }
+",no comment,"
+    /** 
+     * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+     * account.
+     */
+",4,5,1.0
+"0x1bb5744d22297075487edbf9dc3f89d2e04ebce0/NewYearToken.sol:NewYearToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining){
+        return allowed[_owner][_spender];
+    }
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",5,5,1.0
+0x0bd3862a22c1c01d406335b24524ab3da5b116b8/EmrCrowdfund.sol:owned:onlyOwner(),"    modifier onlyOwner { require(msg.sender == owner); _;}
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",4,4,1.0
+"0x3F5276444dcEaeFbf2bA53BE2E1A3e8709bfe84d/MintedTokenCappedCrowdsaleExt.sol:StandardToken:allowance(address,address)","  function allowance(address _owner, address _spender) constant returns (uint remaining) {
+    return allowed[_owner][_spender];
+  }
+",no comment,"
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+",4,4,1.0
+0x1dccbb30991632907f59530b3e10d86ad71973f9/Rusal_TCI_VI_20181220.sol:Ownable:onlyOwner(),"	modifier	onlyOwner	() {						
+		require(msg.sender ==		owner	);				
+		_;							
+	}								
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",4,4,1.0
+"0x7fbc0343f7a0bcd58c9dda254ec95642636d6333/SunriseCoin.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value)
+    returns (bool success)
+    {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0 && balances[_to] + _value > balances[_to]) {
+            balances[_to] = safeAdd(balances[_to], _value);
+            balances[_from] = safeSubtract(balances[_from], _value);
+            allowed[_from][msg.sender] = safeSubtract(allowed[_from][msg.sender], _value);
+            Transfer(_from, _to, _value);
+            return true;
+        } else {
+            return false;
+        }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+0x2b44d68555899dbc1ab0892e7330476183dbc932/Ethmall.sol:AccountLevelsTest:accountLevel(address),"  function accountLevel(address user) constant returns(uint) {
+    return accountLevels[user];
+  }
+",no comment,"  //given a user, returns an account level
+  //0 = regular user (pays take fee and make fee)
+  //1 = market maker silver (pays take fee, no make fee, gets rebate)
+  //2 = market maker gold (pays take fee, no make fee, gets entire counterparty's take fee as rebate)
+",4,4,1.0
+"0x1a86b24ca84aa7049a974bb6db83f0bd80c60713/DCoin.sol:TokenERC20:_transfer(address,address,uint256)","    function _transfer(address _from, address _to, uint _value) internal {
+        require(_to != 0x0);
+        require(balanceOf[_from] >= _value);
+        require(balanceOf[_to] + _value > balanceOf[_to]);
+        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        Transfer(_from, _to, _value);
+        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    }
+",no comment,"
+    /**
+     * Internal transfer, only can be called by this contract
+     */
+",5,5,1.0
+0x3ddf7d2cc9b0ddb126bb4ca4fa77ffdf08420578/UPayToken.sol:owned:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner public {
+        owner = newOwner;
+    }
+",no comment,"
+  /**
+   * @dev Allows the current owner to set the pendingOwner address.
+   * @param newOwner The address to transfer ownership to.
+   */
+",5,5,1.0
+0x7a54fae94b6960d9f7316612eec179078e911769/MoviePass.sol:MoviePass:balanceOf(address),"   function balanceOf(address _owner) public view returns (uint256 balance) {
+    return balances[_owner];
+   }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+0x4ecb7e25fa43d4277e0fa3b2e5f5755275983411/VestingMasterContract.sol:Owned:onlyOwner(),"    modifier onlyOwner {
+        assert(msg.sender == owner);
+        _;
+    }
+",no comment,"
+    // allows execution by the owner only
+",5,5,1.0
+"0x4d98795d5d244e62458a86b30740933a9d83e320/BackTestToken.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a / b;
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",5,5,1.0
+"0x2dcea121a1d3f0075b9927a2ef7c3ce8a953bc30/AnterosToken.sol:ERC20:allowance(address,address)","function allowance(address owner, address spender) public view returns (uint256);
+",no comment,"
+/**
+
+* @dev Function to check the amount of tokens that an owner allowed to a spender.
+
+* @param _owner address The address which owns the funds.
+
+* @param _spender address The address which will spend the funds.
+
+* @return A uint256 specifying the amount of tokens still available for the spender.
+
+*/
+
+",5,5,1.0
+0x7a7913bf973d74deb87db64136bcb63158e4ea39/Community.sol:owned:owned(),"  function owned() public {
+    owner = msg.sender;
+  }
+",no comment,"
+    //constructor
+",5,5,1.0
+"0x3c4a3ffd813a107febd57b2f01bc344264d90fde/EnergiToken.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal constant returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x4b7ca2ac56e69b9687b94b41b61a57cad3017ee4/FansChainToken.sol:FansChainToken:mintToken(address,uint256)","    function mintToken(address target, uint256 mintedAmount) onlyOwner public {
+        balanceOf[target] += mintedAmount;
+        totalSupply += mintedAmount;
+        Transfer(0, this, mintedAmount);
+        Transfer(this, target, mintedAmount);
+    }
+",no comment,"
+    /// @notice Create `mintedAmount` tokens and send it to `target`
+    /// @param target Address to receive the tokens
+    /// @param mintedAmount the amount of tokens it will receive
+",4,4,1.0
+0x3dc460aca540d0add6debf147a06dc3f34e86eb0/Pixel.sol:Owned:Owned(),"  function Owned() {
+    owner = msg.sender;
+  }
+",no comment,"
+  /**
+   * Basic constructor.  The sender is the owner.
+   */
+",5,5,1.0
+0x1b5ed05690a6b04533f09185afe03ff2371835c2/RainbowUnicoin.sol:RainbowUnicoin:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256) { return balances[_owner]; }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+"0x1bf63aca0124c9617d99c13ec3c279ff3e76f467/CNYTokenPlus.sol:PausableToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint _value) whenNotPaused {
+    super.transferFrom(_from, _to, _value);
+  }
+",no comment,"
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint the amout of tokens to be transfered
+   */
+",4,4,1.0
+"0x3b433c2cfbcc7b78c59243714b1ca7498a2de70c/TrueToken.sol:TrueToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success) {
+        // mitigates the ERC20 spend/approval race condition
+        if (_value != 0 && allowed[msg.sender][_spender] != 0) { return false; }
+        allowed[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /** ERC20 approve allows another contract to spend some tokens in your behalf
+     * @notice `msg.sender` approves `_spender` to spend `_value` tokens
+     * @param _spender The address of the account able to transfer the tokens
+     * @param _value The amount of tokens to be approved for transfer
+     * @return Whether the approval was successful or not
+     */
+",4,4,1.0
+0x2A287B4eBE1efB6b37Ad1ED3141f0dB1A1C51c99/STS.sol:STS:balanceOf(address),"    function balanceOf(address _owner) public constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+0x4f0cd65448e587bfcdc729da11dfd4ac45c9a8af/MBS_Portfolio.sol:Ownable:Ownable(),"		function	Ownable	() {							
+			owner	= msg.sender;							
+		}									
+",no comment,"
+    /** 
+     * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+     * account.
+     */
+",4,4,1.0
+0x1ffd205d11b2e200fcc8908afd649cff256f16d0/LongLegs.sol:LongLegs:name(),"  function name() public view returns (string _name) {
+      return name;
+  }
+",no comment,"  
+  
+  // Function to access name of token .
+",5,5,1.0
+"0x1c4f85e7bbddf3ee92e2999c63a7b85d64d57663/MultiToken.sol:ERC20:transferFrom(address,address,uint256)","    function transferFrom(address from, address to, uint value) public returns(bool ok);
+",no comment,"
+    // @notice transfer tokens from given address to another address
+    // @param _from {address} from whom tokens are transferred
+    // @param _to {address} to whom tokens are transferred
+    // @param _value {uint} amount of tokens to transfer
+    // @return  {bool} true if successful
+",3,3,1.0
+0x8c78a83de6faa64b100b6055bdf3a1f0b445efd2/EthearnalRepToken.sol:LockableToken:unlock(),"    function unlock() public onlyOwner {
+        isLocked = false;
+    }
+",no comment,"
+    /**
+     * @dev unlock the tokens. If token is unlocked, can transfer.
+     */
+",4,4,1.0
+"0x1DC5b8CcBe7A3669ED59dcd3B3d5AFA0FeD4eE57/ABCToken.sol:ERC23Token:transfer(address,uint256)","  function transfer(address _to, uint256 _value) returns (bool success) {
+      
+    //standard function transfer similar to ERC20 transfer with no _data
+    //added due to backwards compatibility reasons
+    bytes memory empty;
+    if(isContract(_to)) {
+        transferToContract(_to, _value, empty);
+    }
+    else {
+        transferToAddress(_to, _value, empty);
+    }
+    return true;
+  }
+",no comment,"  
+  // Standard function transfer similar to ERC20 transfer with no _data .
+  // Added due to backwards compatibility reasons .
+",5,5,1.0
+"0x0c3bcaabc5cf13f8c66608f63cc060f0783e0eaf/FRANCE_WINS.sol:FRANCE_WINS:approve(address,uint256)","	function approve(address spender, uint256 value)								
+		public							
+		returns (bool success)							
+	{								
+		allowance[msg.sender][spender] = value;							
+		emit Approval(msg.sender, spender, value);							
+		return true;							
+	}								
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+"0x7c4e57e182788904f6b34d98d38d59a2dc5abbe7/MeritToken.sol:MeritToken:increaseApproval(address,uint256)","    function increaseApproval(address _spender, uint _addedValue) public released returns (bool success) {
+        return super.increaseApproval(_spender, _addedValue);
+    }
+",no comment,"
+    /**
+      @dev approve should only be called when allowed[_spender] == 0. To alter the
+      @dev allowed value it is better to use this function, because it is safer.
+      @dev (And making `approve` safe manually would require making two calls made in separate blocks.)
+
+      This method was adapted from the one in use by the MonolithDAO Token.
+     */
+",5,5,1.0
+"0x6ab36640474e10e27ed86fb009a488f68a5f269d/Coin.sol:StandardToken:transfer(address,uint256)","  function transfer(address _to, uint _value) returns (bool success) {
+
+      // SafMaths will automatically handle the overflow checks
+      balances[msg.sender] = safeSub(balances[msg.sender],_value);
+      balances[_to] = safeAdd(balances[_to],_value);
+      Transfer(msg.sender, _to, _value);
+      return true;
+
+  }
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Transfer the balance from token owner's account to to account
+    // - Owner's account must have sufficient balance to transfer
+    // - 0 value transfers are allowed
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x4d5c907a460b0844cc99b95003819c2aa2b2b77a/RealEstateDirectIncome.sol:StandardToken:decreaseApproval(address,uint256)","  function decreaseApproval (address _spender, uint _subtractedValue)
+    returns (bool success) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+      allowed[msg.sender][_spender] = 0;
+    } else {
+      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",no comment,"
+  /**
+   * @dev Decrease the amount of tokens that an owner allowed to a spender.
+   *
+   * approve should be called when allowed[_spender] == 0. To decrement
+   * allowed value is better to use this function to avoid 2 calls (and wait until
+   * the first transaction is mined)
+   * From MonolithDAO Token.sol
+   * @param _spender The address which will spend the funds.
+   * @param _subtractedValue The amount of tokens to decrease the allowance by.
+   */
+",5,5,1.0
+"0x5c591aaa5b18d6411b01c9e6862b155f0433a6c2/PiaoPiaoToken.sol:PiaoPiaoToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        require(balances[msg.sender] >= _value);
+        balances[msg.sender] -= _value;
+        balances[_to] += _value;
+        Transfer(msg.sender, _to, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x3d79c48414f0f24451cedff9468c8427968a13e5/POANetwork.sol:StandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        //Default assumes totalSupply can't be over max (2^256 - 1).
+        //If your token leaves out totalSupply and can issue more tokens as time goes on, you need to check if it doesn't wrap.
+        //Replace the if with this one instead.
+        //if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x6ce4642936028cf493c9bdd72e78130297cb77ea/BixtrimToken.sol:SafeMath:add(uint256,uint256)","    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+",4,4,1.0
+"0x1e09bd8cadb441632e441db3e1d79909ee0a2256/Asset.sol:SafeMath:add(uint256,uint256)","    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x2bb9492e3391235efcdbdd70cf58bbb6b7a35ce8/SNK.sol:SNK:approveAndCall(address,uint256,bytes)","    function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+        public
+        returns (bool success) {
+        tokenRecipient spender = tokenRecipient(_spender);
+        if (approve(_spender, _value)) {
+            spender.receiveApproval(msg.sender, _value, this, _extraData);
+            return true; } }
+",no comment,"
+    /**
+     * Set allowance for other address and notify
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     * @param _extraData some extra information to send to the approved contract
+     */
+",4,4,1.0
+"0x0a61c13945cf8dc008097464534e3b0aeee557d6/UNLB.sol:ERC20:transferFrom(address,address,uint256)","  function transferFrom(address from, address to, uint256 value) returns (bool);
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amout of tokens to be transfered
+   */
+",5,5,1.0
+0x1fc3db544c4d4dd09f7a0524f3c64c9d0ac2abac/ESSENTIA.sol:Ownable:transferOwnership(address),"    function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner != address(0));
+        emit OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+    }
+",no comment,"  /**
+   * @dev Allows the current owner to transfer control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */
+",5,5,1.0
+"0x5b78fd6f5e8ea497534dd205e58daa51d26eded2/BITXDistributionTools.sol:BitScreenerToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) public transfersAllowed returns (bool) {
+    return super.transfer(_to, _value);
+  }
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",4,4,1.0
+"0x5bcb231f86da1f5c0daa38912469a0c569061967/HoChiMinh.sol:StandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+
+        if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else {return false;}
+    }
+",no comment,"
+    /**
+     * Reviewed:
+     * - Interger overflow = OK, checked
+     */
+",5,5,1.0
+"0x3b96990a8ef293cdd37c8e1ad3d210a0166f40e1/ZipToken.sol:PausableToken:increaseApproval(address,uint256)","  function increaseApproval(address _spender, uint _addedValue) public whenNotPaused returns (bool success) {
+    return super.increaseApproval(_spender, _addedValue);
+  }
+",no comment,"
+  /**
+   * Adding whenNotPaused
+   */
+",5,5,1.0
+"0x4ff4e1d9249ca80dbdae05738568fc18d1548a41/MentalHealthLifeToken.sol:MentalHealthLifeToken:increaseApproval(address,uint256)","    function increaseApproval(address _spender, uint _addedValue) public whenNotPaused
+        returns (bool success) {
+        return super.increaseApproval(_spender, _addedValue);
+    }
+",no comment,"
+  /**
+   * Adding whenNotPaused
+   */
+",4,5,1.0
+0x2ccf8d382c486327cd2a817f0c0ac911d65fbbf7/Nakama.sol:Nakama:constructor(),"    constructor() public {
+        symbol = ""NKM""; 
+        name = ""Nakama"";
+        decimals = 18;
+        _totalSupply = 10422698937 * 10**uint(decimals);
+        balances[owner] = _totalSupply;
+        emit Transfer(address(0), owner, _totalSupply);
+    }
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Constructor
+    // ------------------------------------------------------------------------
+",5,5,1.0
+0x0d44b2757f1b6c742ff8707f6eb298a7da1981af/KRWT.sol:Pausable:whenNotPaused(),"  modifier whenNotPaused() {
+    require(!paused);
+    _;
+  }
+",no comment,"
+
+  /**
+   * @dev Modifier to make a function callable only when the contract is not paused.
+   */
+",5,5,1.0
+"0x5cdd8211f6c6148e5fb8299f757985b4907fc85f/PreSaleExtended.sol:PausableToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) public whenNotPaused returns (bool) {
+    return super.transferFrom(_from, _to, _value);
+  }
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",3,3,1.0
+"0x1fe70be734e473e5721ea57c8b5b01e6caa52686/RNTBToken.sol:PausableToken:decreaseApproval(address,uint256)","  function decreaseApproval(address _spender, uint _subtractedValue) public whenNotPaused returns (bool success) {
+    return super.decreaseApproval(_spender, _subtractedValue);
+  }
+",no comment,"
+  /**
+   * Adding whenNotPaused
+   */
+",5,5,1.0
+"0x5ef93b2ebc91b3f8014207ba2b4cea718ab5e52e/TLTContract.sol:TLTContract:approve(address,uint256)","    function approve(address _spender, uint256 _amount) returns (bool success) {
+        allowed[msg.sender][_spender] = _amount;
+        Approval(msg.sender, _spender, _amount);
+        return true;
+    }
+",no comment,"    
+    /* This function allows _spender to withdraw from your account, multiple times, up to the _value amount.
+     * If this function is called again it overwrites the current allowance with _value.
+     * @param _spender address of the spender
+     * @param _amount amount allowed to be withdrawal
+     */
+",5,5,1.0
+"0x2c676953448add0d450ae0dc4e9afbc228dba62c/FooozCrowdsale.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",4,4,1.0
+0x8c7f97965f6811e5f1e839ef23d38d2ecd86a445/CrabFarm.sol:CrabFarm:getMyEggs(),"    function getMyEggs() public view returns(uint256){
+        return SafeMath.add(claimedEggs[msg.sender], getEggsSinceLastHatch(msg.sender));
+    }
+",no comment,"
+    // Get amount of eggs of current user
+",5,5,1.0
+0x5ef9e3ffbe8385c78a91b40361721bfc9f2c5c3c/IDD.sol:Ownable:Ownable(),"    function Ownable() public {
+        owner = msg.sender;
+    }
+",no comment,"
+    /** 
+     * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+     * account.
+     */
+",4,4,1.0
+"0x2f2540218770da363dd3320b107f38fbeaf62472/EIB.sol:EIB:transfer(address,uint256)","   function transfer(address _to, uint256 _value) public returns (bool) {
+     require(_to != address(0));
+     require(_value <= balances[msg.sender]);
+     balances[msg.sender] = SafeMath.sub(balances[msg.sender], _value);
+     balances[_to] = SafeMath.add(balances[_to], _value);
+     Transfer(msg.sender, _to, _value);
+     return true;
+   }
+",no comment,"
+    /// @dev Transfers sender's tokens to a given address. Returns success.
+    /// @param _to Address of token receiver.
+    /// @param _value Number of tokens to transfer.
+",5,5,1.0
+"0x1ebd8d3ca115451b9b6bbaa7ee2f7b0f96e49fd8/ArthurStandardToken.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        //same as above. Replace this line with the following if you want to protect against wrapping uints.
+        //if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",4,4,1.0
+0x0cfda67b0067f1a99deb1cb80e0273a3f26d317c/TrekChain.sol:TrekChain:withdrawForeignTokens(address),"    function withdrawForeignTokens(address _tokenContract) onlyOwner public returns (bool) {
+        ForeignToken token = ForeignToken(_tokenContract);
+        uint256 amount = token.balanceOf(address(this));
+        return token.transfer(owner, amount);
+    }
+",no comment,"
+
+    /**
+     * withdraw foreign tokens
+     */
+",5,5,1.0
+"0x2ef37c2b6679de8b6944e22dc9bbf01083007ce9/Fanship.sol:StandardToken:increaseApproval(address,uint256)","  function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",no comment,"
+  /**
+   * @dev Increase the amount of tokens that an owner allowed to a spender.
+   *
+   * approve should be called when allowed[_spender] == 0. To increment
+   * allowed value is better to use this function to avoid 2 calls (and wait until
+   * the first transaction is mined)
+   * From MonolithDAO Token.sol
+   * @param _spender The address which will spend the funds.
+   * @param _addedValue The amount of tokens to increase the allowance by.
+   */
+",5,5,1.0
+"0x0db0c7c211fc451a48f988876c2428101c87e293/NewCoinTestUAT.sol:HumanStandardToken:HumanStandardToken(uint256,string,uint8,string)","    function HumanStandardToken(
+        uint256 _initialAmount,
+        string _tokenName,
+        uint8 _decimalUnits,
+        string _tokenSymbol
+        ) {
+        balances[msg.sender] = _initialAmount;               // Give the creator all initial tokens
+        totalSupply = _initialAmount;                        // Update total supply
+        name = _tokenName;                                   // Set the name for display purposes
+        decimals = _decimalUnits;                            // Amount of decimals for display purposes
+        symbol = _tokenSymbol;                               // Set the symbol for display purposes
+    }
+",no comment,"	//human 0.1 standard. Just an arbitrary versioning scheme.
+
+",5,5,1.0
+0x3dd88933a5fe25b32f881da51eaef8bffd3ab2d8/SelfDestroy.sol:SelfDestroy:constructor(),"    constructor() public {}
+",no comment,"    /*
+        @dev constructor
+    */
+",5,5,1.0
+0x2a30bbf2d9764223c9afe5ac7c207aa338b9cd1a/HHH4.sol:owned:constructor(),"    constructor() public {
+        owner = msg.sender;
+    }
+",no comment,"  /**
+   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+   * account.
+   */
+",5,5,1.0
+"0x2c9e0924b023cc9a42bc1e6f20deb7e3ec727d54/DSToken.sol:DSMath:sub(uint256,uint256)","    function sub(uint x, uint y) internal pure returns (uint z) {
+        require((z = x - y) <= x);
+    }
+",no comment,"
+    // a subtract b
+",5,5,1.0
+"0x7a1bbc9a25f8224cad23e2888775ab8b61c8894f/KMHToken.sol:ERC20:allowance(address,address)","  function allowance(address owner, address spender)
+    public view returns (uint256);
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",5,5,1.0
+"0x4ddaf983302f451a5a6dc95af102335bf280d9a7/TrustaBitToken.sol:TrustaBitToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) public isReleased onlyPayloadSize(2 * 32) returns (bool) {
+    require(super.transfer(_to, _value));
+
+    if (isContract(_to)) {
+      Receiver(_to).tokenFallback(msg.sender, _value);
+    }
+
+    return true;
+  }
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",4,4,1.0
+0x5bdf79f1e7431edb75537d23d3b404ef86f44316/EdgelessToken.sol:SafeMath:assert(bool),"  function assert(bool assertion) internal {
+    if (!assertion) throw;
+  }
+",no comment,"
+  /**
+    * assert used in different Math functions
+    */
+",5,5,1.0
+"0x7e7da3c18889a2d8e9ea9f318b8d5cba89d02575/StarCoin.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal constant returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",5,5,1.0
+"0x4cfb59bdfb47396e1720f7ff1c1e37071d927112/ETXToken.sol:ETXToken:burnFrom(address,uint256)","    function burnFrom(address _from, uint256 _value) public returns (bool success) {
+        require(balanceOf[_from] >= _value);                
+        require(_value <= allowance[_from][msg.sender]);    
+        balanceOf[_from] -= _value;                         
+        allowance[_from][msg.sender] -= _value;             
+        totalSupply -= _value;                              
+        Burn(_from, _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * Destroy tokens from other account
+     *
+     * Remove `_value` tokens from the system irreversibly on behalf of `_from`.
+     *
+     * @param _from the address of the sender
+     * @param _value the amount of money to burn
+     */
+",5,5,1.0
+"0x1a9eb0f43ab4d9ffef9908b4d2c4b7f400ce3b3c/BITOToken.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",5,5,1.0
+0x2a4c36c96b0abe725237e5cee5305b08e03a8b3b/TNM.sol:ERC20Basic:balanceOf(address),"    function balanceOf(address who) public view returns (uint256);
+",no comment,"
+    /**
+    * @dev Gets the balance of the specified address.
+    * @param _owner The address to query the the balance of.
+    * @return An uint256 representing the amount owned by the passed address.
+    */
+",4,4,1.0
+"0x1F7Afe77fa8A683c6A6e45D8EAF40dA1f3B09094/PiedPiperCoin.sol:StandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x3e7203ef349c04b8cb46ebbfcb8ec046d7196504/NZOCrowdsale.sol:ERC20Basic:transfer(address,uint256)","    function transfer(address to, uint256 value) public returns (bool);
+",no comment,"
+    /**
+    * @dev transfer token for a specified address
+    * @param _to The address to transfer to.
+    * @param _value The amount to be transferred.
+    */
+",5,5,1.0
+"0x7e1892fee14fe293ad71f5afd2132dbffabee0ab/blablabla.sol:ERC223:transfer(address,uint256,bytes)","  function transfer(address to, uint value, bytes data) public returns (bool ok);
+",no comment,"  
+
+  // Function that is called when a user or another contract wants to transfer funds .
+",5,5,1.0
+"0x01f673e1af7416ff3795ff62393cdf014ce050fd/DiscardToken.sol:SafeMath:safeMul(uint256,uint256)","    function safeMul(uint a, uint b) internal pure returns (uint c) {
+        c = a * b;
+        require(a == 0 || c / a == b);
+    }
+",no comment,"  //internals
+
+",2,1,0.0
+"0x3b57690f17e1724ecf7c7b691dd66564cd9da0ea/NelCoin.sol:Permissioned:allowance(address,address)","    function allowance(address _owner, address _spender) external view returns (uint256 amount);
+",no comment,"
+    /**
+    * @dev Function to check the amount of tokens that an owner allowed to a spender.
+    * @param _owner address The address which owns the funds.
+    * @param _spender address The address which will spend the funds.
+    * @return A uint256 specifying the amount of tokens still available for the spender.
+    */
+",5,5,1.0
+"0x1ffd205d11b2e200fcc8908afd649cff256f16d0/LongLegs.sol:LongLegs:freezeAccounts(address[],bool)","  function freezeAccounts(address[] targets, bool isFrozen) onlyOwner public {
+    require(targets.length > 0);
+
+    for (uint i = 0; i < targets.length; i++) {
+      require(targets[i] != 0x0);
+      frozenAccount[targets[i]] = isFrozen;
+      FrozenFunds(targets[i], isFrozen);
+    }
+  }
+",no comment,"
+    /**
+     * @dev Prevent targets from sending or receiving tokens
+     * @param targets Addresses to be frozen
+     * @param isFrozen either to freeze it or not
+     */
+",5,5,1.0
+"0x02fb7aefda436d5632e796ef49a607e4e3cdd342/SeleniumRichChain.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x4d829f8c92a6691c56300d020c9e0db984cfe2ba/CoinCrowdToken.sol:StartToken:decreaseApproval(address,uint256)","  function decreaseApproval(address _spender, uint _subtractedValue) public whenStarted returns (bool success) {
+    return super.decreaseApproval(_spender, _subtractedValue);
+  }
+",no comment,"
+    /**
+       @dev approve should only be called when allowed[_spender] == 0. To alter the
+       @dev allowed value it is better to use this function, because it is safer.
+       @dev (And making `approve` safe manually would require making two calls made in separate blocks.)
+
+       This method was adapted from the one in use by the MonolithDAO Token.
+    */
+",4,4,1.0
+0x5d5cd6acc5ec2485bc52517b144081634aba9b41/game.sol:owned:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner {
+        owner = newOwner;
+    }
+",no comment,"
+  /**
+   * @dev Allows the current owner to set the pendingOwner address.
+   * @param newOwner The address to transfer ownership to.
+   */
+",4,5,1.0
+"0x0d30598f68e75574a6285f62eb5d7658bd62bd8b/SCAVOToken.sol:PausableToken:transferFrom(address,address,uint256)","  function transferFrom(
+    address _from,
+    address _to,
+    uint256 _value
+  )
+    public
+    whenNotPaused
+    returns (bool)
+  {
+    return super.transferFrom(_from, _to, _value);
+  }
+",no comment,"
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",5,5,1.0
+"0x6f65dd1f39650a7c11e0d4cdbec183a17e7a71ce/BALVINDER.sol:SafeMath:mul(uint256,uint256)","     function mul(uint a, uint b) internal pure returns (uint c) {
+         c = a * b;
+       require(a == 0 || c / a == b);
+ }
+",no comment,"
+    // a multiplied by b
+",5,5,1.0
+0x05acdfb35eb5ee6a6a42e7cea68f0850d563de45/BNW.sol:owned:owned(),"    function owned() public {
+        owner = msg.sender;
+    }
+",no comment,"
+    //constructor
+",5,5,1.0
+0x1ffd205d11b2e200fcc8908afd649cff256f16d0/LongLegs.sol:LongLegs:balanceOf(address),"  function balanceOf(address _owner) public view returns (uint balance) {
+    return balances[_owner];
+  }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+"0x0d24e589c07a85f507232c0d406571f78c75ba0d/VinzCoin.sol:VinzCoin:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        uint256 allowance = allowed[_from][msg.sender];
+        require(balances[_from] >= _value && allowance >= _value);
+        balances[_to] += _value;
+        balances[_from] -= _value;
+        if (allowance < MAX_UINT256) {
+            allowed[_from][msg.sender] -= _value;
+        }
+        Transfer(_from, _to, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",4,4,1.0
+"0x3f45d3b92976b02c4ce587df68b9c7943ff7efc3/TSCoin.sol:PausableToken:approve(address,uint256)","  function approve(address _spender, uint256 _value) public whenNotPaused returns (bool) {
+    return super.approve(_spender, _value);
+  }
+",no comment,"
+  /**
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   *
+   * Beware that changing an allowance with this method brings the risk that someone may use both the old
+   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */
+",5,5,1.0
+0x1dcaef208411119ed3d2527d1a2e724f0e3a07cc/SilkrouteCoin.sol:SilkrouteCoin:isContract(address),"    function isContract(address _addr) constant private returns (bool) {
+        uint length;
+        assembly {
+            length := extcodesize(_addr)
+        }
+        return (length > 0);
+    }
+",no comment,"
+  // ERC223 fetch contract size (must be nonzero to be a contract)
+",5,5,1.0
+"0x1ed8691cea15e9573282175ffa3e23281fce85c0/Stake.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) public constant returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+    }
+",no comment,"
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+",5,5,1.0
+0x07a58629AAF3e1A0d07D8f43114B76BD5EEe3B91/insChainToken.sol:insChainToken:burn(uint256),"    function burn(uint256 _value) public {
+      require(_value <= balances[msg.sender]);
+      address burner = msg.sender;
+      balances[burner] = safeSubtract(balances[burner],_value);
+      totalSupply = safeSubtract(totalSupply, _value);
+      Burn(burner, _value);
+    }
+",no comment,"
+    /**
+     * @dev Burns a specific amount of tokens.
+     * @param _value The amount of token to be burned.
+     */
+",5,5,1.0
+"0x1f493e2b407aceeec6366e2151b0fb429f2df500/TIC.sol:TIC:approveAndCall(address,uint256,bytes)","    function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        if(!_spender.call(bytes4(bytes32(sha3(""receiveApproval(address,uint256,address,bytes)""))), msg.sender, _value, this, _extraData)) { throw; }
+        return true;
+    }
+",no comment,"
+    /* Approves and then calls the receiving contract */
+",4,4,1.0
+0x6aedbf8dff31437220df351950ba2a3362168d1b/DGS.sol:DGS:totalSupply(),"    function totalSupply()
+    public constant returns (uint256 _totalSupply) {
+        _totalSupply = supply;
+    }
+",no comment,"
+    // Get total token supply
+",4,4,1.0
+"0x8a4774fe82c63484afef97ca8d89a6ea5e21f973/PriceFeed.sol:DSMath:mul(uint256,uint256)","    function mul(uint x, uint y) internal pure returns (uint z) {
+        require(y == 0 || (z = x * y) / y == x);
+    }
+",no comment,"
+    // a multiplied by b
+",4,4,1.0
+"0x7Ec6A713197FCBb4cFe7213800470b0940268549/BancorPriceFloor.sol:ITokenHolder:withdrawTokens(IERC20Token,address,uint256)","    function withdrawTokens(IERC20Token _token, address _to, uint256 _amount) public;
+",no comment,"
+    /**
+        @dev withdraws tokens held by the contract and sends them to an account
+        can only be called by the owner
+
+        @param _token   ERC20 token contract address
+        @param _to      account to receive the new amount
+        @param _amount  amount to withdraw
+    */
+",4,4,1.0
+"0x7dfc425c0425d69ca577d76c6d53a26a6c2cc0ac/ICODollar.sol:ICODollar:setPrices(uint256,uint256)","    function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
+        sellPrice = newSellPrice;
+        buyPrice = newBuyPrice;
+    }
+",no comment,"
+    /// @notice Allow users to buy tokens for `newBuyPrice` eth and sell tokens for `newSellPrice` eth
+    /// @param newSellPrice Price the users can sell to the contract
+    /// @param newBuyPrice Price users can buy from the contract
+",4,4,1.0
+"0x5b5439c49847f4481c0411d3e416db912f3b605f/DoftToken.sol:ERC20:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint remaining);
+",no comment,"    
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+",4,4,1.0
+0x1d4ccc31dab6ea20f461d329a0562c1c58412515/TalaoToken.sol:RefundVault:deposit(address),"  function deposit(address investor) onlyOwner public payable {
+    require(state == State.Active);
+    deposited[investor] = deposited[investor].add(msg.value);
+  }
+",no comment,"
+  /**
+   * @param investor Investor address
+   */
+",5,5,1.0
+"0x5cb99e1919e7ca8d48bce2cde4eb8e0ac94fa546/RYCToken.sol:RYCToken:setCrowdsale(address,uint256)","    function setCrowdsale(address _crowdSaleAddr, uint256 _amountForSale) external onlyOwner {
+        require(_amountForSale <= crowdSaleAllowance);
+
+        // if 0, then full available crowdsale supply is assumed
+        uint amount = (_amountForSale == 0) ? crowdSaleAllowance : _amountForSale;
+
+        // Clear allowance of old, and set allowance of new
+        approve(crowdSaleAddr, 0);
+        approve(_crowdSaleAddr, amount);
+
+        crowdSaleAddr = _crowdSaleAddr;
+    }
+",no comment,"
+    /**
+     * Associates this token with a current crowdsale, giving the crowdsale
+     * an allowance of tokens from the crowdsale supply. This gives the
+     * crowdsale the ability to call transferFrom to transfer tokens to
+     * whomever has purchased them.
+     *
+     * Note that if _amountForSale is 0, then it is assumed that the full
+     * remaining crowdsale supply is made available to the crowdsale.
+     *
+     * @param _crowdSaleAddr The address of a crowdsale contract that will sell this token
+     * @param _amountForSale The supply of tokens provided to the crowdsale
+     */
+",5,5,1.0
+"0x3eeeb54cdee54079c6fb01d52b7643c8e50ff4c2/preSale3.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure  returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+"0x1a19c2aec934eb39c92cff0f1ba46efe8f6c56fe/HODLToken.sol:SafeMath:div(uint256,uint256)","    function div(uint a, uint b) internal pure returns (uint c) {
+        require(b > 0);
+        c = a / b;
+    }
+",no comment,"
+    // a divided by b
+",5,5,1.0
+"0x5f9020a24870115a5256c7004c0d5c9259aa7128/GigaGivingICO.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+"0x3c6ce03a4ae39d56da53fbb045cedd2d750e4531/DynamicToken.sol:DynamicToken:allowance(address,address)","  function allowance(address _owner, address _spender) noEther constant returns (uint256 remaining) {
+    return allowed[_owner][_spender];
+  }
+",no comment,"
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+",5,5,1.0
+"0x6fa8cd6a1a35542ba289437fe69e8f21ca1fa614/SAN.sol:ERC20:approve(address,uint256)","    function approve(address _spender, uint256 _value) isStartedOnly returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+"0x0b4298856285e36adf7682fbd06c8ffa3eeae72b/CTCToken.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+0x6a27778baa415f9086ba0703c7a9c6cde0d46f2b/XtremcoinToken.sol:XtremcoinToken:balanceOf(address),"	function balanceOf(address _owner) constant returns (uint256 balance) {
+	    return balances[_owner];
+	}
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",4,4,1.0
+"0x0e69a56bd2bb5a4a0cb44d3b96911f7cff01e29a/MaxRoyalCoin.sol:ERC20Interface:transfer(address,uint256)","     function transfer(address to, uint tokens) public returns (bool success);
+",no comment,"  
+     // Transfer the balance from owner's account to another account
+",4,4,1.0
+"0x4ed0954122ca706170fa38ad92475c7bdac7ff18/XiiPay.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a * b;
+        assert(a == 0 || c / a == b);
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x1f7bb047492f2c45a0baba3daf3c670289ac9ebb/MulaCoin.sol:StandardToken:transferFrom(address,address,uint256)","	function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)
+	{
+		//same as above. Replace this line with the following if you want to protect against wrapping uints.
+		//if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+		if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+			balances[_to] += _value;
+			balances[_from] -= _value;
+			allowed[_from][msg.sender] -= _value;
+			emit Transfer(_from, _to, _value);
+			return true;
+		} else { return false; }
+	}
+",no comment,"
+	/// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+	/// @param _from The address of the sender
+	/// @param _to The address of the recipient
+	/// @param _value The amount of token to be transferred
+	/// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x4aadeb688a85d4828c682716626e1398c18aa616/BunzolaToken.sol:SafeMath:add(uint256,uint256)","    function add(uint256 a, uint256 b) internal constant returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+",4,4,1.0
+0x8BaC0B6d08483870125aC56dFeDD15BC1a4C2CED/CEL.sol:CEL:balanceOf(address),"    function balanceOf(address _owner) public view returns (uint256 balance) {
+        return balances[_owner];
+    }
+",no comment,"
+    /// @param _owner The address from which the balance will be retrieved
+    /// @return The balance
+",5,5,1.0
+0x5ab63263075c05afae67930dd911c513305d8630/FSRatCoin.sol:ERC20Basic:balanceOf(address),"  function balanceOf(address who) constant returns (uint);
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint representing the amount owned by the passed address.
+  */
+",5,5,1.0
+"0x8c5a05b691288f85e6e27bf6b5a454d2814f5a6f/WubCoin.sol:SafeMath:mul(uint256,uint256)","  function mul(uint a, uint b) internal returns (uint) {
+    uint c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",no comment,"
+    // a multiplied by b
+",5,5,1.0
+"0x2d6669c810bf1444d2e5e7f4cfc56a4c10cf7a2a/HYIPToken.sol:SafeMath:max64(uint64,uint64)","  function max64(uint64 a, uint64 b) internal constant returns (uint64) {
+    return a >= b ? a : b;
+  }
+",no comment,"    
+    // return the largest of two 64 bit integers
+",4,4,1.0
+0x2f49030bfbe4819f4ab42c7829297dbdec01ad8c/SEK_Omnidollar.sol:ERC20Interface:balanceOf(address),"    function balanceOf(address tokenOwner) public constant returns (uint balance);
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Get the token balance for account tokenOwner
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x7b7524fdf31b31fa4c1d463f490dcbdc07e63557/InternationalFarmersToken.sol:InternationalFarmersToken:allowance(address,address)","  function allowance(address _owner, address _spender) constant public returns (uint remaining) {
+    return allowed[_owner][_spender];
+  }
+",no comment,"
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+",5,5,1.0
+0x6eB45f4775a353855D7af3252f10178A91610Fc1/Horiz0n.sol:Ownable:renounceOwnership(),"  function renounceOwnership() public onlyOwner {
+    emit OwnershipRenounced(owner);
+    owner = address(0);
+  }
+",no comment,"
+  /**
+   * @dev Allows the current owner to relinquish control of the contract.
+   * @notice Renouncing to ownership will leave the contract without an owner.
+   * It will not be possible to call the functions with the `onlyOwner`
+   * modifier anymore.
+   */
+",4,4,1.0
+0x4eca45c76a239cea8e8e0a070dc6b35f2fa69e65/YiiPay.sol:YiiPay:canDistr(),"    modifier canDistr() {
+        require(!distributionFinished);
+        _;
+    }
+",no comment,"    
+	//??????
+",3,2,0.0
+"0x6aeb95f06cda84ca345c2de0f3b7f96923a44f4c/BerryToken.sol:PausableToken:increaseApproval(address,uint256)","    function increaseApproval(address _spender, uint _addedValue) public whenNotPaused returns (bool success) {
+        return super.increaseApproval(_spender, _addedValue);
+    }
+",no comment,"
+  /**
+   * Adding whenNotPaused
+   */
+",5,5,1.0
+0x4fE6Ea636aBe664E0268Af373A10CA3621A0B95b/CrowdsaleToken.sol:StandardToken:balanceOf(address),"  function balanceOf(address _owner) constant returns (uint balance) {
+    return balances[_owner];
+  }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",4,5,1.0
+"0x4e23b6801cbcfe3bd900502d0cc53ad357a0da36/zeuscoin.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        //same as above. Replace this line with the following if you want to protect against wrapping uints.
+        //if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+0x2c78ac7859423ab8d3efc4ae1f1fc842573830ff/INT.sol:INTToken:sell(uint256),"    function sell(uint256 amount) {
+        if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
+        balanceOf[this] += amount;                         // adds the amount to owner's balance
+        balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
+        if (!msg.sender.send(amount * sellPrice)) {        // sends ether to the seller. It's important
+            throw;                                         // to do this last to avoid recursion attacks
+        } else {
+            Transfer(msg.sender, this, amount);            // executes an event reflecting on the change
+        }               
+    }
+",no comment,"        /* ?????????? */
+",1,1,0.0
+"0x2edd9a38d9554ade350f1ba1bdc935f6c0628b81/Asset.sol:ERC20TokenInterface:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool success);
+",no comment,"
+    /**
+    * @dev transfer token to a specified address
+    * @param _to The address to transfer to.
+    * @param _value The amount to be transferred.
+    */
+",4,4,1.0
+"0x8b0dd3f4ebc9773ae6bd425a656980a1c3092386/Dexy.sol:Dexy:transferFrom(address,address,uint256)","    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _amount
+    ) public returns (bool success) {
+        if (balances[_from] >= _amount
+            && allowed[_from][msg.sender] >= _amount
+            && _amount > 0
+            && balances[_to] + _amount > balances[_to]) {
+            balances[_from] -= _amount;
+            allowed[_from][msg.sender] -= _amount;
+            balances[_to] += _amount;
+            Transfer(_from, _to, _amount);
+            return true;
+        } else {
+            return false;
+        }
+    }
+",no comment,"  
+     // Send _value amount of tokens from address _from to address _to
+     // The transferFrom method is used for a withdraw workflow, allowing contracts to send
+     // tokens on your behalf, for example to ""deposit"" to a contract address and/or to charge
+     // fees in sub-currencies; the command should fail unless the _from account has
+     // deliberately authorized the sender of the message via some mechanism; we propose
+     // these standardized APIs for approval:
+     
+",4,4,1.0
+0x6d306c48ee21a9d125d366bab9e2a6f0ffe53c5b/IconFoundation.sol:IconFoundation:totalSupply(),"    function totalSupply() constant returns (uint256 totalSupply) {
+        totalSupply = _totalSupply;
+    }
+",no comment,"
+    // Get the total token supply
+",4,4,1.0
+0x5E9483Af5aF106625ABB08dE51E0d3037d04c3E0/RakugoToken.sol:RakugoCrowdsale:finalization(),"  function finalization() internal {
+    token.finishMinting();
+  }
+",no comment,"
+  /**
+   * @dev Can be overriden to add finalization logic. The overriding function
+   * should call super.finalization() to ensure the chain of finalization is
+   * executed entirely.
+   */
+",5,5,1.0
+"0x8bc88556445659186f7e7c0acfb0fd266906f1a3/SocialLendingToken.sol:ERC20:approve(address,uint256)","    function approve(address spender, uint256 value) public returns (bool);
+",no comment,"
+    /**
+     * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+     *
+     * Beware that changing an allowance with this method brings the risk that someone may use both the old
+     * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+     * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     * @param _spender The address which will spend the funds.
+     * @param _value The amount of tokens to be spent.
+     */
+",5,5,1.0
+"0x04da1cd6498986015f700397a8b4bfbaa70c9399/GuneToken.sol:ERC20Interface:approve(address,uint256)","    function approve(address spender, uint tokens) public returns (bool success);
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Token owner can approve for spender to transferFrom(...) tokens
+    // from the token owner's account
+    //
+    // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
+    // recommends that there are no checks for the approval double-spend attack
+    // as this should be implemented in user interfaces
+    // ------------------------------------------------------------------------
+",5,5,1.0
+0x3ef6c13b8e03e61f5c60a61d0e9df6e29011e765/MyToken.sol:Token:decimals(),"	function decimals() public constant returns (uint8){
+		return _decimals;
+	}
+",no comment,"
+  // Function to access decimals of token
+",5,5,1.0
+"0x6e332e1142957045bcd47f37f003c939691f0c80/VIPCHAINToken.sol:VIPCHAINToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+        return allowed[_owner][_spender];
+    }
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",5,5,1.0
+0x4cba96e12b8085fd9bc17fb37290b6bf9a213863/EtherKebab.sol:EtherKebab:getBalance(),"    function getBalance() public view returns(uint256)
+    {
+        return address(this).balance;
+    }
+",no comment,"
+
+    /**
+     * @dev Get full contract balance
+     */
+",4,4,1.0
+0x5b29a6277c996b477d6632e60eef41268311ce1c/Dragon.sol:Dragon:burn(uint256),"    function burn(uint256 _value) returns(bool success) {
+        if (balanceOf[msg.sender] < _value) throw; 
+        balanceOf[msg.sender] -= _value; 
+        totalSupply -= _value; 
+        Burn(msg.sender, _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * Destroy tokens
+     *
+     * Remove `_value` tokens from the system irreversibly
+     *
+     * @param _value the amount of money to burn
+     */
+",5,5,1.0
+0x5b2e4a700dfbc560061e957edec8f6eeeb74a320/INSToken.sol:AbstractToken:AbstractToken(),"  function AbstractToken () {
+    // Do nothing
+  }
+",no comment,"  /**
+   * Create new Abstract Token contract.
+   */
+",5,5,1.0
+0x4bf9e798cc40b6ccce801dec622af66a653e9f11/TimeLockedWallet.sol:Ownable:transferOwnership(address),"	function transferOwnership(address _newOwner) 
+		external
+		onlyOwner
+		notOwner(_newOwner)
+	{
+		require(_newOwner != address(0));
+		emit OwnershipTransferred(owner, _newOwner);
+		owner = _newOwner;
+	}
+",no comment,"  /**
+   * @dev Allows the current owner to transfer control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */
+",5,5,1.0
+"0x5c2C871E560Cf6BcacCc04CA9b78e6520372bD8D/MIP.sol:BasicToken:transfer(address,uint256)","  function transfer(address _to, uint _value) onlyPayloadSize(2 * 32) {
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    Transfer(msg.sender, _to, _value);
+  }
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",4,4,1.0
+0x6a329e1c3f10ff293806b2998ff20331d7e9af4d/PresaleToken.sol:PresaleToken:onlyTokenManager(),"    modifier onlyTokenManager() { 
+        require(msg.sender == tokenManager); 
+        _; 
+    }
+",no comment,"
+/// Modifiers:
+",5,5,1.0
+0x1cd9a1f937182585037196e32c057739c8ca5b6c/IUTCHAINToken.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+      require(msg.sender == owner);
+      _;
+  }
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",5,5,1.0
+"0x8b9d3f0b91ffb9b5323422ea9217abcfb2d604fd/iWAMToken.sol:SafeMath:mul(uint256,uint256)","    function mul(uint a, uint b) internal pure returns (uint c) {
+        c = a * b;
+        require(a == 0 || c / a == b);
+    }
+",no comment,"
+    // a multiplied by b
+",4,4,1.0
+"0x2c0c9c1939dffb7c303307554cceae1c04370b39/PGTBToken.sol:StandardToken:decreaseApproval(address,uint256)","  function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+        allowed[msg.sender][_spender] = 0;
+    } else {
+        allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+   }
+",no comment,"
+  /**
+   * @dev Decrease the amount of tokens that an owner allowed to a spender.
+   *
+   * approve should be called when allowed[_spender] == 0. To decrement
+   * allowed value is better to use this function to avoid 2 calls (and wait until
+   * the first transaction is mined)
+   * From MonolithDAO Token.sol
+   * @param _spender The address which will spend the funds.
+   * @param _subtractedValue The amount of tokens to decrease the allowance by.
+   */
+",4,4,1.0
+0x6Da1aC2756bbf05faCc9A863fbe2E1a887D0D092/CosmosToken.sol:CosmosToken:symbol(),"    function symbol() constant returns (string) { return ""CST""; }
+",no comment,"  /// @notice An abbreviated name for NFTs in this contract
+",4,4,1.0
+"0x5be015eb0be828742b1e9ff9f784ea51e540b6e8/LooksCoin.sol:ERC20:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool ok);
+",no comment,"
+    /**
+     * Transfer given number of tokens from given owner to given recipient.
+     *
+     * @param _from address to transfer tokens from the owner of
+     * @param _to address to transfer tokens to the owner of
+     * @param _amount number of tokens to transfer from given owner to given
+     *        recipient
+     * @return true if tokens were transferred successfully, false otherwise
+     */
+",4,4,1.0
+0x2fb23f5b0b18e947186c9cc848b86d550c81711c/AndhraToken.sol:Owned:transferOwnership(address),"    function transferOwnership(address _newOwner) public onlyOwner {
+        newOwner = _newOwner;
+    }
+",no comment,"
+  /**
+   * @dev Allows the current owner to set the pendingOwner address.
+   * @param newOwner The address to transfer ownership to.
+   */
+",5,5,1.0
+"0x6a995491c251aa7d280cf321170e6279dd563058/G5.sol:StandardToken:decreaseApproval(address,uint256)","  function decreaseApproval (address _spender, uint _subtractedValue) 
+    returns (bool success) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+      allowed[msg.sender][_spender] = 0;
+    } else {
+      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",no comment,"
+  /**
+   * @dev Decrease the amount of tokens that an owner allowed to a spender.
+   *
+   * approve should be called when allowed[_spender] == 0. To decrement
+   * allowed value is better to use this function to avoid 2 calls (and wait until
+   * the first transaction is mined)
+   * From MonolithDAO Token.sol
+   * @param _spender The address which will spend the funds.
+   * @param _subtractedValue The amount of tokens to decrease the allowance by.
+   */
+",5,5,1.0
+0x8acd341e4c0f1c329ae33cb4eaac39e3c1f2c210/INMCOIN.sol:INMCOIN:balanceOf(address),"    function balanceOf(address _owner) public view returns (uint256 balance) {
+        return balanceOf[_owner];
+    }
+",no comment,"
+    // ERC223 and ERC20 functions and events
+",5,5,1.0
+"0x8b3d0703b30a6c2eb8b88a479648391186e4cc8f/FIGHTMONEY.sol:FIGHTMONEY:transfer(address,uint256)","    function transfer(address _to, uint _value) public returns (bool success) {
+        require(_value > 0
+                && frozenAccount[msg.sender] == false 
+                && frozenAccount[_to] == false
+                && now > unlockUnixTime[msg.sender] 
+                && now > unlockUnixTime[_to]);
+
+        bytes memory empty;
+        if (isContract(_to)) {
+            return transferToContract(_to, _value, empty);
+        } else {
+            return transferToAddress(_to, _value, empty);
+        }
+    }
+",no comment,"
+    /**
+     * @dev Standard function transfer similar to ERC20 transfer with no _data
+     *      Added due to backwards compatibility reasons
+     */
+",5,5,1.0
+0x7ed0d751664298f66e3bdfd9451588fd397afe11/Yuzhuralzoloto_2.sol:Yuzhuralzoloto_2:onlyOwner(),"	modifier	onlyOwner	() {							
+		require(msg.sender ==		owner	);					
+		_;								
+	}									
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",4,4,1.0
+"0x3e41e76d7b7cb54365317c7e7f1f411d59744922/FixedSupplyToken.sol:SafeMath:sub(uint256,uint256)","    function sub(uint a, uint b) internal pure returns (uint c) {
+        require(b <= a);
+        c = a - b;
+    }
+",no comment,"
+    // a subtract b
+",5,5,1.0
+0x3ab1d534bb477f516817efaaf0b569f419b8e292/LogoVote.sol:Vote:balanceOf(address),"  	function balanceOf(address _address) constant returns (uint balance) {
+  		return balances[_address];
+  	}
+",no comment,"
+    /* Returns the balance of a particular account */
+",4,4,1.0
+"0x8c84cb84d98b076502fe65477b97657e3c8e954f/BarToken.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal constant returns (uint256) {
+        uint256 c = a * b;
+        assert(a == 0 || c / a == b);
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",5,5,1.0
+0x3f61b512856056d663fd763b880da4a8ed4ceeee/TutellusCrowdsale.sol:TutellusCrowdsale:createTokenContract(),"    function createTokenContract() internal returns (MintableToken) {
+        return new TutellusToken();
+    }
+",no comment,"
+  // creates the token to be sold. 
+  // override this method to have crowdsale of a specific mintable token.
+",5,5,1.0
+"0x4c1a22be48ef517391a491547389fb5f4f75a885/NEWSOKUCOIN.sol:ERC223:allowance(address,address)","    function allowance(address _owner, address _spender) public view returns (uint256 remaining);
+",no comment,"
+    /**
+     * @dev Function to check the amount of tokens that an owner allowed to a spender
+     *      Added due to backwards compatibility with ERC20
+     * @param _owner address The address which owns the funds
+     * @param _spender address The address which will spend the funds
+     */
+",5,5,1.0
+0x6d68003c0452632a87381c42091fc94ceb047fd1/Duckcoin.sol:ERC20Token:totalSupply(),"   function totalSupply() public view returns (uint256) {
+      return tokenTotalSupply;
+   }
+",no comment,"
+
+    /** 
+     * Get the total token supply
+     * 
+     * @return The total supply
+     */
+",5,5,1.0
+"0x07ec30473ef6e1b9a434b1d48b97f79d46c13d5f/EidooTokenSale.sol:EidooToken:transfer(address,uint256)","  function transfer(address _to, uint _value) canTransfer(msg.sender, _value) returns (bool) {
+    return super.transfer(_to, _value);
+  }
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",4,4,1.0
+"0x7d967a044f6ac48728e8b3438610e95c06532b79/qorva.sol:qorva:safeSub(uint256,uint256)","    function safeSub(uint a, uint b) internal returns (uint) {
+        assert(b <= a);
+        return a - b;
+    }
+",no comment,"	//internals
+",4,4,1.0
+0x1af79fb7772ebafebcfd5cc79e67281a814ccb1d/ISBToken.sol:Owned:acceptOwnership(),"    function acceptOwnership() public {
+        require(msg.sender == newOwner);
+        OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+        newOwner = address(0);
+    }
+",no comment,"
+    /*
+        @dev used by a new owner to accept an ownership transfer
+    */
+",5,5,1.0
+"0x4b319ce02bdc8977fb39fa70c49258a1a7c27d9b/UNLB.sol:ERC20:allowance(address,address)","  function allowance(address owner, address spender) constant returns (uint256);
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifing the amount of tokens still avaible for the spender.
+   */
+",4,4,1.0
+"0x0f8c45b896784a1e408526b9300519ef8660209c/XmxToken.sol:FreezeableToken:transfer(address,uint256)","    function transfer(address to, uint256 value) public whenNotFreezed returns (bool) {
+      return super.transfer(to, value);
+    }
+",no comment,"  
+  /**
+  * @dev transfer token for a specified address (BasicToken transfer method)
+  */
+",5,5,1.0
+"0x3da18541cab8549885dc9e6ab9101c366cf43b21/Leimen.sol:Leimen:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public {
+        _transfer(msg.sender, _to, _value);
+	    }
+",no comment,"
+    /**
+     * Transfer tokens
+     *
+     * Send `_value` tokens to `_to` from your account
+     *
+     * @param _to The address of the recipient
+     * @param _value the amount to send
+     */
+",5,5,1.0
+0x2c1e693ccc537c8c98c73fac0262cd7e18a3ad60/LandSale.sol:RefundVault:enableRefunds(),"  function enableRefunds() onlyOwner public {
+    require(state == State.Active);
+    state = State.Refunding;
+    RefundsEnabled();
+  }
+",no comment,"
+  /**
+   * @dev Allows for refunds to take place, rejecting further deposits.
+   */
+",4,4,1.0
+"0x6e12e484f108ae1e68efeea15311d95cf447280b/HUNDREDTIMES.sol:HUNDREDTIMES:transferAnyERC20Token(address,uint256)","        function transferAnyERC20Token(address tokenAddress, uint tokens) public onlyOwner returns (bool success) {
+            return ERC20Interface(tokenAddress).transfer(owner, tokens);
+        }
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Owner can transfer out any accidentally sent ERC20 tokens
+    // ------------------------------------------------------------------------
+",4,4,1.0
+"0x2cbf103901196f99619f2bf9accdf079e9c76819/SMUToken.sol:SMUToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(_value <= allowance[_from][msg.sender]); 
+        allowance[_from][msg.sender] -= _value;
+        _transfer(_from, _to, _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * Transfer tokens from other address
+     *
+     * Send `_value` tokens to `_to` in behalf of `_from`
+     *
+     * @param _from The address of the sender
+     * @param _to The address of the recipient
+     * @param _value the amount to send
+     */
+",4,4,1.0
+0x2a438370bee707e4c25369c39553949dc4391b2d/ArbitrageMarsTerminal.sol:ERC20Basic:totalSupply(),"  function totalSupply() public view returns (uint256);
+",no comment,"
+  /**
+  * @dev total number of tokens in existence
+  */
+",5,5,1.0
+"0x5ab14c104ba2771fd2a6ec6f616da1ad41d5b8a7/JincorToken.sol:Burnable:transfer(address,uint256)","  function transfer(address _to, uint _value) returns (bool success) {
+    require(_to != 0x0); //use burn
+
+    return super.transfer(_to, _value);
+  }
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",4,4,1.0
+"0x5a85092211fca2eb379824207b1a7b8059bf009a/OPAY.sol:SafeMath:safeSub(uint256,uint256)","    function safeSub(uint a, uint b) pure internal returns (uint) {
+        assert(b <= a);
+        return a - b;
+    }
+",no comment,"	//internals
+",4,4,1.0
+"0x0a8b758bbc4a5791c5647ca80351e008f1e3bca1/ItemToken.sol:EverGold:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value)
+    public
+    whenNotPaused
+    returns (bool)
+  {
+    return super.transferFrom(_from, _to, _value);
+  }
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",3,3,1.0
+0x7bb09bc8ade747178e95b1d035ecbeebbb18cfee/CryptoValleyAlliance.sol:Owned:constructor(),"    constructor() public {
+
+        owner = msg.sender;
+
+    }
+",no comment,"  /**
+   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+   * account.
+   */
+",5,5,1.0
+"0x2ceedb62c316665fc30ee8f9657ffcb36be09a96/ETFloorPresale.sol:ERC20:allowance(address,address)","    function allowance(address owner, address spender) public view returns (uint256);
+",no comment,"
+    /**
+     * @dev Function to check the amount of tokens that an owner allowed to a spender.
+     * @param _owner address The address which owns the funds.
+     * @param _spender address The address which will spend the funds.
+     * @return A uint256 specifying the amount of tokens still available for the spender.
+     */
+",5,5,1.0
+"0x7e2555d31f75a34a6a5604ac04a7ee8fe769731d/SpareCurrencyToken.sol:SpareCurrencyToken:transfer(address,uint256)","  function transfer(address _to, uint256 _amount) returns (bool success) {
+    if (balances[msg.sender] >= _amount 
+      && _amount > 0
+      && balances[_to] + _amount > balances[_to]) {
+        balances[msg.sender] -= _amount;
+        balances[_to] += _amount;
+        Transfer(msg.sender, _to, _amount);
+        return true;
+    } else {
+      return false;
+    }
+}
+",no comment,"
+    // Transfer the balance from owner's account to another account
+",3,3,1.0
+"0x6e74216fc9ec901c8e0d3fd8acf237e6a2f85413/EVXTestToken.sol:SafeMath:sub(uint256,uint256)","  function sub(uint256 a, uint256 b) internal constant returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+"0x2c65dc498835c513139a7ab88d64a88feee26e23/CoinIpr.sol:CoinIpr:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal pure returns (uint256) 
+    {
+        return a / b;
+    }
+",no comment,"
+    /**
+    * Integer division of two numbers, truncating the quotient.
+    */
+",4,5,1.0
+"0x05a632dab15b1f3e012ad1ac6a23c6f0a1edd48b/GoldBlocksTickets.sol:GoldBlocksTickets:approveAndCall(address,uint256,bytes)","    function approveAndCall(address spender, uint tokens, bytes data) public returns (bool success) {
+        allowed[msg.sender][spender] = tokens;
+        Approval(msg.sender, spender, tokens);
+        ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, this, data);
+        return true;
+    }
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Token owner can approve for `spender` to transferFrom(...) `tokens`
+    // from the token owner's account. The `spender` contract function
+    // `receiveApproval(...)` is then executed
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x6e968321cf36846a54917bf85c91e21a032fedb8/OmenoToken.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+    }
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",5,5,1.0
+0x1f26c33b8aed19a68fed28b712696b4102c9a6e2/PreSaleZNA.sol:MintableToken:canMint(),"  modifier canMint() {
+    require(!mintingFinished);
+    _;
+  }
+",no comment,"
+  // --------------- Minting methods
+
+",5,5,1.0
+"0x7d172c6ab99be1cb8ccb135c95368799352a0e68/Cake.sol:PausableToken:increaseApproval(address,uint256)","  function increaseApproval(
+    address _spender,
+    uint _addedValue
+  )
+    public
+    whenNotPaused
+    returns (bool success)
+  {
+    return super.increaseApproval(_spender, _addedValue);
+  }
+",no comment,"
+  /**
+   * Adding whenNotPaused
+   */
+",4,4,1.0
+"0x6eff08361f0f388ec7c7693de0926ce83e4deb96/InsightsNetwork.sol:StandardToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+0x3caffda4dfedb99e35663009835ebae375f739ca/DMPNGCrowdsale.sol:DMPNGCrowdsale:_forwardFunds(),"  function _forwardFunds() internal {
+    wallet.transfer(msg.value);
+  }
+",no comment,"
+  /**
+   * @dev Determines how ETH is stored/forwarded on purchases.
+   */
+",4,4,1.0
+"0x0bc61dded5f6710c637cf8288eb6058766ce1921/CENToken.sol:StandardToken:allowance(address,address)","	function allowance(address _owner, address _spender) view public returns (uint256 remaining) {
+		return allowed[_owner][_spender];
+	}
+",no comment,"
+	/// @param _owner The address of the account owning tokens
+	/// @param _spender The address of the account able to transfer the tokens
+	/// @return Amount of remaining tokens allowed to spent
+",4,4,1.0
+"0x7a7f2a4550841258a516d71a90c28c97a529a66a/Omnic.sol:ERC20Token:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+"0x7bD93D340e712F0b5F0A67bF217438cd9F7B5771/STTC.sol:TokenDemo:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]);
+        require(_to != 0x0);
+        uint previousBalances = balances[msg.sender] + balances[_to];
+        balances[msg.sender] -= _value;
+        balances[_to] += _value;
+        emit Transfer(msg.sender, _to, _value);
+        assert(balances[msg.sender] + balances[_to] == previousBalances);
+        return true;
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",3,2,1.0
+"0x5a8ffa5f2ce95b3a397bda16ad84781b6fde4f8b/DatariusICO.sol:SafeMath:sub(uint256,uint256)","  function sub(uint a, uint b) internal constant returns(uint) {
+    assert(b <= a);
+    return a - b;
+  }
+",no comment,"
+    // ------------------------------------------------------------------------
+    // Subtract a number from another number, checking for underflows
+    // ------------------------------------------------------------------------
+",4,4,1.0
+0x4fece400c0d3db0937162ab44bab34445626ecfe/ETHero.sol:ERC721Basic:balanceOf(address),"    function balanceOf(address _owner) public view returns (uint256 _balance);
+",no comment,"
+    /**
+    * @dev Gets the balance of the specified address
+    * @param _owner address to query the balance of
+    * @return uint256 representing the amount owned by the passed address
+    */
+",4,4,1.0
+"0x6dceb0027a9e92ddfccc09a00d0779d3c1e2a8b7/NetkillerAdvancedToken.sol:NetkillerAdvancedToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(_value <= balances[_from]);
+        require(_value <= allowed[_from][msg.sender]);     // Check allowance
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+        _transfer(_from, _to, _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * @dev Receive the WEDU token from other user
+     * @param _from The users who will transmit WEDU token
+     * @param _to The users who will receive WEDU token
+     * @param _value The amount of WEDU token transmits to user
+     * @return True when the WEDU token transfer success
+     */
+",5,5,1.0
+0x4ACE10d39919AEf52dDdDC0a3473451Ee610080d/CryptoMarketShortCoin.sol:Owned:transferOwnership(address),"    function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner != address(0));
+        OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+    }
+",no comment,"  /**
+   * @dev Allows the current owner to transfer control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */
+",5,5,1.0
+"0x6f721567db8894690b12e6d16071261341401023/NINECOINTOKEN.sol:StandardToken:allowance(address,address)","    function allowance(address _owner, address _spender) public constant returns (uint remaining) {
+        return allowed[_owner][_spender];
+    }
+",no comment,"
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+",5,5,1.0
+0x1bb7ec9723493d8649caf261b4e7ed187646069a/BOT_ELEMENT_3.sol:BOT_ELEMENT_3:onlyOwner(),"		modifier	onlyOwner	() {							
+			require(msg.sender ==		owner	);					
+			_;								
+		}									
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",5,5,1.0
+"0x3a5d621b17b3e28de84d88050b460b8435e3966c/Propethy.sol:Propethy:approve(address,uint256)","function approve(address _spender, uint256 _value) returns(bool) {
+require((_value == 0) || (allowed[msg.sender][_spender] == 0));
+allowed[msg.sender][_spender] = _value;
+Approval(msg.sender, _spender, _value);
+return true;
+}
+",no comment,"
+  /**
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   *
+   * Beware that changing an allowance with this method brings the risk that someone may use both the old
+   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */
+",4,4,1.0
+0x3f14d7da845a30bbd248c1da4966327ccb5c1600/FITToken.sol:Owned:Owned(),"      function Owned() public {
+          owner = msg.sender;
+      }
+",no comment,"
+  /**
+   * Basic constructor.  The sender is the owner.
+   */
+",4,4,1.0
+0x5eaa84b84773483ed0a2cf3cedee8fd89a11ef21/mkethToken.sol:mkethToken:totalSupply(),"  function totalSupply() constant returns (uint256 totalSupply) {
+      totalSupply = _totalSupply;
+  }
+",no comment,"  // ???????
+",2,2,0.0
+"0x1b9dcdcddd2d6ca699cad9505faa363e81145c6b/BrinkToken.sol:BrinkToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice `msg.sender` approves `_spender` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of tokens to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+0x3c22ae85b4ee099f4fd656872343c95ff74d57d4/Number1Dime.sol:Number1Dime:decimals(),"    function decimals() public pure returns (uint8) { return 0; }
+",no comment,"
+  // ERC20 compatibility functions
+",5,5,1.0
+0x0e69d0a2bbb30abcb7e5cfea0e4fde19c00a8d47/IOVToken.sol:IOVTokenBase:totalSupply(),"    function totalSupply() public view returns (uint) {
+        return _supply;
+    }
+",no comment,"
+    // ------------------------------------------------------------------------
+    // Total supply
+    // ------------------------------------------------------------------------
+",4,4,1.0
+"0x4ca68c8ecb94acbc736bcb4119fd76aa5170b226/StupidCoin.sol:StupidCoin:mint(address,uint256)","  function mint(address _to, uint256 _amount) onlyOwner canMint returns (bool) {
+    totalSupply = totalSupply.add(_amount);
+    balances[_to] = balances[_to].add(_amount);
+    Mint(_to, _amount);
+    Transfer(0x0, _to, _amount);
+    return true;
+  }
+",no comment,"
+  /**
+   * @dev Function to mint tokens
+   * @param _to The address that will receive the minted tokens.
+   * @param _amount The amount of tokens to mint.
+   * @return A boolean that indicates if the operation was successful.
+   */
+",5,5,1.0
+"0x5fa1ea99eb3acc1f9e84cf28fde6431b8fdc9dc0/UselessAirdroppedToken.sol:UselessAirdroppedToken:distr(address,uint256)","    function distr(address _to, uint256 _amount) canDistr private returns (bool) {
+        totalDistributed = totalDistributed.add(_amount);
+        totalRemaining = totalRemaining.sub(_amount);
+        balances[_to] = balances[_to].add(_amount);
+        Distr(_to, _amount);
+        Transfer(address(0), _to, _amount);
+        return true;
+        
+        if (totalDistributed >= totalSupply) {
+            distributionFinished = true;
+        }
+    }
+",no comment,"
+    // ------------------------------------------------------------------------
+    // internal private functions
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x2f09a5ea600a54a61bb9937478219f58f58c2174/LongevityCrowdsale.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x02f65ca1b619b6a659ea383bba6f5ffca212aca0/HealthCoin.sol:HealthCoin:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(_value <= allowance[_from][msg.sender]);
+        allowance[_from][msg.sender] -= _value;
+        _transfer(_from, _to, _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * Transfer tokens from other address
+     *
+     * Send `_value` tokens to `_to` in behalf of `_from`
+     *
+     * @param _from The address of the sender
+     * @param _to The address of the recipient
+     * @param _value the amount to send
+     */
+",5,5,1.0
+0x0c9c66ea38475f9d5710676020c49364ba154ce0/Kash.sol:Kash:totalSupply(),"    function totalSupply() constant returns(uint256) {
+
+        return totalSupply;
+    }
+",no comment,"
+  /**
+  * @dev total number of tokens in existence
+  */
+",4,4,1.0
+"0x7f738ffbde7ecac18d31ecba1e9b6eef5b9214b7/InfluToken.sol:InfluToken:_transfer(address,address,uint256)","    function _transfer(address _from, address _to, uint _value) internal {
+        require(_to != 0x0);
+        require(balanceOf[_from] >= _value);
+        balanceOf[_from] = balanceOf[_from].sub(_value);
+        balanceOf[_to] = balanceOf[_to].add(_value);
+        Transfer(_from, _to, _value);
+    }
+",no comment,"
+    /**
+     * Internal transfer, only can be called by this contract
+     */
+",5,5,1.0
+"0x6c2083d788a3955ca059f6361b2423ba879c1163/MyAdvancedToken.sol:token:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        if (balanceOf[_from] < _value) throw;
+        if (balanceOf[_to] + _value < balanceOf[_to]) throw;
+        if (_value > allowance[_from][msg.sender]) throw;
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        allowance[_from][msg.sender] -= _value;
+        Transfer(_from, _to, _value);
+        return true;
+    }
+",no comment,"
+    /* A contract attempts to get the coins */
+",4,4,1.0
+"0x1bb2e2e063a58368a592857b0abe8b4a827e5a07/MyToken.sol:MyToken:transfer(address,uint256)","	function transfer(address to, uint value) public returns (bool) {
+		if(balanceOf(msg.sender) < value) revert();
+		bytes memory empty;
+
+		balances[msg.sender] = balances[msg.sender].sub(value);
+        balances[to] = balances[to].add(value);
+        if(isContract(to)) {
+            ERC223ReceivingContract receiver = ERC223ReceivingContract(to);
+            receiver.tokenFallback(msg.sender, value, empty);
+        }
+        emit Transfer(msg.sender, to, value, empty);
+        return true;
+	}
+",no comment,"
+	// Needed due to backwards compatibility reasons because of ERC20 transfer function does't have bytes
+	// parameter. This function must transfer tokens and invoke the function tokenFallback(address, uint256,
+	// bytes) in to, if to is a contract. If the tokenFallback function is not implemented in to (receiver 
+	// contract), the transaaction must fail and the transfer of tokens should not occur.
+",4,4,1.0
+"0x5a8ffa5f2ce95b3a397bda16ad84781b6fde4f8b/DatariusICO.sol:ERC20:allowance(address,address)","    function allowance(address _owner, address _spender) constant returns (uint);
+",no comment,"
+   /**
+    *   @dev Function to check the amount of tokens that an owner allowed to a spender.
+    *
+    *   @param _owner        the address which owns the funds
+    *   @param _spender      the address which will spend the funds
+    *
+    *   @return              the amount of tokens still avaible for the spender
+    */
+",4,4,1.0
+"0x4C5651c4f59B3E92E67d993b7B969F9aF861380f/FaradTokenSwap.sol:SafeMath:div(uint256,uint256)","    function div(uint256 a, uint256 b) internal returns (uint256) {
+        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",4,4,1.0
+0x5fe4b212422fa42448c84e8a996f8a46f17cef0d/ENSATOKEN.sol:Ownable:onlyOwner(),"  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",5,5,1.0
+"0x4cb7a7a0fe462d302f553a1d8077d2943f061fcc/Champion.sol:SafeMath:sub(uint256,uint256)","    function sub(uint256 a, uint256 b) internal constant returns(uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+"0x7cc61e3ae6360e923e9296c802382ec7c9dd3652/THETOKEN.sol:ERC20:transferFrom(address,address,uint256)","  function transferFrom(address from, address to, uint value);
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint the amout of tokens to be transfered
+   */
+",5,5,1.0
+0x2c544275203b0db7550887067507ce2befcea893/Factory.sol:Artwork:onlyBy(address),"    modifier onlyBy(address _account)
+    {
+        require(msg.sender == _account);
+        _;
+    }
+",no comment,"  
+  /**
+   * @dev Throws if called by any account other than the argument. 
+   */
+",4,4,1.0
+"0x2f4f6c055a7c8ab529f5b01f6616164aaeec18ad/EEEToken.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    if (a == 0) {
+      return 0;
+    }
+    uint256 c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",5,5,1.0
+0x0b1724cc9fda0186911ef6a75949e9c0d3f0f2f3/CrowdsaleToken.sol:CrowdsaleToken:canUpgrade(),"  function canUpgrade() public constant returns(bool) {
+    return released && super.canUpgrade();
+  }
+",no comment,"  /**
+   * Allow upgrade agent functionality kick in only if the crowdsale was success.
+   */
+",4,4,1.0
+"0x3e85fc8fb93eb4461b144dbc6e20a2fa63532772/Issuer.sol:SafeMath:safeAdd(uint256,uint256)","  function safeAdd(uint a, uint b) internal returns (uint) {
+    uint c = a + b;
+    assert(c>=a && c>=b);
+    return c;
+  }
+",no comment,"
+    // ------------------------------------------------------------------------
+    // Safe maths, inspired by OpenZeppelin
+    // ------------------------------------------------------------------------
+",4,5,1.0
+"0x6fa6473735456d4f3fe8a13894a33c8ae888b191/HashBuxICO.sol:HashBuxICO:div(uint256,uint256)","  function div(uint256 a, uint256 b) constant returns (uint256) {
+    uint256 c = a / b;
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",4,4,1.0
+"0x4ddb111812363e92d41e31fc3bfeee33fc7dba27/CABCoin.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) constant public returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",5,5,1.0
+0x7cdd19121009b3e1500e653d2a8084eb85d7a424/Aecium.sol:Aecium:annualInterest(),"    function annualInterest() constant returns(uint interest) {
+        uint _now = now;
+        interest = maxMintProofOfStake;
+        if((_now.sub(stakeStartTime)).div(1 years) == 0) {
+            interest = (770 * maxMintProofOfStake).div(100);
+        } else if((_now.sub(stakeStartTime)).div(1 years) == 1){
+            interest = (435 * maxMintProofOfStake).div(100);
+        }
+    }
+",no comment,"	
+	//Interest Check Function
+
+",4,5,1.0
+0x5d48aca3954d288a5fea9fc374ac48a5dbf5fa6d/EarnEnoughMoney.sol:EarnEnoughMoney:balanceOf(address),"    function balanceOf(address _owner) constant public returns (uint256) {
+	    return balances[_owner];
+    }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+"0x1cbbaf350e934d109666104264e6863bf1a09caf/HYCCrowdsalePreICO.sol:StandardToken:decreaseApproval(address,uint256)","  function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+      allowed[msg.sender][_spender] = 0;
+    } else {
+      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+",no comment,"
+  /**
+   * @dev Decrease the amount of tokens that an owner allowed to a spender.
+   *
+   * approve should be called when allowed[_spender] == 0. To decrement
+   * allowed value is better to use this function to avoid 2 calls (and wait until
+   * the first transaction is mined)
+   * From MonolithDAO Token.sol
+   * @param _spender The address which will spend the funds.
+   * @param _subtractedValue The amount of tokens to decrease the allowance by.
+   */
+",5,5,1.0
+0x0f14260bbe72e0992377ece7bc8baf2e8be320b8/ShrimpFarmer.sol:ShrimpFarmer:getMyShrimp(),"    function getMyShrimp() public view returns(uint256){
+        return hatcheryShrimp[msg.sender];
+    }
+",no comment,"
+    // Get amount of Shrimps user has
+",4,4,1.0
+"0x2f8472dd7ecf7ca760c8f6b45db20ca7cf52f8d7/BITStationERC20.sol:BITStationERC20:approveAndCall(address,uint256,bytes)","    function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+
+        //call the receiveApproval function on the contract you want to be notified. This crafts the function signature manually so one doesn't have to include a contract in here just for this.
+        //receiveApproval(address _from, uint256 _value, address _tokenContract, bytes _extraData)
+        //it is assumed that when does this that the call *should* succeed, otherwise one would use vanilla approve instead.
+        if(!_spender.call(bytes4(bytes32(keccak256(""receiveApproval(address,uint256,address,bytes)""))), msg.sender, _value, this, _extraData)) { revert(); }
+        return true;
+    }
+",no comment,"
+    /* Approves and then calls the receiving contract */
+",4,5,1.0
+0x6d68003c0452632a87381c42091fc94ceb047fd1/Duckcoin.sol:ERC20Token:balanceOf(address),"   function balanceOf(address _owner) public view returns (uint256 balance) {
+      return balances[_owner];
+   }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",4,4,1.0
+"0x5de3e294ca2a0aba67df4610015d8e21cb8c8987/CrowdsaleTokenExt.sol:ReleasableToken:transfer(address,uint256)","  function transfer(address _to, uint _value) canTransfer(msg.sender) returns (bool success) {
+    // Call StandardToken.transfer()
+   return super.transfer(_to, _value);
+  }
+",no comment,"
+  /**
+   * @dev Checks modifier and allows transfer if tokens are not locked.
+   * @param _to The address that will recieve the tokens.
+   * @param _value The amount of tokens to be transferred.
+   */
+",5,5,1.0
+"0x5f3789907b35DCe5605b00C0bE0a7eCDBFa8A841/ContentAdNetworkToken.sol:Token:approveAndCall(address,uint256,bytes)","    function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+    returns (bool success) 
+    {    
+        TokenRecipient spender = TokenRecipient(_spender);
+        if (approve(_spender, _value)) {
+            spender.receiveApproval(
+                msg.sender,
+                _value,
+                this,
+                _extraData
+            );
+            return true;
+        }
+    }
+",no comment,"
+    /**
+     * Set allowance for other address and notify
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     * @param _extraData some extra information to send to the approved contract
+     */
+",5,5,1.0
+"0x6a546617fd8c74555a2cb63b7b064331de82f68d/AbyssToken.sol:SafeMath:safeAdd(uint256,uint256)","    function safeAdd(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+",no comment,"
+    // Overflow protected math functions
+
+    /**
+        @dev returns the sum of _x and _y, asserts if the calculation overflows
+
+        @param _x   value 1
+        @param _y   value 2
+
+        @return sum
+    */
+",5,5,1.0
+"0x6f2ff926b18673c6ee59d8426fd4302958dfd694/PuexExchangeToken.sol:PuexExchangeToken:getTokenBalance(address,address)","    function getTokenBalance(address tokenAddress, address who) constant public returns (uint){
+        AltcoinToken t = AltcoinToken(tokenAddress);
+        uint bal = t.balanceOf(who);
+        return bal;
+    }
+",no comment,"    //?????token???
+",2,1,0.0
+0x2e14e0c5589f5d6c4f34d230950f82177e001f53/SSAToken.sol:MintableToken:finishMinting(),"  function finishMinting() onlyOwner returns (bool) {
+    mintingFinished = true;
+    MintFinished();
+    return true;
+  }
+",no comment,"
+  /**
+   * @dev Function to stop minting new tokens.
+   * @return True if the operation was successful.
+   */
+",5,5,1.0
+0x4d1c806ca4a40ca38f165b6f99799bf47d1c0edb/EST_Token.sol:BasicToken:balanceOf(address),"  function balanceOf(address _owner) public view returns (uint256 balance) {
+    return balances[_owner];
+  }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+"0x6f38def7f716c6824844568c768392465cab8644/GreeningDesertChainToken.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint _value) public returns (bool success) {
+        var _allowance = allowed[_from][msg.sender];
+
+        balances[_to] = safeAdd(balances[_to], _value);
+        balances[_from] = safeSub(balances[_from], _value);
+        allowed[_from][msg.sender] = safeSub(_allowance, _value);
+        Transfer(_from, _to, _value);
+        return true;
+    }
+",no comment,"
+ /// @dev Tranfer tokens from one address to other
+ /// @param _from source address
+ /// @param _to dest address
+ /// @param _value tokens amount
+ /// @return transfer result
+",4,4,1.0
+0x3bcbda01e539caa47a24ffe6b05018b2bc83417a/PrivateSale.sol:PrivateSale:setRate(uint256),"    function setRate(uint256 _rate) external onlyOwner {
+        rate = _rate;
+    }
+",no comment,"
+    /**
+     * @dev set the rate for each stage.
+     */
+",4,4,1.0
+"0x4D391B4350cA1C690eBaf00d35bfcDd5721470F8/Betcash.sol:Betcash:freezeAccount(address,bool)","    function freezeAccount(address target, bool freeze) onlyOwner {
+        frozenAccount[target] = freeze;
+        FrozenFunds(target, freeze);
+    }
+",no comment,"
+    /// @notice `freeze? Prevent | Allow` `target` from sending & receiving tokens
+    /// @param target Address to be frozen
+    /// @param freeze either to freeze it or not
+",4,4,1.0
+"0x6cd694d5a9c71cd811922e3cb314f44afe25a48c/TJCUToken.sol:TJCUToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool success) {  
+        //??totalSupply ??????? (2^256 - 1).  
+        //??????????????token??????????????????  
+        require(balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]);  
+        require(_to != 0x0);  
+        balances[msg.sender] -= _value;//???????????token??_value  
+        balances[_to] += _value;//???????token??_value  
+        Transfer(msg.sender, _to, _value);//????????  
+        return true;  
+    }  
+",no comment,"
+    /**
+     * Reviewed:
+     * - Interger overflow = OK, checked
+     */
+",5,5,1.0
+0x0f5c40cb9e4f3b1dab6c03fe5bb63a6d7106d4ec/Configurator.sol:ERC20Basic:balanceOf(address),"  function balanceOf(address who) public view returns (uint256);
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+0x4acf2CaDa3B3fd92de2191cB5Ac78e2a753E5c7a/FOCKSToken.sol:ERC20Interface:totalSupply(),"    function totalSupply() public constant returns (uint);
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Total supply
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x3f8d47619d132577260fd6db8d665d0a9d37c579/DAOToken.sol:ERC20:allowance(address,address)","      function allowance(address owner, address spender) public view returns (uint256);
+",no comment,"
+      /**
+       * @dev Function to check the amount of tokens that an owner allowed to a spender.
+       * @param _owner address The address which owns the funds.
+       * @param _spender address The address which will spend the funds.
+       * @return A uint256 specifying the amount of tokens still available for the spender.
+       */
+",4,5,1.0
+"0x6dfd861fb01a99197fbeb01609c2c362f349b525/LumenCoin.sol:LumenCoin:setPrices(uint256,uint256)","	function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner public {
+        sellPrice = newSellPrice;
+        buyPrice = newBuyPrice;
+    }
+",no comment,"
+    /// @notice Allow users to buy tokens for `newBuyPrice` eth and sell tokens for `newSellPrice` eth
+    /// @param newSellPrice Price the users can sell to the contract
+    /// @param newBuyPrice Price users can buy from the contract
+",4,4,1.0
+"0x5f3c307905bacb2924b57117e9d2342271d74722/K5cTokens.sol:SafeMath:safeAdd(uint256,uint256)","    function safeAdd(uint256 a, uint256 b) public pure returns (uint256 c) {
+        c = a + b;
+        require(c >= a);
+    }
+",no comment,"
+    // Overflow protected math functions
+
+    /**
+        @dev returns the sum of _x and _y, asserts if the calculation overflows
+
+        @param _x   value 1
+        @param _y   value 2
+
+        @return sum
+    */
+",5,5,1.0
+0x4f4d8b0115d9c849403dd6215e65d284296585f6/Brandingcoin1.sol:Ownable:transferOwnership(address),"    function transferOwnership(address newOwner) onlyOwner {
+        if (newOwner != address(0)) {
+            owner = newOwner;
+        }
+    }
+",no comment,"
+    /**
+     * @dev Allows the current owner to transfer control of the contract to a newOwner.
+     * @param newOwner The address to transfer ownership to. 
+     */
+",5,5,1.0
+0x4e3117f901ef73803c522a2d27ad1071759ad094/BitDAOToken.sol:Pausable:whenPaused(),"  modifier whenPaused() {
+    require(paused);
+    _;
+  }
+",no comment,"
+  /**
+   * @dev Modifier to make a function callable only when the contract is paused.
+   */
+",5,5,1.0
+"0x5F7EA756D5753942f6D075c7C811db53D9FD0Efb/ElectroneumCash.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal constant returns(uint256) {
+        uint256 c = a * b;
+        assert(a == 0 || c / a == b);
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x3d25ac2e37709b8f68f79c68d36ecb61480955c8/EICToken.sol:Token:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success);
+",no comment,"    /* Send coins */
+",4,4,1.0
+"0x6f430927861d828bd625754a03d17a65eef5eb7e/DropletCrowdSale.sol:DropletToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint _value) public whenNotPaused returns (bool) {
+        return super.transferFrom(_from, _to, _value);
+    }
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",5,5,1.0
+"0x5c30b130f9c0d52a22fa447209afedbbc9d4788f/RRRR_Token.sol:TokenERC20:decreaseApproval(address,uint256)","    function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+        uint oldValue = allowances[msg.sender][_spender];
+        if (_subtractedValue > oldValue) {
+            allowances[msg.sender][_spender] = 0;
+        } else {
+            allowances[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+        }
+        emit Approval(msg.sender, _spender, allowances[msg.sender][_spender]);
+        return true;
+    }
+",no comment,"
+  /**
+   * @dev Decrease the amount of tokens that an owner allowed to a spender.
+   *
+   * approve should be called when allowed[_spender] == 0. To decrement
+   * allowed value is better to use this function to avoid 2 calls (and wait until
+   * the first transaction is mined)
+   * From MonolithDAO Token.sol
+   * @param _spender The address which will spend the funds.
+   * @param _subtractedValue The amount of tokens to decrease the allowance by.
+   */
+",4,4,1.0
+"0x6c4fe5b5b3f8a60fd5d036940afef65c73e4d2ae/MCFitCrowdsale.sol:ERC20:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
+",no comment,"
+
+    /**
+     * @dev Transfer tokens from one address to another
+     * @param _from address The address which you want to send tokens from
+     * @param _to address The address which you want to transfer to
+     * @param _value uint256 the amount of tokens to be transferred
+     */
+",5,5,1.0
+"0x2badf51fbe52f79ad20d183891bd894464420362/HotManChain.sol:HotManChain:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success)   
+    { 
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",4,4,1.0
+"0x7d9fd7b9ea7857464118a872f8cfd84544ba5f00/FreeCoin.sol:ERC20:approve(address,uint256)","  function approve(address spender, uint256 value) returns (bool);
+",no comment,"
+  /**
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */
+",5,5,1.0
+"0x1a5f86ec31b884def88f6c08168bfee2fd474139/BitCashPlatform.sol:SafeMath:safeAdd(uint256,uint256)","    function safeAdd(uint a, uint b) internal pure returns (uint c) {
+        c = a + b;
+        require(c >= a);
+    }
+",no comment,"
+    // ------------------------------------------------------------------------
+    // Safe maths, inspired by OpenZeppelin
+    // ------------------------------------------------------------------------
+",4,4,1.0
+"0x7e1892fee14fe293ad71f5afd2132dbffabee0ab/blablabla.sol:ERC223:transfer(address,uint256,bytes,string)","  function transfer(address to, uint value, bytes data, string custom_fallback) public returns (bool ok);
+",no comment,"  
+  
+  // Function that is called when a user or another contract wants to transfer funds .
+",3,3,1.0
+"0x6d908a2ef63aeac21cb2b5c3d32a145f14144b38/VernamCrowdSaleToken.sol:SafeMath:sub(uint256,uint256)","	function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+		assert(b <= a);
+		return a - b;
+	}
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",3,3,1.0
+"0x4d71c17e1423f990b653b88bb264c28d682e0fc6/DemoTokenMintable.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal constant returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",5,5,1.0
+0x6d66439c9cc75b69f9a40e82f34445081b8e929a/TokenRK50Z.sol:ERC20:name(),"    function name() constant public returns (string _name);
+",no comment,"   	
+    // Function to access name of token .
+",4,4,1.0
+"0x6f59e0461ae5e2799f1fb3847f05a63b16d0dbf8/OrcaToken.sol:ERC20Token:approve(address,uint256)","    function approve(address spender, uint256 amount) public returns (bool);
+",no comment,"
+    /// @notice ERC20 backwards compatible approve.
+    ///  `msg.sender` approves `_spender` to spend `_amount` tokens on its behalf.
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _amount The number of tokens to be approved for transfer
+    /// @return `true`, if the approve can't be done, it should fail.
+",4,4,1.0
+"0x6f65dd1f39650a7c11e0d4cdbec183a17e7a71ce/BALVINDER.sol:SafeMath:div(uint256,uint256)","     function div(uint a, uint b) internal pure returns (uint c) {
+         require(b > 0);
+         c = a / b;
+     }
+",no comment,"
+    // a divided by b
+",5,5,1.0
+0x0fbbfd1243552c8a66ab05c1f9530fb116e9fff4/AlicToken.sol:Owned:Owned(),"    function Owned() public {
+        owner = msg.sender;
+    }
+",no comment,"
+  /**
+   * Basic constructor.  The sender is the owner.
+   */
+",5,5,1.0
+"0x5f68698245e8c8949450e68b8bd8acef37faae7d/Registrar.sol:Registrar:div(uint256,uint256)","	function div(uint256 a, uint256 b) internal returns (uint256) {
+		// assert(b > 0); // Solidity automatically throws when dividing by 0
+		uint256 c = a / b;
+		// assert(a == b * c + a % b); // There is no case in which this doesn't hold
+		return c;
+	}
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",4,4,1.0
+"0x2d22594a442d6e6d5e96119e6361979a473098e3/GXY.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; } }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+0x7a79d08a980a681e42988f80ffd991e7d286266f/EchoChainToken.sol:ERC20Basic:balanceOf(address),"    function balanceOf(address who) public constant returns (uint256);
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",4,4,1.0
+"0x0a583076fa4bc8b5400516e07767d9ad52188ac0/AdvanceToken.sol:ERC20:allowance(address,address)","  function allowance(address _owner, address _spender) view returns (uint256 remaining) {
+      return allowed[_owner][_spender];
+  }
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",4,4,1.0
+0x1dfa9bde6b5bf21536b903ff06d9bd0b64fdff90/LotteryRound.sol:LotteryRoundInterface:withdraw(),"  function withdraw();
+",no comment,"
+  /**
+   * Used to withdraw the balance when the round is completed.  This
+   * only works if there are either no winners, or all winners + the
+   * owner have been paid.
+   */
+",5,5,1.0
+0x5d67888188772Df8eD420E5Be43820c9D98A8ef5/ICOCustomerDeposit.sol:Owned:Owned(),"    function Owned() {
+        owner = msg.sender;
+    }
+",no comment,"
+  /**
+   * Basic constructor.  The sender is the owner.
+   */
+",4,4,1.0
+0x007e7c474a1abb8fdc1cd012b98ca3682a09e42f/ABToken.sol:ABStandardToken:balanceOf(address),"    function balanceOf(address _owner) constant public returns (uint256 balance) {
+        return balances[_owner];
+    }
+",no comment,"
+    /// @param _owner The address from which the balance will be retrieved
+    /// @return The balance
+",5,5,1.0
+"0x1e5e21172a8a0a1be14a19f451b101813b40a5ff/Moongang.sol:SafeMath:div(uint256,uint256)","  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a / b;
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Integer division of two numbers, truncating the quotient.
+  */
+",4,4,1.0
+"0x7bd22227ee36174f0fa07cc0e9d412ff658b80ca/HoltCoin.sol:HoltCoin:approveAndCall(address,uint256,bytes)","	function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) {
+		tokenRecipient spender = tokenRecipient(_spender);
+		if (approve(_spender, _value)) {
+			spender.receiveApproval(msg.sender, _value, this, _extraData);
+			return true;
+		}
+	}
+",no comment,"
+    /**
+     * Set allowance for other address and notify
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     * @param _extraData some extra information to send to the approved contract
+     */
+",5,5,1.0
+"0x4ddf5ad56b75a393b36eb8adf4c45fefe6a35327/ELEXTROCOIN.sol:StandardToken:transfer(address,uint256)","    function transfer (address _to, uint256 _value) returns (bool success) {
+        //Default assumes totalSupply can't be over max (2^256 - 1).
+        //If your token leaves out totalSupply and can issue more tokens as time goes on, you need to check if it doesn't wrap.
+        //Replace the if with this one instead.
+        //if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The ADDRESS of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x4fa5c1edfb2bbc21d31d9cf3dc2faf5138f2d78c/BitLoanex.sol:BitLoanex:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[_from]);
+    require(_value <= allowed[_from][msg.sender]);
+
+    balances[_from] = balances[_from].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+    Transfer(_from, _to, _value);
+    return true;
+  }
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",4,5,1.0
+"0x5d4ABC77B8405aD177d8ac6682D584ecbFd46CEc/PrimasToken.sol:Roles:remove(Roles:Role,address)","    function remove(Role storage role, address addr) internal {
+        role.bearer[addr] = false;
+    }
+",no comment,"
+    /**
+     * @dev remove an address' access to this role
+     */
+",5,5,1.0
+"0x3a26746ddb79b1b8e4450e3f4ffe3285a307387e/SimpleToken.sol:ERC20Basic:transfer(address,uint256)","  function transfer(address to, uint value);
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",5,5,1.0
+"0x8a77e40936bbc27e80e9a3f526368c967869c86d/MerculetToken.sol:Token:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            var _allowance = allowed[_from][msg.sender];
+            balances[_to] = balances[_to].add(_value);
+            balances[_from] = balances[_from].sub(_value);
+            allowed[_from][msg.sender] = _allowance.sub(_value);
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",4,5,1.0
+"0x1f54638b7737193ffd86c19ec51907a7c41755d8/SolaToken.sol:ERC20:transferFrom(address,address,uint256)","  function transferFrom(address from, address to, uint value) returns (bool);
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint the amout of tokens to be transfered
+   */
+",5,5,1.0
+"0x5f84a30e819fe1d62452899a28a8b3d0776f9ff0/SkillChainPresale.sol:SkillChainPresale:transferAnyERC20Token(address,uint256)","    function transferAnyERC20Token(address _tokenAddress, uint256 _tokens) onlyOwner public returns (bool success) {
+        return ERC20Basic(_tokenAddress).transfer(owner, _tokens);
+    }
+",no comment,"
+    // Owner can transfer out any ERC20 tokens sent in by mistake
+",4,5,1.0
+"0x3Cdd2656994b34C98b0858630fDB6cd132865620/SETC.sol:SETC:freezeAccount(address,bool)","    function freezeAccount(address target, bool freeze) onlyOwner public {
+        frozenAccount[target] = freeze;
+        emit FrozenFunds(target, freeze);
+    }
+",no comment,"
+    /// @notice `freeze? Prevent | Allow` `target` from sending & receiving tokens
+    /// @param target Address to be frozen
+    /// @param freeze either to freeze it or not
+",5,5,1.0
+"0x1dfabf381d80dd29d43bc347207b30a5c484bbd0/AirDropPromo.sol:AirDropPromo:allowance(address,address)","	function allowance(address _owner, address _spender) public view returns (uint256 remaining){
+
+		return 0;
+
+	}   
+",no comment,"
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+",4,4,1.0
+"0x0e8d6b471e332f140e7d9dbb99e5e3822f728da6/ABYSS.sol:TransferLimitedToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public canTransfer(msg.sender, _to) returns (bool) {
+        return super.transfer(_to, _value);
+    }
+",no comment,"
+  /**
+   * @dev Checks modifier and allows transfer if tokens are not locked.
+   * @param _to The address that will recieve the tokens.
+   * @param _value The amount of tokens to be transferred.
+   */
+",5,5,1.0
+0x4ecb7e25fa43d4277e0fa3b2e5f5755275983411/VestingMasterContract.sol:Owned:acceptOwnership(),"    function acceptOwnership() public {
+        require(msg.sender == newOwner);
+        OwnerUpdate(owner, newOwner);
+        owner = newOwner;
+        newOwner = 0x0;
+    }
+",no comment,"
+    /*
+        @dev used by a new owner to accept an ownership transfer
+    */
+",4,4,1.0
+0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:ERC20Basic:totalSupply(),"  function totalSupply() public view returns (uint256);
+",no comment,"
+  /**
+  * @dev total number of tokens in existence
+  */
+",3,3,1.0
+"0x06c0ae49aad8b6c7bb5827bb64baf83b7d9ce2fd/SuperGopnikToken.sol:HumanStandardToken:HumanStandardToken(uint256,string,uint8,string)","    function HumanStandardToken(
+        uint256 _initialAmount,
+        string _tokenName,
+        uint8 _decimalUnits,
+        string _tokenSymbol
+        ) {
+        balances[msg.sender] = _initialAmount;               
+        totalSupply = _initialAmount;                        
+        name = _tokenName;                                   
+        decimals = _decimalUnits;                            
+        symbol = _tokenSymbol;                               
+    }
+",no comment,"	//human 0.1 standard. Just an arbitrary versioning scheme.
+
+",4,4,1.0
+"0x3ee7ffc6941d5f41dda94c4380f52403e5221586/Criptolira.sol:SafeMath:safeMul(uint256,uint256)","    function safeMul(uint a, uint b) public pure returns (uint c) {
+        c = a * b;
+        require(a == 0 || c / a == b);
+    }
+",no comment,"  //internals
+
+",2,2,0.0
+"0x4a0b4540317d156d89a8465041569ad68102d6cd/TTC.sol:SafeMath:safeAdd(uint256,uint256)","  function safeAdd(uint256 a, uint256 b) internal returns (uint256) {
+    uint256 c = a + b;
+    assert(c>=a && c>=b);
+    return c;
+  }
+",no comment,"
+    // Overflow protected math functions
+
+    /**
+        @dev returns the sum of _x and _y, asserts if the calculation overflows
+
+        @param _x   value 1
+        @param _y   value 2
+
+        @return sum
+    */
+",5,5,1.0
+0x2c5dcd12141c56fbea08e95f54f12c8b22d492eb/USDCoinToken.sol:ERC20Basic:balanceOf(address),"  function balanceOf(address who) public view returns (uint256);
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+0x3acce1678985013da47d44423166b206ec967e31/AdexContract.sol:StandardToken:balanceOf(address),"  function balanceOf(address _owner) constant returns (uint256 balance) {
+    return balances[_owner];
+  }
+",no comment,"
+  /// @param _owner The address from which the balance will be retrieved
+  /// @return The balance
+",5,5,1.0
+"0x0f234c7992956af755c5cd9451a3f872314efa78/ROHH.sol:ROHH:_transfer(address,address,uint256)","    function _transfer(address _from, address _to, uint _value) internal {
+        require(_to != 0x0);
+        require(balanceOf[_from] >= _value);
+        require(balanceOf[_to] + _value > balanceOf[_to]);
+        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        Transfer(_from, _to, _value);
+        assert(balanceOf[_from] + balanceOf[_to] == previousBalances); }
+",no comment,"
+    /**
+     * Internal transfer, only can be called by this contract
+     */
+",5,5,1.0
+"0x2eFfE9B104b85b45C18342373c6E79B6D5eD8938/W0keAFToken.sol:ERC20:transferFrom(address,address,uint256)","  function transferFrom(address from, address to, uint value) returns (bool ok);
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amout of tokens to be transfered
+   */
+",4,4,1.0
+0x08c1a513a230f4cfc219896713b4dbe22b433e16/Ciphs.sol:Ciphs:destroy(),"  function destroy() public onlyOwner {
+    selfdestruct(owner);
+  }
+",no comment,"
+  /**
+   * @dev Transfers the current balance to the owner and terminates the contract.
+   */
+",4,5,1.0
+"0x0edde4b6f91dbd2efd075ace85ec2e52d0696d44/BurnableToken.sol:BurnableToken:allowance(address,address)","  function allowance(address _owner, address _spender) public constant returns (uint remaining) {
+    return approvals[_owner][_spender];
+  }
+",no comment," 
+    /**
+     * @dev Take allowed tokens
+     * @param _owner The address of the account owning tokens
+     * @param _spender The address of the account able to transfer the tokens
+     * @return Amount of remaining tokens allowed to spent
+     */
+",4,4,1.0
+"0x4b319ce02bdc8977fb39fa70c49258a1a7c27d9b/UNLB.sol:ERC20Basic:transfer(address,uint256)","  function transfer(address to, uint256 value) returns (bool);
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",5,5,1.0
+"0x5ab14c104ba2771fd2a6ec6f616da1ad41d5b8a7/JincorToken.sol:Burnable:burnFrom(address,uint256)","  function burnFrom(address _from, uint _value) returns (bool success) {
+    require(_from != 0x0 && _value > 0 && balances[_from] >= _value);
+    require(_value <= allowed[_from][msg.sender]);
+    balances[_from] = balances[_from].sub(_value);
+    totalSupply = totalSupply.sub(_value);
+    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+    Burn(_from, _value);
+    return true;
+  }
+",no comment,"
+	/**
+ 	* Destroy tokens from other account
+ 	*
+ 	* Remove `_value` tokens from the system irreversibly on behalf of `_from`.
+ 	*
+ 	* @param _from the address of the sender
+ 	* @param _value the amount of money to burn
+ 	*/
+",5,5,1.0
+0x2e62af2ad08239c528ee7ed72914dad6a897b1fd/CryptoToken.sol:Owned:onlyOwner(),"	modifier onlyOwner {
+		require(msg.sender == owner);
+		_;
+	}
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",4,4,1.0
+"0x3bbb50a8979443dbaab05da1264ef2f1f1b1a3f6/INDISafe.sol:StandardToken:transferFrom(address,address,uint256)","    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+      if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+        balances[_to] += _value;
+        balances[_from] -= _value;
+        allowed[_from][msg.sender] -= _value;
+        Transfer(_from, _to, _value);
+        return true;
+      } else {
+        return false;
+      }
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x4b35e0ab998ebe8414871c13cf778f9d0bbdf609/SWPToken.sol:SafeMath:safeSubtract(uint256,uint256)","    function safeSubtract(uint256 x, uint256 y) internal returns(uint256) {
+      assert(x >= y);
+      uint256 z = x - y;
+      return z;
+    }
+",no comment,"
+    // safely subtract
+",5,5,1.0
+0x0bf5fd285f0c6c323564293ed5d6b64d90d50c4f/FranklinFarmer.sol:Ownable:onlyOwner(),"    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",5,5,1.0
+0x4c2e198cf5ee4ca4d6e9e0c1b2b954f9101c7fc1/GFCToken.sol:owned:owned(),"    function owned() internal {
+        owner = msg.sender;
+    }
+",no comment,"
+    //constructor
+",5,5,1.0
+"0x6c5be5501b9c792637f3fe45ef991ce120296ef7/SuomenMarkka.sol:SuomenMarkka:transferAnyERC20Token(address,uint256)","    function transferAnyERC20Token(address tokenAddress, uint tokens) public onlyOwner returns (bool success) {
+        return ERC20Interface(tokenAddress).transfer(owner, tokens);
+    }
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Owner can transfer out any accidentally sent ERC20 tokens
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x0ac1eb22b98cdd76796401ff462a96da9dbf07d4/TokenLock.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) pure internal  returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",4,4,1.0
+"0x1a3281b41081180b058851b49274201f9556f6e4/BIPOOH_DAO_32_b.sol:BIPOOH_DAO_32_b:approve(address,uint256)","			function approve(address _spender, uint _value) returns (bool success) {								
+				allowed[msg.sender][_spender] = _value;							
+				Approval(msg.sender, _spender, _value);							
+				return true;							
+			}								
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",4,4,1.0
+0x4c5e45cc4dd47c8e8c9ea4698025652b6728621e/EDMToken.sol:EDMToken:burn(uint256),"    function burn(uint _value) returns (bool)
+    {
+        balances[msg.sender] = balances[msg.sender].sub(_value);
+        totalSupply = totalSupply.sub(_value);
+        Burn(msg.sender, _value);
+        Transfer(msg.sender, address(0x0), _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * Destroy tokens
+     *
+     * Remove `_value` tokens from the system irreversibly
+     *
+     * @param _value the amount of money to burn
+     */
+",5,5,1.0
+0x02fcda86fffefc71d83180b436e5d7f78906345c/GaiBanngToken.sol:GaiBanngToken:transferOwnership(address),"    function transferOwnership(address newOwner) public isOwner {
+        require(newOwner != address(0));
+        emit OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+    }
+",no comment,"  /**
+   * @dev Allows the current owner to transfer control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */
+",4,5,1.0
+"0x6e6613235f419f25c01348fc5ca864ddfac97d90/ANYtoken.sol:SafeMath:safeAdd(uint256,uint256)","    function safeAdd(uint a, uint b) public pure returns (uint c) {
+        c = a + b;
+        require(c >= a);
+    }
+",no comment,"
+    // ------------------------------------------------------------------------
+    // Safe maths, inspired by OpenZeppelin
+    // ------------------------------------------------------------------------
+",5,5,1.0
+0x6f444af44be5c398f57a2016d191e01ffd8f6931/Controller.sol:Token:totalSupply(),"    function totalSupply() constant returns (uint) {
+        return controller.totalSupply();
+    }
+",no comment,"
+	// public functions
+
+",5,5,1.0
+0x4f4d8b0115d9c849403dd6215e65d284296585f6/Brandingcoin1.sol:Ownable:Ownable(),"    function Ownable() {
+        owner = msg.sender;
+    }
+",no comment,"
+    /** 
+     * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+     * account.
+     */
+",4,4,1.0
+"0x2c8d313bf9d5c7c4047d1588a469e38bb77f44ca/SafeGiftTokens.sol:SafeGiftTokens:transfer(address,uint256)","	function transfer(address _to, uint256 _value) public returns (bool){
+
+		require(_to != address(0) && _value < MAX_UINT256 && balances[msg.sender] >= _value);
+		balances[msg.sender] -= _value;
+		balances[_to] += _value;
+		Transfer(msg.sender, _to, _value);
+		return true;
+
+	}
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",4,4,1.0
+"0x2e14e0c5589f5d6c4f34d230950f82177e001f53/SSAToken.sol:StandardToken:allowance(address,address)","  function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+    return allowed[_owner][_spender];
+  }
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",4,4,1.0
+"0x2de9b766701b4d1468ae44b376dca65d31db243f/UHubToken.sol:UHubToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) returns (bool) {
+        require(enableTransfers);
+        return super.approve(_spender,_value);
+    }
+",no comment,"
+     /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+     /// @param _spender The address of the account able to transfer the tokens
+     /// @param _value The amount of wei to be approved for transfer
+     /// @return Whether the approval was successful or not
+",5,5,1.0
+0x6ea3ba628a73d22e924924df3661843e53e5c3aa/TestToken.sol:Ownable:constructor(),"  constructor() public {
+    owner = msg.sender;
+  }
+",no comment,"  /**
+   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+   * account.
+   */
+",5,5,1.0
+"0x7a4033a93885247a4292988a3c0c0e3c1cf55721/Airdroster.sol:SafeMath:sub(uint256,uint256)","    function sub(uint256 a, uint256 b) internal constant returns (uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+"0x0d0c5ab77eaece8bb9383273ca3481c948ec644f/BBCoins.sol:BBCStandardToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) returns (bool success) {
+        if (frozenAccount[msg.sender]) return false;
+        require(
+            (balances[msg.sender] >= _value) // Check if the sender has enough
+            && (_value > 0) // Don't allow 0value transfer
+            && (_to != address(0)) // Prevent transfer to 0x0 address
+            && (balances[_to].add(_value) >= balances[_to]) // Check for overflows
+            && (msg.data.length >= (2 * 32) + 4)); //mitigates the ERC20 short address attack
+            //most of these things are not necesary
+
+        balances[msg.sender] = balances[msg.sender].sub(_value);
+        balances[_to] = balances[_to].add(_value);
+        Transfer(msg.sender, _to, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x4c246f6e5fb1302c4f244ca3acabc2c09cfd46ad/LCT.sol:ERC20Interface:transferFrom(address,address,uint256)","    function transferFrom(address from, address to, uint tokens) public returns (bool success);
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Transfer tokens from the from account to the to account
+    // 
+    // The calling account must already have sufficient tokens approve(...)-d
+    // for spending from the from account and
+    // - From account must have sufficient balance to transfer
+    // - Spender must have sufficient allowance to transfer
+    // - 0 value transfers are allowed
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x2ceedb62c316665fc30ee8f9657ffcb36be09a96/ETFloorPresale.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        if (a == 0) {
+            return 0;
+        }
+        uint256 c = a * b;
+        assert(c / a == b);
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x4fac1c38d3cb76c4dff73f1c4390d34fe6259906/GERMANY_WINS.sol:GERMANY_WINS:transfer(address,uint256)","	function transfer(address to, uint256 value) public returns (bool success) {								
+		require(balanceOf[msg.sender] >= value);							
+									
+		balanceOf[msg.sender] -= value;  // deduct from sender's balance							
+		balanceOf[to] += value;          // add to recipient's balance							
+		emit Transfer(msg.sender, to, value);							
+		return true;							
+	}								
+",no comment,"
+    /* Send coins */
+",3,1,1.0
+"0x0c01ec00e9b543bd99757bcbb05fb6cc11eedd5e/CerttifyCrowdsale.sol:BasicToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool) {
+        require(_to != address(0));
+        require(_value <= balances[msg.sender]);
+        balances[msg.sender] = balances[msg.sender].sub(_value);
+        balances[_to] = balances[_to].add(_value);
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+    }
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",4,4,1.0
+"0x1b69cd0f0ef8f13e13e32328dc1db9e1128ea358/Evernal.sol:ERC20:allowance(address,address)","    function allowance(address _owner, address _spender) public constant returns (uint256 remaining);
+",no comment,"
+    /**
+     * @dev Function to check the amount of tokens that an owner allowed to a spender.
+     * @param _owner address The address which owns the funds.
+     * @param _spender address The address which will spend the funds.
+     * @return A uint256 specifying the amount of tokens still available for the spender.
+     */
+",5,5,1.0
+0x3D45fd77243365Ba890f32746368a859AE6B7dc9/EtherHealthClub.sol:EtherHealthClub:balanceOf(address),"    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
+    }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+0x5ace91f9d1653bcb35e93b5b9855e36087ae53e7/Quantormassa.sol:Quantormassa:balanceOf(address),"    function balanceOf(address _owner) constant returns(uint256 balance) {
+        return balances[_owner];
+    }
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",5,5,1.0
+0x3f9705be93b5cd5e7ba81764bb45effb61b3b7f9/EuroSibEnergo_TCI_VI_20181220.sol:Ownable:Ownable(),"	function	Ownable	() {						
+		owner	= msg.sender;						
+	}								
+",no comment,"
+    /** 
+     * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+     * account.
+     */
+",5,5,1.0
+0x2fB96a6CA0e940eD219e9386210e6CF299295FFE/GermaineIfuduPrivateSale.sol:GermaineIfuduPrivateSale:transferOwnership(address),"	function transferOwnership(address newOwner) onlyOwner public {
+        owner = newOwner;
+    }
+",no comment,"
+  /**
+   * @dev Allows the current owner to set the pendingOwner address.
+   * @param newOwner The address to transfer ownership to.
+   */
+",5,5,1.0
+"0x4d9412b6c12b2e2bf0da15416b71f33c846e635b/BIGLUV.sol:SafeMath:mul(uint256,uint256)","  function mul(uint256 a, uint256 b) internal returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",4,4,1.0
+0x5d551fa77ec2c7dd1387b626c4f33235c3885199/BlockSports.sol:Pausable:unpause(),"  function unpause() onlyOwner whenPaused public {
+    paused = false;
+    emit Unpause();
+  }
+",no comment,"
+  /**
+   * @dev called by the owner to unpause, returns to normal state
+   */
+",5,5,1.0
+"0x7c539bdeb5e20b084af0722158a1b5613b328c7a/ZperToken.sol:ZperToken:transfer(address,uint256)","	function transfer(address _to, uint256 _value) public returns (bool success) {
+		require(balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]);
+		balances[msg.sender] -= _value;
+		balances[_to] += _value;
+		emit Transfer(msg.sender, _to, _value);
+		return true;
+	}
+",no comment,"
+    /**
+     * Reviewed:
+     * - Interger overflow = OK, checked
+     */
+",4,4,1.0
+"0x7a00f353c4117f28fe50a1c2a43856b73cc60e4d/PO8Token.sol:SafeMath:sub(uint256,uint256)","    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+",no comment,"
+  /**
+  * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
+  */
+",5,5,1.0
+"0x3dc54e46c7dd2bebe0f5503ab1fbd87afba81d25/LiftUpVets.sol:LiftUpVets:increaseApproval(address,uint256)","   function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+     allowed[msg.sender][_spender] = SafeMath.add(allowed[msg.sender][_spender], _addedValue);
+     Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+     return true;
+   }
+",no comment,"
+  /**
+   * @dev Increase the amount of tokens that an owner allowed to a spender.
+   *
+   * approve should be called when allowed[_spender] == 0. To increment
+   * allowed value is better to use this function to avoid 2 calls (and wait until
+   * the first transaction is mined)
+   * From MonolithDAO Token.sol
+   * @param _spender The address which will spend the funds.
+   * @param _addedValue The amount of tokens to increase the allowance by.
+   */
+",5,5,1.0
+"0x0dabaea13982b659ffa03c02307ce1e5a04dc657/ERC20TOKEN.sol:SafeMath:safeAdd(uint256,uint256)","  function safeAdd(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c>=a && c>=b);
+    return c;
+  }
+",no comment,"
+    // Overflow protected math functions
+
+    /**
+        @dev returns the sum of _x and _y, asserts if the calculation overflows
+
+        @param _x   value 1
+        @param _y   value 2
+
+        @return sum
+    */
+",4,4,1.0
+0x8ad3ea560703e6c830c828ed06f5aca6fce991af/EN_Plus_V.sol:EN_Plus_V:balanceOf(address),"	function balanceOf(address _owner) constant returns (uint balance) {								
+		return balances[_owner];							
+	}								
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+",4,4,1.0
+"0x2cbc6812cff0b1113bf2808ffce6d83b97afd345/VLBRefundVault.sol:SafeMath:mul(uint256,uint256)","    function mul(uint256 a, uint256 b) internal constant returns (uint256) {
+        uint256 c = a * b;
+        if (a != 0 && c / a != b) revert();
+        return c;
+    }
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",4,4,1.0
+0x3dc54e46c7dd2bebe0f5503ab1fbd87afba81d25/LiftUpVets.sol:LiftUpVets:name(),"    function name()
+        public
+        view
+        returns (string) {
+        return _name;
+    }
+",no comment,"
+  /// @dev Required for ERC-721 compliance.
+",5,5,1.0
+"0x3ee426bb8828d335a75f3e0ff5b961bd3122dd53/Bitbex.sol:StandardToken:approve(address,uint256)","  function approve(address _spender, uint256 _value) public returns (bool) {
+    allowed[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
+    return true;
+  }
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",4,4,1.0
+"0x2A287B4eBE1efB6b37Ad1ED3141f0dB1A1C51c99/STS.sol:STS:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success)   
+    { 
+        allowed[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+"0x7c539bdeb5e20b084af0722158a1b5613b328c7a/ZperToken.sol:ZperToken:approve(address,uint256)","	function approve(address _spender, uint256 _value) public returns (bool success) {
+		allowed[msg.sender][_spender] = _value;
+		emit Approval(msg.sender, _spender, _value);
+		return true;
+	}
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+0x0d83102ec81853f3334Bd2b9E9fcCE7adf96ccC7/OpenAddressLottery.sol:OpenAddressLottery:kill(),"    function kill() {
+        require(msg.sender==owner);
+        
+        selfdestruct(msg.sender);
+    }
+",no comment,"
+    // Destroy contract and reclaim leftover funds.
+",5,5,1.0
+"0x3b6fb225e6dcb23452b255ff3101d18328c429d1/Exploreon.sol:Math:min64(uint64,uint64)","  function min64(uint64 a, uint64 b) internal constant returns (uint64) {
+    return a < b ? a : b;
+  }
+",no comment,"    
+    // return the lowest of two 64 bit integers
+",5,5,1.0
+0x6f539a9456a5bcb6334a1a41207c3788f5825207/Ohni.sol:owned:owned(),"	function owned() public {
+		owner = msg.sender;
+	}
+",no comment,"
+    //constructor
+",4,4,1.0
+0x7faf5179cf3080be02e2c3da0ac34b7d5e5225df/VHW.sol:VHW:constructor(),"  constructor() public {
+    totalSupply_ = INITIAL_SUPPLY;
+    balances[msg.sender] = INITIAL_SUPPLY;
+  }
+",no comment,"
+    /**
+     * @dev constructor for Able Dollar Token
+     */
+",5,5,1.0
+"0x3a05efde3003a7181c22d7ce3c13445c54aadd69/QuintessenceToken.sol:ERC20:allowance(address,address)","  function allowance(address owner, address spender) public view returns (uint256);
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",5,5,1.0
+"0x000000d4e883e304c7f9574ebeecf238eb55a40f/DSWP.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    require(c >= a);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x5c0e4f2a54f1e0716ea64de7cfe83b0cf1ad417b/PowrLedgerToken.sol:PowrLedgerToken:allowance(address,address)","    function allowance(address tokenOwner, address spender) public constant returns (uint remaining) {
+
+        return allowed[tokenOwner][spender];
+
+    }
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Returns the amount of tokens approved by the owner that can be
+    // transferred to the spender's account
+    // ------------------------------------------------------------------------
+",4,4,1.0
+"0x5c30b130f9c0d52a22fa447209afedbbc9d4788f/RRRR_Token.sol:TokenERC20:allowance(address,address)","    function allowance(address _owner, address _spender) public view returns (uint256) {
+        return allowances[_owner][_spender];
+    }
+",no comment," 
+    /**
+     * @dev Take allowed tokens
+     * @param _owner The address of the account owning tokens
+     * @param _spender The address of the account able to transfer the tokens
+     * @return Amount of remaining tokens allowed to spent
+     */
+",5,5,1.0
+"0x7e0181130e9fc1c1c09c82ff8fa89daa32d4d8f9/NGTToken.sol:SafeMath:mul(uint256,uint256)","	function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+		uint256 c = a * b;
+		assert(a == 0 || c / a == b);
+		return c;
+	}
+",no comment,"
+  /**
+  * @dev Multiplies two numbers, throws on overflow.
+  */
+",5,5,1.0
+"0x4aa31350abd22345150f1b9f4e48e76a3bbb65f0/ICOTH.sol:ERC827:approveAndCall(address,uint256,bytes)","    function approveAndCall(address _spender, uint256 _value, bytes _data) public payable returns (bool);
+",no comment,"    /**
+     * @dev Addition to ERC20 token methods. It allows to
+     * @dev approve the transfer of value and execute a call with the sent data.
+     *
+     * @dev Beware that changing an allowance with this method brings the risk that
+     * @dev someone may use both the old and the new allowance by unfortunate
+     * @dev transaction ordering. One possible solution to mitigate this race condition
+     * @dev is to first reduce the spender's allowance to 0 and set the desired value
+     * @dev afterwards:
+     * @dev https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     *
+     * @param _spender The address that will spend the funds.
+     * @param _value The amount of tokens to be spent.
+     * @param _data ABI-encoded contract call to call `_to` address.
+     *
+     * @return true if the call function was executed successfully
+     */
+",4,4,1.0
+"0x5b313434e43286bee2189bb5a288242876c44f3e/PayToken.sol:SafeMath:safeSub(uint256,uint256)","    function safeSub(uint a, uint b) public pure returns (uint c) {
+        require(b <= a);
+        c = a - b;
+    }
+",no comment,"	//internals
+",5,5,1.0
+0x0b4ce72a70e87bee66e0f43e9c861366e9d7de19/Pisces_ZodiacToken.sol:Pisces_ZodiacToken:name(),"    function name() constant returns (string) { return ""Pisces_ZodiacToken""; }
+",no comment,"  /// @notice A descriptive name for a collection of NFTs in this contract
+",5,5,1.0
+0x5a827a78cdda15b72ecf793352604e77a856f83d/ISOToken.sol:BasicToken:balanceOf(address),"    function balanceOf(address addr) public view returns (uint256 balance) {
+        return _balances[addr];
+    }
+",no comment,"
+//    //?????GBC
+",2,2,0.0
+"0x4b174bc0b7581587448e75691d0b101b90d5ee66/ChipotleCdsTok20221205I.sol:ChipotleCdsTok20221205I:approve(address,uint256)","    function approve(address _spender, uint _value) public returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+",no comment,"
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+",5,5,1.0
+"0x6E0646b014d99d79f4E875B6723Fa8E46BECbd15/CENToken.sol:CENToken:approve(address,uint256)","    function approve(address _spender, uint256 _value) public
+        returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        return true;
+    }
+",no comment,"
+    /**
+     * Set allowance for other address
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     */
+",3,1,1.0
+"0x7eda98442b9c767cacb3d9979b92014e12897802/ERC20TOKEN.sol:ERC20TOKEN:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool success) {
+        _transfer(msg.sender, _to, _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * Transfer tokens
+     *
+     * Send `_value` tokens to `_to` from your account
+     *
+     * @param _to The address of the recipient
+     * @param _value the amount to send
+     */
+",5,5,1.0
+"0x1B455D30c2e46F6ecb6fA022791fa7C1bCe8bB62/ZiberToken.sol:ZiberToken:safeAdd(uint256,uint256)","    function safeAdd(uint a, uint b) internal returns (uint) {
+      uint c = a + b;
+      assert(c>=a && c>=b);
+      return c;
+    }
+",no comment,"
+    // ------------------------------------------------------------------------
+    // Safe maths, inspired by OpenZeppelin
+    // ------------------------------------------------------------------------
+",5,5,1.0
+"0x7f00a7024a559c7c88e8954213eb653c18900f4e/PGPToken.sol:ERC20Interface:allowance(address,address)","    function allowance(address tokenOwner, address spender) public constant returns (uint remaining);
+",no comment,"
+
+
+
+
+    // ------------------------------------------------------------------------
+
+    // Returns the amount of tokens approved by the owner that can be
+
+    // transferred to the spender's account
+
+    // ------------------------------------------------------------------------
+
+",5,5,1.0
+0x0af46b0c6d12f6d498f623f9184ee9ac58c2b806/TimeBroker.sol:TimeBroker:isOwner(),"    modifier isOwner()
+    {
+        assert(msg.sender == owner);
+        _;
+    }
+",no comment,"{
+",2,2,0.0
+0x0dc09ffca9c0cb49913fae2e9c1193c921a714e1/MCToken.sol:MCToken:totalSupply(),"    function totalSupply() public view returns (uint256 totalSupply){
+        totalSupply = _totalSupply;
+    }
+",no comment,"
+    // Get the total token supply
+",5,5,1.0
+0x6dc5880bad03f0eeb6e6b60954074cd3739563d0/AssetMoira.sol:admined:onlyAdmin(),"    modifier onlyAdmin() { //A modifier to define admin-only functions
+        require(msg.sender == admin);
+        _;
+    }
+",no comment,"
+    /**
+    * @dev This modifier limits function execution to the admin
+    */
+",5,5,1.0
+"0x2ae965cd3d2b6d186e87d9586fc3bdbfc667cacc/GJCToken.sol:PausableToken:increaseApproval(address,uint256)","  function increaseApproval(address _spender, uint _addedValue) public whenNotPausedOrOwner returns (bool success) {
+    return super.increaseApproval(_spender, _addedValue);
+  }
+",no comment,"
+  /**
+   * Adding whenNotPaused
+   */
+",4,4,1.0
+"0x3b7cec8d8bae6342e38b33616000a2600599bedd/GenevExch.sol:GenevExch:depositToken(address,uint256)","    function depositToken(address token, uint amount) public { // Deposit ERC20 tokens
+        if (amount==0) revert();
+        require(whiteListERC20[token]);
+        if (!Token(token).transferFrom(msg.sender, this, amount)) revert();
+        tokens[token][msg.sender] = safeAdd(tokens[token][msg.sender], amount);
+        emit Deposit(token, msg.sender, amount, tokens[token][msg.sender]);
+    }
+",no comment,"
+  /**
+  * This function handles deposits of Ethereum based tokens to the contract.
+  * Does not allow Ether.
+  * If token transfer fails, transaction is reverted and remaining gas is refunded.
+  * Emits a Deposit event.
+  * Note: Remember to call Token(address).approve(this, amount) or this contract will not be able to do the transfer on your behalf.
+  * @param token Ethereum contract address of the token or 0 for Ether
+  * @param amount uint of the amount of the token the user wishes to deposit
+  */
+",4,4,1.0
+"0x5B932f07fd6E8fEbe913f70C913cD0D1FfD3a0A7/OVOToken.sol:ERC223Interface:transfer(address,uint256)","    function transfer(address to, uint256 value) external returns (bool);
+",no comment,"    
+    /**
+     * @dev Transfer the specified amount of tokens to the specified address.
+     *      This function works the same with the previous one
+     *      but doesn't contain `_data` param.
+     *      Added due to backwards compatibility reasons.
+     *
+     * @param _to    Receiver address.
+     * @param _value Amount of tokens that will be transferred.
+     */
+",4,4,1.0
+0x0a255f700b16c0acf5673565c757b94fb38b27f2/NeoWorldCash.sol:ERC20Interface:decimals(),"	function decimals() public constant returns (uint8);
+",no comment,"	// Function to access decimals of token .
+",5,5,1.0
+"0x0d30598f68e75574a6285f62eb5d7658bd62bd8b/SCAVOToken.sol:PausableToken:transfer(address,uint256)","  function transfer(
+    address _to,
+    uint256 _value
+  )
+    public
+    whenNotPaused
+    returns (bool)
+  {
+    return super.transfer(_to, _value);
+  }
+",no comment,"
+  /**
+  * @dev Transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",5,5,1.0
+0x05be4f528df1382f12668eaaef3e49eb2b97cc8e/INDToken.sol:INDToken:burn(uint256),"    function burn(uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);   
+        balanceOf[msg.sender] -= _value;            
+        totalSupply -= _value;                      
+        Burn(msg.sender, _value);
+        return true;
+    }
+",no comment,"
+    /**
+     * Destroy tokens
+     *
+     * Remove `_value` tokens from the system irreversibly
+     *
+     * @param _value the amount of money to burn
+     */
+",5,5,1.0
+0x6d84769b1e287a27f282a938c8110b22714dbf78/ABIO_preICO.sol:Ownable:constructor(),"    constructor(){
+        owner = msg.sender;
+    }
+",no comment,"  /**
+   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+   * account.
+   */
+",5,5,1.0
+0x2ea7ae77369654e4afe84ef3733fccd8e159e1fe/E4Token.sol:E4RowRewards:withdrawDividends(),"	function withdrawDividends() public returns (uint namount);
+",no comment,"
+
+	// ----------------------------
+	// sender withdraw entire rewards/dividends
+	// ----------------------------
+",5,5,1.0
+0x6afd9628ef194f2365f6de9c8cee8938dfd936ed/CobinhoodToken.sol:ERC20Basic:balanceOf(address),"  function balanceOf(address who) constant returns (uint256);
+",no comment,"
+  /**
+  * @dev Gets the balance of the specified address.
+      * @param _owner The address to query the the balance of. 
+          * @return An uint256 representing the amount owned by the passed address.
+              */
+",5,5,1.0
+"0x2c02bea9d5fac66fc06519c5b823aa5dd8b26ace/EncryptedToken.sol:TokenERC20:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public {
+        _transfer(msg.sender, _to, _value);
+    }
+",no comment,"
+    /**
+     * Transfer tokens
+     *
+     * Send `_value` tokens to `_to` from your account
+     *
+     * @param _to The address of the recipient
+     * @param _value the amount to send
+     */
+",5,5,1.0
+"0x5d4d7def2508da52a8da65264e568005aa52988d/BlockContract.sol:SafeMath:add(uint256,uint256)","  function add(uint256 a, uint256 b) internal pure returns (uint256) { 
+    uint256 c = a + b; assert(c >= a);
+    return c;
+  }
+",no comment,"
+  /**
+  * @dev Adds two numbers, throws on overflow.
+  */
+",5,5,1.0
+0x3a09769f27a6e4b01bc58b1273bcaa8159033ec5/SwapToken.sol:owned:owned(),"    function owned() {
+        owner = msg.sender;
+    }
+",no comment,"
+    //constructor
+",5,5,1.0
+0x7e1892fee14fe293ad71f5afd2132dbffabee0ab/blablabla.sol:ERC223:symbol(),"  function symbol() public view returns (string _symbol);
+",no comment,"  // Function to access symbol of token .
+",3,3,1.0
+"0x7bf0e89efde791ad80e3d23c0403b7d68272e63b/ICOToken.sol:HookableToken:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool) {
+        consumerAddress.onTransfer(msg.sender, _to, _value);
+        return super.transfer(_to, _value);
+    }
+",no comment,"
+    // Implementation of the standard transfer method that takes into account the finalize flag.
+",4,4,1.0
+"0x5B6754eB22015E781D2f70b5D477d84AAbE8F5c9/GanaLocker.sol:ReleasableToken:approve(address,uint256)","  function approve(address _spender, uint256 _value) public afterReleased returns (bool) {
+    return super.approve(_spender, _value);
+  }
+",no comment,"
+  /**
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   *
+   * Beware that changing an allowance with this method brings the risk that someone may use both the old
+   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */
+",5,5,1.0
+"0x8b6c0dbc499eaf97f54b54fe0019a4c676db534a/BYT.sol:BYT:transfer(address,uint256)","    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balances[msg.sender] >= _value);
+        balances[msg.sender] -= _value;
+        balances[_to] += _value;
+        emit Transfer(msg.sender, _to, _value); //solhint-disable-line indent, no-unused-vars
+        return true;
+    }
+",no comment,"
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+",5,5,1.0
+"0x5f2eb336c18ba7a6c9349bf68af677a6e1808ab8/EcoShareToken.sol:StandardToken:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+    require(_to != address(0));
+    require(_value <= balances[_from]);
+    require(_value <= allowed[_from][msg.sender]);
+
+    balances[_from] = balances[_from].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+    emit Transfer(_from, _to, _value);
+    return true;
+  }
+",no comment,"
+
+  /**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */
+",4,4,1.0
+"0x2f01bb428df76711c7ed17f51b06bd0a9dc709e6/KimToken.sol:ERC20:approve(address,uint256)","  function approve(address spender, uint256 value) public returns (bool);
+",no comment,"
+  /**
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   *
+   * Beware that changing an allowance with this method brings the risk that someone may use both the old
+   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */
+",5,5,1.0
+"0x1D2Db3554d4Ec03AAd72D2040f71d658475e6CB5/TMToken.sol:MintableToken:mint(address,uint256)","  function mint(address _to, uint256 _amount) onlyOwner canMint public returns (bool) {
+    totalSupply_ = totalSupply_.add(_amount);
+    balances[_to] = balances[_to].add(_amount);
+    emit Mint(_to, _amount);
+    emit Transfer(address(0), _to, _amount);
+    return true;
+  }
+",no comment,"
+  /**
+   * @dev Function to mint tokens
+   * @param _to The address that will receive the minted tokens.
+   * @param _amount The amount of tokens to mint.
+   * @return A boolean that indicates if the operation was successful.
+   */
+",5,5,1.0
+"0x2b466fb3a2ad87148f90a516d1b3ec8c2f910c57/Orectic.sol:ERC20Interface:transfer(address,uint256)","    function transfer(address to, uint tokens) public returns (bool success);
+",no comment,"
+    // ------------------------------------------------------------------------
+    // Transfer the balance from token owner's account to to account
+    // - Owner's account must have sufficient balance to transfer
+    // ------------------------------------------------------------------------
+",5,5,1.0
+0x6dceb0027a9e92ddfccc09a00d0779d3c1e2a8b7/NetkillerAdvancedToken.sol:NetkillerAdvancedToken:balanceOf(address),"    function balanceOf(address _address) view public returns (uint256 balance) {
+        return balances[_address];
+    }
+",no comment,"
+    /* Returns the balance of a particular account */
+",4,4,1.0
+"0x03dcbedc7f08f9fe276948d7b06a180834e80ece/LTCD.sol:LTCD:transferFrom(address,address,uint256)","    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _amount
+    ) public notPaused returns (bool success) {
+        if (balances[_from] >= _amount
+            && allowed[_from][msg.sender] >= _amount
+            && _amount > 0
+            && balances[_to] + _amount > balances[_to]) {
+            balances[_from] -= _amount;
+            allowed[_from][msg.sender] -= _amount;
+            balances[_to] += _amount;
+            Transfer(_from, _to, _amount);
+            return true;
+        } else {
+            return false;
+        }
+    }
+",no comment,"  
+     // Send _value amount of tokens from address _from to address _to
+     // The transferFrom method is used for a withdraw workflow, allowing contracts to send
+     // tokens on your behalf, for example to ""deposit"" to a contract address and/or to charge
+     // fees in sub-currencies; the command should fail unless the _from account has
+     // deliberately authorized the sender of the message via some mechanism; we propose
+     // these standardized APIs for approval:
+     
+",5,5,1.0
+"0x3dc865e42ec1c39093ff531fcfc1b4d502f52b4f/DeepToken.sol:ERC20:allowance(address,address)","  function allowance(address owner, address spender) public constant returns (uint256);
+",no comment,"
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+",5,5,1.0
+"0x7b8cf0e0de46a6b5272dced7f1ffb8ea24a82421/NvcFundCoin.sol:ERC20:transferFrom(address,address,uint256)","    function transferFrom(address from, address to, uint256 value) public returns (bool);
+",no comment,"
+    /**
+    * @dev Transfer tokens from one address to another
+    * @param _from address The address which you want to send tokens from
+    * @param _to address The address which you want to transfer to
+    * @param _value uint256 the amount of tokens to be transferred
+    */
+",5,5,1.0
+"0x0f71fda4987069d5cc1d0e6c234fd01675947b5e/LIDToken.sol:Token:transferFrom(address,address,uint256)","  function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+",no comment,"
+  /**
+   * Transfer given number of tokens from given owner to given recipient.
+   *
+   * @param _from address to transfer tokens from the owner of
+   * @param _to address to transfer tokens to the owner of
+   * @param _value number of tokens to transfer from given owner to given
+   *        recipient
+   * @return true if tokens were transferred successfully, false otherwise
+   * accounts [_to] + _value > accounts [_to] for overflow check
+   * which is already in safeMath
+   */
+",5,5,1.0
+"0x5ab793e36070f0fac928ea15826b0c1bc5365119/YUKI.sol:ERC223:approve(address,uint256)","    function approve(address _spender, uint256 _value) public returns (bool success);
+",no comment,"
+    /**
+     * @dev Allows _spender to spend no more than _value tokens in your behalf
+     *      Added due to backwards compatibility with ERC20
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     */
+",5,5,1.0
+"0x04f2e7221fdb1b52a68169b25793e51478ff0329/Cappasity.sol:SafeMath:mul(uint256,uint256)","   function mul(uint a, uint b) internal pure returns (uint) {
+     if (a == 0) {
+        return 0;
+      }
+
+      uint c = a * b;
+      assert(c / a == b);
+      return c;
+   }
+",no comment,"
+    // a multiplied by b
+",4,4,1.0
+"0x0e2c0d2d9bb05a51a5deff1ad2dd3ddf8656bbf6/InitialPointUnit.sol:InitialPointUnit:allowance(address,address)","    function allowance(address tokenOwner, address spender) public constant returns (uint remaining) {
+        return allowed[tokenOwner][spender];
+    }
+",no comment,"
+
+    // ------------------------------------------------------------------------
+    // Returns the amount of tokens approved by the owner that can be
+    // transferred to the spender's account
+    // ------------------------------------------------------------------------
+",4,4,1.0
+0x0d9b54834162aeeb248983d772a647fb38ba9f2a/DONC.sol:Owned:onlyOwner(),"    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
+",no comment,"  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+",5,5,1.0
+"0x5d4df6dd12fc56a31e2550efd6414e47a676ecef/MiningRigRentalsToken.sol:TokenERC20:approveAndCall(address,uint256,bytes)","    function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) {
+        tokenRecipient spender = tokenRecipient(_spender);
+        if (approve(_spender, _value)) {
+            spender.receiveApproval(msg.sender, _value, this, _extraData);
+            return true;
+        }
+    }
+",no comment,"
+    /**
+     * Set allowance for other address and notify
+     *
+     * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+     *
+     * @param _spender The address authorized to spend
+     * @param _value the max amount they can spend
+     * @param _extraData some extra information to send to the approved contract
+     */
+",5,5,1.0
+"0x6f397263ef9891864fdf9f5cc63b736adc00e652/RCR.sol:SafeMath:safeMul(uint256,uint256)","  function safeMul(uint256 a, uint256 b) internal returns (uint256) {
+    uint256 c = a * b;
+    assert(a == 0 || c / a == b);
+    return c;
+  }
+",no comment,"
+    /**
+        @dev returns the product of multiplying _x by _y, asserts if the calculation overflows
+
+        @param _x   factor 1
+        @param _y   factor 2
+
+        @return product
+    */
+",5,5,1.0
+"0x6eaeb67b455157a879227aaa73a8e4e27cb32e15/CellToken.sol:PausableToken:transfer(address,uint256)","  function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {
+    return super.transfer(_to, _value);
+  }
+",no comment,"
+  /**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */
+",5,5,1.0
+"0x8ae546782bd5c25715afaffb028ce9ee2cbe7bec/NSCDistributionContract.sol:SafeMath:add(uint256,uint256)","    function add(uint a, uint b) internal pure returns (uint c) {
+        c = a + b;
+        require(c >= a);
+    }
+",no comment,"{
+    // a add to b
+",5,5,1.0

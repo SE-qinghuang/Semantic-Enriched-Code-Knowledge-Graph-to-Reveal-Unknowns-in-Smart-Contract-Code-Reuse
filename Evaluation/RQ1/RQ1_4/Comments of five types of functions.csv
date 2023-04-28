@@ -1,0 +1,5 @@
+Propagation Type,nums of five types of functions,nums of five types of functions with comments,nums of five types of functions with comments(after propagation)
+Not Propagated,101025,40148,39.74%
+Propagated by only Override,101025,51676,51.15%
+Propagated by Only Function Clone,101025,63782,63.13%
+Propagated by Override + Function Clone,101025,71734,71.01%
