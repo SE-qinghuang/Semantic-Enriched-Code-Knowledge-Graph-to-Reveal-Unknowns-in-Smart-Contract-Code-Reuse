@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>FLOW CHAT</title>
+    <style>
+        html,body{
+                height: 100%;
+                padding: 0px;
+                margin: 0px;
+            }
+        #myDiagramDiv {
+            width: 100%;
+            height: 100%;
+            background-color: #DAE4E4;
+        }
+    </style>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../static/js/gojs.js"></script>
+</head>
+
+<body>
+    <idv id="dataid" d="{{ graph_data }}" style="display:none"></idv>
+    <div id="myDiagramDiv"></div>
+
+    <script>
+        var graph_data = document.getElementById('dataid').getAttribute('d');
+        var JSON_results = JSON.parse(graph_data);
+        var entities = JSON_results.entities; //实体
+        var links = JSON_results.links;   //关系
+        //为了简洁
+        var $ = go.GraphObject.make;  //节点创建命令
+        var diagram = new go.Diagram("myDiagramDiv");  //将创建的节点放在哪个div
+        //节点模板描述如何构建每个节点
+        diagram.nodeTemplate =
+            $(go.Node, "Auto", //形状自动填充适合
+                $(go.Shape, "RoundedRectangle", // 使用圆角长方形
+                    // 将Shape.fill绑定到Node.data.color
+                    new go.Binding("fill", "color")),
+                $(go.TextBlock, {
+                        margin: 3 //文字的间距
+                    },
+                    // 将TextBlock.text绑定到Node.data.key
+                    new go.Binding("text", "key")),
+            );
+        diagram.linkTemplate=
+            $(go.Link,
+            $(go.Shape),                           // this is the link shape (the line)
+            $(go.Shape, { toArrow: "Standard" }),  // this is an arrowhead
+            $(go.TextBlock,                        // this is a Link label
+              new go.Binding("text", "text"))
+          );
+        // 模型仅包含描述图表的基本信息
+        diagram.model = new go.GraphLinksModel( //两个JavaScript对象数组
+           entities,
+           links);
+        diagram.initialContentAlignment = go.Spot.Center;
+        // 启用Ctrl-Z撤消和Ctrl-Y重做
+        diagram.undoManager.isEnabled = true;
+
+    </script>
+</body>
+
+</html>

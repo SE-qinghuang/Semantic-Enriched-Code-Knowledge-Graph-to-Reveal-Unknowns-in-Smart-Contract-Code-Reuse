@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!--页面宽度自适应-->
+    <title>SEARCH</title>
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../static/images/logo.jpg">
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="../static/css/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="../static/css/nifty-demo-icons.min.css" rel="stylesheet">
+    <link href="../static/css/nifty-demo.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="../static/css/pace.min.css" rel="stylesheet">
+
+    <script src="../static/js/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="../static/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="../static/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="../static/js/nifty.min.js"></script>
+    <script src="../static/js/icons.js"></script>
+    <script src="../static/js/echarts.min.js"></script>
+    <script src="../static/js/tags.js"></script>
+    <script src="../static/js/gojs.js"></script>
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="../static/js/nifty-demo.min.js"></script>
+    <style type="text/css">
+        input[type=submit]{
+            width:100%;
+            height:30px;
+        }
+        .graph {
+            position: absolute;
+            height: fit-content;
+            width: fit-content;
+            border: 1px solid black;
+            border-radius:5px 5px 5px 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="container" class="effect aside-float aside-bright mainnav-lg"> <!--总的框架-->
+
+    <!--NAVBAR-->
+    <!--===================================================-->
+    <header id="navbar">   <!--左边导航栏整体框架-->
+        <div id="navbar-container" class="boxed">   <!--猜测可能需要一个div再来装下整个框架-->
+
+            <!--Brand logo & name-->
+            <!--================================-->
+            <div class="navbar-header">  <!--容纳检索系统还有logo-->
+                <a href="{{ url_for('index') }}" class="navbar-brand">
+                    <img src="../static/images/logo.jpg" alt="Nifty Logo" class="brand-icon">
+                    <div class="brand-title">
+                        <span class="brand-text">检索系统</span>
+                    </div>
+                </a>
+            </div>
+            <!--================================-->
+            <!--End brand logo & name-->
+
+
+            <!--Navbar Dropdown-->
+            <!--================================-->
+            <div class="navbar-content clearfix">
+                <ul class="nav navbar-top-links pull-left">
+
+                    <!--Navigation toogle button-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <li class="tgl-menu-btn">
+                        <a class="mainnav-toggle" href="#">
+                            <i class="demo-pli-view-list"></i>
+                        </a>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-top-links pull-left">
+
+                    <h4>CODE CHECKING</h4>
+
+                </ul>
+            </div>
+            <!--================================-->
+            <!--End Navbar Dropdown-->
+
+        </div>
+    </header>
+    <!--===================================================-->
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+            <idv id="dataid" d="{{ results }}" style="display:none"></idv>
+
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
+                <div class="row" style="width:100%;">
+                    <h3 style="text-align:center;">CODE CHECKING RESULTS</h3>
+                    <div class="col-lg-4" style="width:100%;" id="insert">
+
+                    </div>
+                </div>
+
+            </div>
+            <!--===================================================-->
+            <!--End page content-->
+        </div>
+        <!--===================================================-->
+        <!--END CONTENT CONTAINER-->
+
+
+        <!--MAIN NAVIGATION-->
+        <!--===================================================-->
+        <nav id="mainnav-container">
+            <div id="mainnav">
+
+                <!--Menu-->
+                <!--================================-->
+                <div id="mainnav-menu-wrap">
+                    <div class="nano">
+                        <div class="nano-content" style="width:280px;">
+
+                            <ul id="mainnav-menu" class="list-group">
+
+
+
+                                <!--Category name-->
+                                <li class="list-header">TASKS</li>
+
+                                <!--Menu list item-->
+
+
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="{{ url_for('code_searching') }}">
+                                        <i class="fa fa-search fa-lg" style="width:24px"></i>
+                                        <span class="menu-title" id="code_searching">
+                                                <strong>code searching</strong>
+                                            </span>
+
+                                    </a>
+
+
+                                </li>
+
+                                <li>
+                                    <a href="{{ url_for('code_checking') }}">
+                                        <i class="fa fa-check fa-lg" style="width:24px"></i>
+                                        <span class="menu-title" id="cdoe_checking">
+                                                <strong>code checking</strong>
+                                            </span>
+
+                                    </a>
+
+
+                                </li>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--================================-->
+                <!--End menu-->
+
+            </div>
+        </nav>
+        <!--===================================================-->
+        <!--END MAIN NAVIGATION-->
+    </div>
+
+    <!-- FOOTER -->
+    <!--===================================================-->
+    <footer id="footer">
+
+        <p class="pad-lft">Copyright&#0169; 2021 luozhiwen  &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved </p>
+
+    </footer>
+    <!--===================================================-->
+    <!-- END FOOTER -->
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+</div>
+
+<script type="text/javascript">
+    var results = document.getElementById('dataid').getAttribute('d');  //得到数据
+    var JSON_results = JSON.parse(results);
+    console.log(JSON_results);
+    main_div = document.getElementById("insert"); //装所有result的div
+    for(var i=0;i<JSON_results.result.length;i++){
+        var the_div = document.createElement("div");  //装每个result的div
+        var new_i = i.toString();
+        the_div.id = new_i; //为每个结果div设置id
+        main_div.appendChild(the_div);
+        if (JSON_results.result[i].type==0){
+            $("#"+new_i).html(
+            "<h4>"+"<strong>"+"<i>"+"<font color='#2f4f4f' face='宋体' size='5' >"+JSON_results.result[i].function+"</font>"+"</h4>"+
+            "<p>"+"<strong>"+"<i>"+"<font color='black' face='宋体' size='3' >"+JSON_results.result[i].ShowNumber+"</font>"+"</p>"
+        );
+            var detail = document.createElement("div"); //detail为blockchain的div
+            detail.id = "detail"+new_i;
+            var new_detail = "detail"+new_i;
+            the_div.appendChild(detail);
+            $("#"+new_detail).html(
+                "<p>"+"<strong>"+"<i>"+"<font color='black' face='宋体' size='3' >"+"1:"+JSON_results.result[i].MoreDetails[1]+"</font>"+"</p>"+
+                "<p>"+"<strong>"+"<i>"+"<font color='black' face='宋体' size='3' >"+"2:"+JSON_results.result[i].MoreDetails[2]+"</font>"+"</p>"+
+                "<p>"+"<strong>"+"<i>"+"<font color='black' face='宋体' size='2' >"+"......"+"</font>"+"</p>"+
+                "<p>"+ "<a id='main-href' style='text-decoration:underline;'>"+ "<font color='black' face='宋体' size='3'>"+ "Show more" + "</font>"+"</a>" + "</p>"
+            )
+            document.getElementById("main-href").href = JSON_results.result[i].url;
+            var hrefid = document.getElementById("main-href");
+            hrefid.id = "main-href"+new_i;
+        };
+        if(JSON_results.result[i].type==1){
+            $("#"+new_i).html(
+            "<h4>"+"<strong>"+"<i>"+"<a id='main-href' style='text-decoration:underline;'>"+"<font color='#2f4f4f' face='宋体' size='5' >"+JSON_results.result[i].function+"</font>"+"</a>"+"</h4>"
+        );
+            document.getElementById("main-href").href = JSON_results.result[i].url;
+            var hrefid = document.getElementById("main-href");
+            hrefid.id = "main-href"+new_i;
+        };
+        document.getElementById(new_i).style.border = "1px solid #000";
+    }
+</script>
+</body>
+</html>
+

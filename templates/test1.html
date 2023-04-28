@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>FLOW CHAT</title>
+    <style>
+        html,body{
+                height: 100%;
+                padding: 0px;
+                margin: 0px;
+            }
+        #myDiagramDiv {
+            width: 100%;
+            height: 100%;
+            background-color: #DAE4E4;
+        }
+    </style>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../static/js/gojs.js"></script>
+</head>
+
+<body>
+    <idv id="dataid" d="{{ graph_data }}" style="display:none"></idv>
+    <div id="myDiagramDiv"></div>
+
+    <script>
+        function init() {
+	if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+	var $ = go.GraphObject.make;  // for conciseness in defining templates
+	myDiagram = $(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element
+				  {
+		"undoManager.isEnabled": true  // enable undo & redo
+	});
+	// define a simple Node template
+	myDiagram.nodeTemplate =
+		$(go.Node, "Auto",  // the Shape will go around the TextBlock
+		  $(go.Shape, "RoundedRectangle", { strokeWidth: 0, fill: "white" },
+			// Shape.fill is bound to Node.data.color
+			new go.Binding("fill", "color")),
+		  $(go.TextBlock,
+			{ margin: 8, font: "bold 14px sans-serif", stroke: '#333' }, // Specify a margin to add some room around the text
+			// TextBlock.text is bound to Node.data.key
+			new go.Binding("text", "key"))
+		 );
+	// but use the default Link template, by not setting Diagram.linkTemplate
+	// create the model data that will be represented by Nodes and Links
+     myDiagram.linkTemplate=
+          $(go.Link,
+        $(go.Shape),                           // this is the link shape (the line)
+        $(go.Shape, { toArrow: "Standard" }),  // this is an arrowhead
+        $(go.TextBlock,                        // this is a Link label
+          new go.Binding("text", "text"))
+      );
+     var nodeDataArray =
+         [
+			{ key: "Alpha", color: "lightblue" },
+			{ key: "Beta", color: "orange" },
+			{ key: "Gamma", color: "lightgreen" },
+			{ key: "Delta", color: "pink" }
+		];
+     var linkDataArray =
+         [
+			{ from: "Alpha", to: "Beta","text":"1111" },
+			{ from: "Alpha", to: "Gamma" },
+			{ from: "Beta", to: "Beta" },
+			{ from: "Gamma", to: "Delta" },
+			{ from: "Delta", to: "Alpha" }
+		];
+
+	myDiagram.model = new go.GraphLinksModel(nodeDataArray,
+        linkDataArray);
+}
+;
+if(window.init) {init();}
+    </script>
+</body>
+
+</html>
